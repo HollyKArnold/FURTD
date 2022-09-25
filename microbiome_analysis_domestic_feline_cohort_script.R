@@ -1,11 +1,9 @@
-#AUTHOR: ARNOLD
-#DAY: September 22, 2020
-#DATE: 20200922
-#PURPOSE: Version for paper figures in 20201104PaperDraftVersion1.tex
-# 1. Metadata analysis
-# 2. PCOA correlate with signs
-# 3. ASV analysis
-# 4. CTU analysis
+#AUTHOR: HOLLY ARNOLD
+#DAY: September 25, 2022
+#DATE: 20220925
+#DESCRIPTION: 
+# Provides script for analyses performed in paper chronic clinical signs of upper respiratory 
+# microbiomes in a cohort of domestic felines
 
 ##############################################################################################################
 #LOCATIONS
