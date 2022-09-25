@@ -5,6 +5,44 @@
 # Provides script for analyses performed in paper chronic clinical signs of upper respiratory 
 # microbiomes in a cohort of domestic felines
 
+# LOAD LIBRARIES
+library(dplyr); 
+
+# Read in data files
+meta = readxl::read_excel(path = "data/Supplementary_Data.xlsx", 
+                          sheet = "Animal Metadata",
+                          col_types = c("text", "text", "text", "text", "numeric", "numeric", "numeric", "numeric",
+                                        "text", "date", "text", "numeric", "numeric", "text", "text", "text", "text",
+                                        "text", "text", "text", "text", "text", "text", "text", "text", "text",
+                                        "text", "text", "text", "text", "date", "text", "text", "text", "text", 
+                                        "text", "date", "date", "text", "text", "text", "text", "text", "text", "text",
+                                        "text", "text", "text", "text", "text", "text", "text", "text", "text", "text"),
+                          na = "N/A")
+
+meta$GutID = sub(pattern = "$", replacement = "f", x = meta$Animal_ID)
+meta$NasalID = sub(pattern = "$", replacement = "o", x = meta$Animal_ID)
+
+
+laksdfj
+
+## TO DO
+# Read in data
+# PCOA
+
+# Alpha Diversity
+
+# Figure 1
+
+# Figure 2
+
+# Figure 3
+
+# Figure 4
+
+# Write out session info
+
+
+
 ##############################################################################################################
 #LOCATIONS
 ## 1. LOCAL
