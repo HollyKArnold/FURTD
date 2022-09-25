@@ -1,0 +1,989 @@
+seq2	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq5	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq7	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq8	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Enterobacteriales; f__Enterobacteriaceae; g__Escherichia/Shigella
+seq9	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq10	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq12	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq13	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq16	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq17	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq20	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq21	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq23	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq25	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq26	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XI; g__Gallicola
+seq30	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Peptoclostridium
+seq31	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Lautropia
+seq33	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq35	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq37	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq38	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq39	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq40	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Neisseria
+seq41	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptococcaceae; g__Peptococcus
+seq43	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq44	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq46	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Aquaspirillaceae; g__Aquaspirillum
+seq48	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Defluviitaleaceae; g__Defluviitaleaceae_UCG-011
+seq49	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq50	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Streptococcaceae; g__Streptococcus
+seq52	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq55	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq58	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Leptotrichiaceae; g__Streptobacillus
+seq59	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq60	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq62	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Flavobacterium
+seq64	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Pasteurella
+seq65	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq70	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq71	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq72	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq73	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Pasteurella
+seq74	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq75	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq76	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__MgMjR-022
+seq77	k__Bacteria; p__Bacteroidetes; c__Ignavibacteria; o__OPB56
+seq78	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq79	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq81	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq84	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Peptoanaerobacter
+seq85	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Helicobacteraceae; g__Wolinella
+seq86	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Alysiella
+seq87	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Actinomyces
+seq88	k__Bacteria; p__Tenericutes; c__Mollicutes
+seq90	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Campylobacteraceae; g__Campylobacter
+seq91	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq92	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Neisseria
+seq93	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Brachymonas
+seq96	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq97	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq98	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Leptotrichiaceae; g__Leptotrichia
+seq99	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq100	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq101	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq103	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Arcobacteraceae; g__Arcobacter
+seq104	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Actinobacillus
+seq105	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Neisseria
+seq107	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Aerococcaceae
+seq108	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Lautropia
+seq109	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq110	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq112	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Haemophilus
+seq113	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq115	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae
+seq116	k__Bacteria; p__Tenericutes; c__Mollicutes; o__Mycoplasmatales; f__Mycoplasmataceae; g__Ureaplasma
+seq117	k__Bacteria; p__Firmicutes; c__Erysipelotrichia; o__Erysipelotrichales; f__Erysipelotrichaceae
+seq118	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq119	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq120	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Corynebacteriales; f__Corynebacteriaceae; g__Corynebacterium
+seq121	k__Bacteria; p__Bacteroidetes; c__Ignavibacteria; o__OPB56
+seq124	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Corticibacter
+seq125	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq129	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Helicobacteraceae; g__Helicobacter
+seq130	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq132	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq133	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XI; g__Parvimonas
+seq135	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae
+seq136	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XI; g__Helcococcus
+seq140	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq142	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq144	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Peptoanaerobacter
+seq146	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae
+seq147	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae
+seq148	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Xanthomonadales; f__Xanthomonadaceae; g__Luteimonas
+seq149	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Pasteurella
+seq150	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq151	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Desulfovibrionales; f__Desulfomicrobiaceae; g__Desulfoplanes
+seq153	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq154	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Catonella
+seq155	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Chitinophagales; f__Chitinophagaceae; g__Haoranjiania
+seq156	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq157	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Rikenellaceae; g__Rikenellaceae_RC9_gut_group
+seq158	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Filifactor
+seq159	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq160	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Aerococcaceae
+seq161	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Kingella
+seq164	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq165	k__Bacteria; p__Tenericutes; c__Mollicutes; o__Acholeplasmatales; f__Acholeplasmataceae; g__Acholeplasma
+seq166	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq169	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Aerococcaceae
+seq170	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq171	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Desulfovibrionales; f__Desulfomicrobiaceae; g__Desulfomicrobium
+seq174	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Defluviitaleaceae; g__Defluviitaleaceae_UCG-011
+seq175	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq176	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae
+seq178	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae; g__Suttonella
+seq179	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq181	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Filifactor
+seq182	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Johnsonella
+seq184	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Roseburia
+seq186	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Corynebacteriales; f__Corynebacteriaceae; g__Corynebacterium
+seq187	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq188	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq190	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae
+seq191	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq192	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq193	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq194	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XI; g__Helcococcus
+seq202	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq203	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq204	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq205	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq206	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq208	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq210	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq211	k__Bacteria; p__Firmicutes; c__Bacilli; o__Bacillales; f__Family_XI; g__Gemella
+seq212	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq215	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Peptoanaerobacter
+seq216	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XI; g__Parvimonas
+seq217	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq218	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Actinomyces
+seq219	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq220	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Leptotrichiaceae
+seq223	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rickettsiales; f__Mitochondria
+seq224	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Tannerellaceae; g__Tannerella
+seq225	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq226	k__Bacteria; p__Bacteroidetes; c__Ignavibacteria; o__OPB56
+seq229	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq231	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Leptotrichiaceae
+seq232	k__Bacteria; p__Synergistetes; c__Synergistia; o__Synergistales; f__Synergistaceae; g__Fretibacterium
+seq234	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq236	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Streptococcaceae; g__Streptococcus
+seq237	k__Bacteria; p__Firmicutes; c__Erysipelotrichia; o__Erysipelotrichales; f__Erysipelotrichaceae
+seq238	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq240	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq241	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae
+seq242	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq243	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq245	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq249	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq251	k__Bacteria; p__Firmicutes; c__Erysipelotrichia; o__Erysipelotrichales; f__Erysipelotrichaceae
+seq253	k__Bacteria; p__Synergistetes; c__Synergistia; o__Synergistales; f__Synergistaceae; g__Fretibacterium
+seq255	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Actinomyces
+seq256	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Clostridiaceae_1; g__Clostridium_sensu_stricto_1
+seq257	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq258	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq260	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq261	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq264	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Micrococcales; f__Microbacteriaceae; g__Leucobacter
+seq267	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII
+seq269	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Actinomyces
+seq272	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq273	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq275	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Christensenellaceae; g__Christensenellaceae_R-7_group
+seq276	k__Bacteria; p__Chloroflexi; c__Anaerolineae; o__Anaerolineales; f__Anaerolineaceae; g__Flexilinea
+seq277	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Johnsonella
+seq278	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Aquaspirillaceae; g__Aquaspirillum
+seq280	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq281	k__Bacteria; p__Cyanobacteria; c__Oxyphotobacteria; o__Chloroplast
+seq285	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq286	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae
+seq287	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq289	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Desulfovibrionales; f__Desulfovibrionaceae; g__Desulfovibrio
+seq290	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Proteocatella
+seq291	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq292	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq293	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq295	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminococcaceae_UCG-014
+seq298	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae
+seq300	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Catonella
+seq301	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae
+seq304	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq306	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq307	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq310	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq312	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Proteocatella
+seq313	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XI; g__W5053
+seq314	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq315	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq316	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq317	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae
+seq319	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Xanthomonadales; f__Xanthomonadaceae; g__Arenimonas
+seq320	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Sediminispirochaeta
+seq321	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq322	k__Bacteria; p__Spirochaetes; c__MVP-15
+seq323	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq324	k__Bacteria; p__Firmicutes; c__Erysipelotrichia; o__Erysipelotrichales; f__Erysipelotrichaceae
+seq325	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq327	k__Bacteria; p__Firmicutes; c__Erysipelotrichia; o__Erysipelotrichales; f__Erysipelotrichaceae
+seq328	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq329	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq330	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae
+seq331	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Micrococcales; f__Microbacteriaceae; g__Leucobacter
+seq332	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq333	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq336	k__Bacteria; p__Firmicutes; c__Bacilli; o__Bacillales; f__Staphylococcaceae; g__Staphylococcus
+seq341	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Corticibacter
+seq343	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae
+seq345	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq346	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Corticibacter
+seq347	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq348	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Proteocatella
+seq349	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq350	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq351	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Catonella
+seq352	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Catonella
+seq354	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq355	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Micrococcales
+seq356	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq359	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae
+seq360	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Campylobacteraceae; g__Campylobacter
+seq362	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Corynebacteriales; f__Corynebacteriaceae; g__Corynebacterium
+seq364	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Arcobacteraceae; g__Arcobacter
+seq366	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq368	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Paludibacteraceae; g__F0058
+seq369	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae
+seq370	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Actinomyces
+seq371	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XI; g__Ezakiella
+seq372	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq373	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Tannerellaceae; g__Parabacteroides
+seq374	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq375	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq376	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq378	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Lautropia
+seq380	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq381	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq383	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Xanthomonadales; f__Xanthomonadaceae; g__Luteimonas
+seq384	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria
+seq385	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Catonella
+seq387	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Actinomyces
+seq388	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Carnobacteriaceae; g__Granulicatella
+seq389	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq391	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Prevotella
+seq392	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Campylobacteraceae; g__Campylobacter
+seq395	k__Bacteria; p__Tenericutes; c__Mollicutes; o__Mollicutes_RF39
+seq399	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq401	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq403	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae
+seq406	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq408	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq410	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Prevotellaceae_UCG-003
+seq411	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq412	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq414	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq415	k__Bacteria; p__Firmicutes; c__Bacilli; o__Bacillales; f__Family_XI; g__Gemella
+seq416	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq417	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq419	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae; g__Suttonella
+seq421	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq422	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq423	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq424	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Desulfovibrionales; f__Desulfovibrionaceae; g__Desulfovibrio
+seq425	k__Bacteria; p__Tenericutes; c__Mollicutes; o__Mollicutes_RF39
+seq427	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Defluviitaleaceae; g__Defluviitaleaceae_UCG-011
+seq430	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Pasteurella
+seq433	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq434	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq435	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq437	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq440	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq441	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Christensenellaceae; g__Christensenellaceae_R-7_group
+seq442	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq443	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Carnobacteriaceae
+seq444	k__Bacteria; p__Actinobacteria; c__Nitriliruptoria; o__Euzebyales; f__Euzebyaceae
+seq446	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Desulfovibrionales; f__Desulfomicrobiaceae; g__Desulfomicrobium
+seq449	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq450	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq451	k__Bacteria; p__Tenericutes; c__Mollicutes; o__Acholeplasmatales; f__Acholeplasmataceae; g__Acholeplasma
+seq452	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII
+seq453	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq455	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq457	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq459	k__Bacteria; p__Elusimicrobia; c__Endomicrobia; o__Endomicrobiales; f__Endomicrobiaceae; g__Candidatus_Endomicrobium
+seq462	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq465	k__Bacteria; p__Firmicutes; c__Negativicutes; o__Selenomonadales; f__Veillonellaceae; g__Veillonella
+seq467	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Prevotellaceae_UCG-003
+seq468	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq469	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XI; g__Parvimonas
+seq471	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq474	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq479	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XI; g__Ezakiella
+seq480	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Leptotrichiaceae; g__Oceanivirga
+seq481	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae
+seq482	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq487	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Kingella
+seq489	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rhodospirillales
+seq490	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq491	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq492	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Actinomyces
+seq494	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Peptostreptococcus
+seq495	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Actinomyces
+seq496	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq497	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Proteocatella
+seq498	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Kineosporiales; f__Kineosporiaceae; g__Quadrisphaera
+seq499	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Defluviitaleaceae; g__Defluviitaleaceae_UCG-011
+seq500	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Peptostreptococcus
+seq503	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq504	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq507	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminiclostridium_9
+seq508	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Kingella
+seq510	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII
+seq512	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq513	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Leptotrichiaceae; g__Oceanivirga
+seq514	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__F082
+seq515	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq516	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Leptotrichiaceae; g__Leptotrichia
+seq518	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq519	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq520	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq521	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq526	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Micrococcales; f__Microbacteriaceae; g__Leucobacter
+seq528	k__Bacteria; p__Firmicutes; c__Erysipelotrichia; o__Erysipelotrichales; f__Erysipelotrichaceae
+seq529	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq530	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae
+seq531	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Rikenellaceae
+seq532	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Haemophilus
+seq533	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq534	k__Bacteria; p__Firmicutes; c__Erysipelotrichia; o__Erysipelotrichales; f__Erysipelotrichaceae
+seq536	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae
+seq537	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq538	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq539	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq544	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Fastidiosipila
+seq545	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq547	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq550	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq551	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Christensenellaceae; g__Christensenellaceae_R-7_group
+seq552	k__Bacteria; p__Firmicutes; c__Erysipelotrichia; o__Erysipelotrichales; f__Erysipelotrichaceae; g__Erysipelothrix
+seq556	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq558	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq559	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq564	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq568	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq573	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Corynebacteriales; f__Corynebacteriaceae; g__Corynebacterium
+seq574	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Dysgonomonadaceae; g__Proteiniphilum
+seq575	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Paludibacteraceae; g__F0058
+seq577	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Christensenellaceae; g__Christensenellaceae_R-7_group
+seq578	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq579	k__Bacteria; p__Tenericutes; c__Mollicutes; o__Mycoplasmatales; f__Mycoplasmataceae; g__Mycoplasma
+seq581	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Desulfovibrionales; f__Desulfomicrobiaceae; g__Desulfomicrobium
+seq582	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Micrococcales; f__Microbacteriaceae
+seq583	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XI; g__Parvimonas
+seq585	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Actinomyces
+seq586	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq588	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq590	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq591	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq592	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII
+seq593	k__Bacteria; p__Spirochaetes; c__MVP-15
+seq594	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq596	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Carnobacteriaceae; g__Granulicatella
+seq597	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq598	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq600	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq602	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Cetobacterium
+seq603	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq604	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Johnsonella
+seq605	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Filifactor
+seq606	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq608	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq609	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae; g__Suttonella
+seq612	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Filifactor
+seq614	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq615	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Catonella
+seq616	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Leptotrichiaceae; g__Oceanivirga
+seq617	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq618	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq620	k__Bacteria; p__Tenericutes; c__Mollicutes; o__Mollicutes_RF39
+seq621	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Sediminispirochaeta
+seq622	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq623	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Streptococcaceae; g__Streptococcus
+seq625	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Neisseria
+seq626	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq627	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq629	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Paludibacteraceae; g__H1
+seq632	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq634	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Pelistega
+seq637	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Aeromonadales; f__Aeromonadaceae; g__Aeromonas
+seq640	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq643	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq648	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Pelistega
+seq649	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Roseburia
+seq650	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae
+seq652	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq653	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Rhodocyclaceae; g__Propionivibrio
+seq655	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminococcaceae_UCG-004
+seq657	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Xylophilus
+seq658	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq659	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq661	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Desulfobacterales; f__Desulfobulbaceae; g__Desulfobulbus
+seq663	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII
+seq664	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Defluviitaleaceae; g__Defluviitaleaceae_UCG-011
+seq665	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq667	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Corticibacter
+seq669	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq671	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Actinobacillus
+seq673	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq674	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq675	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq676	k__Bacteria; p__Spirochaetes; c__MVP-15
+seq679	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq680	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq681	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Rs-M59_termite_group
+seq682	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq685	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq686	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Lactobacillaceae; g__Lactobacillus
+seq688	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq689	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Corynebacteriales; f__Corynebacteriaceae; g__Corynebacterium
+seq690	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae
+seq692	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae
+seq693	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq694	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq695	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Actinomyces
+seq696	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae
+seq697	k__Bacteria; p__Chloroflexi; c__Anaerolineae; o__Anaerolineales; f__Anaerolineaceae; g__Flexilinea
+seq698	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq700	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq701	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq704	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq705	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Leptotrichiaceae; g__Streptobacillus
+seq707	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq708	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Actinomyces
+seq709	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq710	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae
+seq712	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Tannerellaceae; g__Tannerella
+seq715	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq716	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Christensenellaceae; g__Christensenellaceae_R-7_group
+seq718	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII
+seq719	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Streptococcaceae; g__Streptococcus
+seq720	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq721	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq722	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq723	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq727	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq728	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq729	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Campylobacteraceae; g__Campylobacter
+seq730	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq731	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq732	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq734	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq735	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq737	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq738	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq739	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq742	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Rs-M59_termite_group
+seq744	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptococcaceae; g__Peptococcus
+seq745	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Leptotrichiaceae; g__Leptotrichia
+seq746	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Acinetobacter
+seq747	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq749	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Johnsonella
+seq750	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Campylobacteraceae; g__Campylobacter
+seq753	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq754	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq757	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Helicobacteraceae; g__Wolinella
+seq758	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq759	k__Bacteria; p__Tenericutes; c__Mollicutes; o__Izimaplasmatales
+seq760	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq761	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq763	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Paludibacteraceae; g__H1
+seq765	k__Bacteria; p__Bacteroidetes; c__Bacteroidia
+seq767	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq768	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq769	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq770	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq771	k__Bacteria; p__Bacteroidetes; c__Bacteroidia
+seq773	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Defluviitaleaceae; g__Defluviitaleaceae_UCG-011
+seq777	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptococcaceae; g__Peptococcus
+seq778	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq779	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae
+seq780	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq786	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae
+seq787	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq788	k__Bacteria; p__Patescibacteria; c__Gracilibacteria
+seq789	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq790	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Johnsonella
+seq791	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Streptococcaceae; g__Streptococcus
+seq794	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq796	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Leptotrichiaceae; g__Leptotrichia
+seq799	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII; g__Family_XIII_UCG-001
+seq800	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq801	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq803	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Desulfobacterales; f__Desulfobulbaceae; g__Desulfobulbus
+seq804	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Clostridiales_vadinBB60_group
+seq806	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq808	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Johnsonella
+seq809	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq813	k__Bacteria; p__Patescibacteria; c__Gracilibacteria
+seq814	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Actinomyces
+seq818	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII; g__Anaerovorax
+seq819	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq821	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq822	k__Bacteria; p__Firmicutes; c__Erysipelotrichia; o__Erysipelotrichales; f__Erysipelotrichaceae
+seq825	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Flavobacterium
+seq826	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Christensenellaceae; g__Christensenellaceae_R-7_group
+seq827	k__Bacteria; p__Tenericutes; c__Mollicutes; o__T2WK15B57
+seq828	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Kingella
+seq830	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq831	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Rikenellaceae; g__Alistipes
+seq835	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Xanthomonadales; f__Rhodanobacteraceae
+seq836	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Tannerellaceae; g__Tannerella
+seq837	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq840	k__Bacteria
+seq843	k__Bacteria; p__Actinobacteria; c__Nitriliruptoria; o__Euzebyales; f__Euzebyaceae
+seq848	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq849	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq850	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae; g__Suttonella
+seq851	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq852	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae
+seq853	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Helicobacteraceae; g__Helicobacter
+seq855	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Actinomyces
+seq857	k__Bacteria; p__Tenericutes; c__Mollicutes; o__Mollicutes_RF39
+seq866	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq868	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Myxococcales; f__Phaselicystidaceae; g__Phaselicystis
+seq870	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq872	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq874	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq875	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq876	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Johnsonella
+seq877	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq878	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq880	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Catonella
+seq881	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq882	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae
+seq883	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq884	k__Bacteria; p__Firmicutes; c__Bacilli; o__Bacillales
+seq885	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq886	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Proteocatella
+seq887	k__Bacteria; p__Firmicutes; c__Negativicutes; o__Selenomonadales; f__Veillonellaceae; g__Selenomonas_4
+seq888	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq889	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq890	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Bifidobacteriales; f__Bifidobacteriaceae; g__Bifidobacterium
+seq891	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminococcaceae_UCG-014
+seq892	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq894	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq897	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq898	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Leptotrichiaceae; g__Leptotrichia
+seq899	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq901	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq902	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq905	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq906	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Rs-M59_termite_group
+seq908	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Micrococcales; f__Microbacteriaceae; g__Leucobacter
+seq909	k__Bacteria; p__Patescibacteria; c__Gracilibacteria
+seq911	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Defluviitaleaceae; g__Defluviitaleaceae_UCG-011
+seq915	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII; g__S5-A14a
+seq920	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Muribaculaceae
+seq921	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae
+seq922	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq924	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Pseudomonadaceae; g__Pseudomonas
+seq926	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Rikenellaceae; g__Rikenellaceae_RC9_gut_group
+seq927	k__Bacteria; p__Patescibacteria; c__Gracilibacteria
+seq931	k__Bacteria; p__Firmicutes; c__Bacilli; o__Bacillales; f__Planococcaceae
+seq934	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae
+seq935	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq939	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Brachymonas
+seq940	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq941	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Pasteurella
+seq943	k__Bacteria; p__Firmicutes; c__Negativicutes; o__Selenomonadales; f__Acidaminococcaceae; g__Phascolarctobacterium
+seq944	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq946	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq949	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Muribaculaceae
+seq950	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq953	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq954	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminococcaceae_UCG-014
+seq955	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII
+seq956	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Rs-M59_termite_group
+seq957	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Lactobacillaceae; g__Lactobacillus
+seq959	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq960	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Bdellovibrionales; f__Bacteriovoracaceae; g__Peredibacter
+seq961	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq962	k__Bacteria; p__Bacteroidetes; c__Ignavibacteria; o__OPB56
+seq965	k__Bacteria; p__Tenericutes; c__Mollicutes; o__Mycoplasmatales; f__Mycoplasmataceae; g__Mycoplasma
+seq969	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae
+seq972	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq973	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Prevotella_7
+seq974	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq975	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae
+seq976	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq978	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq980	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq981	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Muribaculaceae
+seq982	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq985	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Tannerellaceae; g__Tannerella
+seq988	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq989	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Desulfobacterales; f__Desulfobulbaceae; g__Desulfobulbus
+seq990	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Catonella
+seq991	k__Bacteria; p__Synergistetes; c__Synergistia; o__Synergistales; f__Synergistaceae; g__Candidatus_Tammella
+seq995	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq996	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq997	k__Bacteria; p__Spirochaetes; c__MVP-15
+seq998	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq999	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Sediminispirochaeta
+seq1000	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Corynebacteriales; f__Corynebacteriaceae; g__Corynebacterium
+seq1003	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq1005	k__Bacteria; p__Synergistetes; c__Synergistia; o__Synergistales; f__Synergistaceae; g__Fretibacterium
+seq1006	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Catonella
+seq1007	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII
+seq1010	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq1011	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Catonella
+seq1012	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq1014	k__Bacteria; p__Firmicutes; c__Erysipelotrichia; o__Erysipelotrichales; f__Erysipelotrichaceae
+seq1020	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminococcaceae_UCG-005
+seq1021	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Bradymonadales
+seq1022	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XI; g__Parvimonas
+seq1025	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae; g__Suttonella
+seq1029	k__Bacteria; p__Firmicutes; c__Bacilli; o__Bacillales; f__Planococcaceae; g__Lysinibacillus
+seq1030	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq1031	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Helicobacteraceae; g__Helicobacter
+seq1032	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq1033	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Marinifilaceae; g__Odoribacter
+seq1035	k__Bacteria; p__Synergistetes; c__Synergistia; o__Synergistales; f__Synergistaceae; g__Fretibacterium
+seq1037	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Corynebacteriales; f__Corynebacteriaceae; g__Corynebacterium_1
+seq1038	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Christensenellaceae; g__Christensenellaceae_R-7_group
+seq1041	k__Bacteria; p__Tenericutes; c__Mollicutes; o__Acholeplasmatales; f__Acholeplasmataceae; g__Acholeplasma
+seq1042	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rhizobiales; f__Beijerinckiaceae; g__Bosea
+seq1043	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Paludibacteraceae
+seq1045	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Xenophilus
+seq1046	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Rs-M59_termite_group
+seq1047	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae
+seq1048	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Helicobacteraceae; g__Helicobacter
+seq1049	k__Bacteria; p__Patescibacteria; c__Gracilibacteria
+seq1051	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq1055	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae
+seq1056	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq1058	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Johnsonella
+seq1059	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Lactobacillaceae; g__Lactobacillus
+seq1061	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Bibersteinia
+seq1062	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq1063	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq1065	k__Bacteria; p__Tenericutes; c__Mollicutes; o__Mycoplasmatales; f__Mycoplasmataceae; g__Mycoplasma
+seq1067	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Catonella
+seq1069	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq1070	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq1072	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae
+seq1076	k__Bacteria; p__Patescibacteria; c__Gracilibacteria
+seq1077	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq1078	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__F082
+seq1080	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Rikenellaceae; g__Rikenellaceae_RC9_gut_group
+seq1081	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Cetobacterium
+seq1084	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII; g__Family_XIII_AD3011_group
+seq1085	k__Bacteria; p__Firmicutes; c__Bacilli; o__Bacillales; f__Bacillaceae; g__Bacillus
+seq1087	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Fastidiosipila
+seq1088	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq1089	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq1093	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Rikenellaceae; g__Rikenellaceae_RC9_gut_group
+seq1094	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ercella
+seq1095	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Actinomyces
+seq1096	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII
+seq1097	k__Bacteria; p__Synergistetes; c__Synergistia; o__Synergistales; f__Synergistaceae; g__Fretibacterium
+seq1098	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Johnsonella
+seq1101	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Arcanobacterium
+seq1104	k__Bacteria
+seq1105	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae
+seq1107	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Simplicispira
+seq1108	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq1110	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Lactobacillaceae; g__Lactobacillus
+seq1111	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Flavobacterium
+seq1112	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq1113	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Paucibacter
+seq1116	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Frederiksenia
+seq1118	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Rikenellaceae; g__Blvii28_wastewater-sludge_group
+seq1119	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Muribaculaceae
+seq1122	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Paucibacter
+seq1125	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Marinifilaceae; g__Odoribacter
+seq1128	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Micrococcales; f__Micrococcaceae; g__Rothia
+seq1130	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Defluviitaleaceae; g__Defluviitaleaceae_UCG-011
+seq1131	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rhizobiales; f__Rhizobiaceae
+seq1132	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Rs-M59_termite_group
+seq1134	k__Bacteria; p__Cyanobacteria; c__Oxyphotobacteria; o__Chloroplast
+seq1137	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq1142	k__Bacteria; p__Cyanobacteria; c__Oxyphotobacteria; o__Chloroplast
+seq1143	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq1146	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Lampropedia
+seq1148	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Prevotellaceae_UCG-001
+seq1149	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq1153	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Tyzzerella_4
+seq1154	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Bradymonadales
+seq1158	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Lachnospiraceae_NK4A136_group
+seq1159	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Muribaculaceae
+seq1163	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq1164	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq1165	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Johnsonella
+seq1166	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Clostridiales_vadinBB60_group
+seq1167	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq1168	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Johnsonella
+seq1170	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq1171	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminococcaceae_UCG-014
+seq1174	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rhizobiales
+seq1176	k__Archaea; p__Euryarchaeota; c__Methanobacteria; o__Methanobacteriales; f__Methanobacteriaceae; g__Methanobrevibacter
+seq1177	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae
+seq1178	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq1181	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Chitinophagales; f__Chitinophagaceae
+seq1182	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq1188	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Chitinibacteraceae
+seq1189	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq1190	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq1191	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Actinomyces
+seq1193	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq1194	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq1197	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rhizobiales; f__Rhizobiales_Incertae_Sedis; g__Phreatobacter
+seq1198	k__Bacteria; p__Firmicutes; c__Erysipelotrichia; o__Erysipelotrichales; f__Erysipelotrichaceae; g__ZOR0006
+seq1200	k__Bacteria; p__Firmicutes; c__Bacilli; o__Bacillales; f__Bacillaceae; g__Bacillus
+seq1201	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria
+seq1202	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Haemophilus
+seq1203	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq1205	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Micrococcales; f__Micrococcaceae; g__Kocuria
+seq1207	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Burkholderia-Caballeronia-Paraburkholderia
+seq1213	k__Bacteria; p__Tenericutes; c__Mollicutes; o__Mollicutes_RF39
+seq1217	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Rhodocyclaceae; g__Propionivibrio
+seq1218	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria
+seq1219	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Neisseria
+seq1220	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Lachnospiraceae_NK4A136_group
+seq1222	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__JGI_0000069-P22
+seq1226	k__Bacteria; p__Planctomycetes; c__Planctomycetacia; o__Gemmatales; f__Gemmataceae
+seq1229	k__Bacteria; p__Cyanobacteria; c__Oxyphotobacteria; o__Nostocales
+seq1232	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminococcaceae_UCG-005
+seq1234	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII; g__Anaerovorax
+seq1235	k__Bacteria; p__Proteobacteria
+seq1236	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq1240	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Rikenellaceae; g__Alistipes
+seq1241	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Micrococcales; f__Dermacoccaceae; g__Dermacoccus
+seq1242	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rhodobacterales; f__Rhodobacteraceae; g__Defluviimonas
+seq1243	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminococcaceae_UCG-005
+seq1244	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Rikenellaceae; g__Rikenellaceae_RC9_gut_group
+seq1246	k__Bacteria
+seq1247	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Rhodocyclaceae; g__Propionivibrio
+seq1249	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Aeromonadales; f__Aeromonadaceae; g__Aeromonas
+seq1250	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Rikenellaceae; g__Rikenellaceae_RC9_gut_group
+seq1251	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Conchiformibius
+seq1252	k__Bacteria; p__Tenericutes; c__Mollicutes; o__Anaeroplasmatales; f__Anaeroplasmataceae; g__Anaeroplasma
+seq1253	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Lachnospiraceae_AC2044_group
+seq1254	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq1256	k__Bacteria; p__Tenericutes; c__Mollicutes
+seq1259	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Muribaculaceae
+seq1263	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Myxococcales; f__Phaselicystidaceae; g__Phaselicystis
+seq1264	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae
+seq1267	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Leptotrichiaceae; g__Oceanivirga
+seq1270	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq1272	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae
+seq1273	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Cardiobacteriales; f__Cardiobacteriaceae; g__Suttonella
+seq1276	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ercella
+seq1277	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq1279	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Xanthomonadales; f__Xanthomonadaceae; g__Thermomonas
+seq1280	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae
+seq1281	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Brachymonas
+seq1283	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Rhodocyclaceae; g__Propionivibrio
+seq1287	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae
+seq1288	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Frederiksenia
+seq1289	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq1290	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Dysgonomonadaceae; g__Petrimonas
+seq1291	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae; g__Bergeyella
+seq1294	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Acinetobacter
+seq1295	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq1296	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Pseudomonadaceae; g__Pseudomonas
+seq1304	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Pseudomonadaceae; g__Pseudomonas
+seq1305	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Sphingomonadales; f__Sphingomonadaceae; g__Sphingomonas
+seq1306	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rhizobiales; f__Rhizobiales_Incertae_Sedis
+seq1307	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Flavonifractor
+seq1308	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Aeromonadales; f__Aeromonadaceae; g__Aeromonas
+seq1309	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae
+seq1310	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Chitinophagales; f__Chitinophagaceae
+seq1311	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Micrococcales; f__Microbacteriaceae; g__Leucobacter
+seq1312	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Frederiksenia
+seq1314	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminococcaceae_UCG-005
+seq1315	k__Bacteria
+seq1317	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq1320	k__Bacteria; p__Firmicutes; c__Bacilli; o__Bacillales; f__Staphylococcaceae; g__Staphylococcus
+seq1324	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq1325	k__Bacteria; p__Firmicutes; c__Bacilli; o__Bacillales; f__Staphylococcaceae; g__Staphylococcus
+seq1327	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Aestuariivivens
+seq1328	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Chitinibacteraceae
+seq1331	k__Archaea; p__Euryarchaeota; c__Methanobacteria; o__Methanobacteriales; f__Methanobacteriaceae; g__Methanobrevibacter
+seq1332	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Chromobacteriaceae; g__Gulbenkiania
+seq1333	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae
+seq1334	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Aerococcaceae
+seq1335	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminococcaceae_NK4A214_group
+seq1339	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq1340	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq1341	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Streptococcaceae; g__Anthococcus
+seq1342	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Desulfovibrionales; f__Desulfovibrionaceae
+seq1343	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rhodobacterales; f__Rhodobacteraceae; g__Paracoccus
+seq1347	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq1348	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Catonella
+seq1349	k__Bacteria; p__Bacteroidetes; c__Bacteroidia
+seq1350	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq1351	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Rikenellaceae; g__Rikenellaceae_RC9_gut_group
+seq1352	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Catonella
+seq1353	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Rikenellaceae; g__Rikenellaceae_RC9_gut_group
+seq1354	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria
+seq1355	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Leptotrichiaceae
+seq1356	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Gammaproteobacteria_Incertae_Sedis; f__Unknown_Family
+seq1358	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq1359	k__Bacteria; p__Chloroflexi; c__Anaerolineae; o__Anaerolineales; f__Anaerolineaceae; g__Flexilinea
+seq1360	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Micrococcales; f__Micrococcaceae
+seq1361	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae
+seq1362	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq1367	k__Bacteria; p__Firmicutes
+seq1368	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq1374	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Chitinibacteraceae
+seq1375	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rhizobiales; f__Rhizobiaceae; g__Paramesorhizobium
+seq1376	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminococcaceae_UCG-014
+seq1377	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Tannerellaceae; g__Tannerella
+seq1378	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq1379	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rhizobiales; f__Rhizobiaceae; g__Allorhizobium-Neorhizobium-Pararhizobium-Rhizobium
+seq1380	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Chromobacteriaceae; g__Crenobacter
+seq1381	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Sphingomonadales; f__Sphingomonadaceae; g__Sphingobium
+seq1384	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq1385	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Pseudomonadaceae; g__Pseudomonas
+seq1390	k__Bacteria; p__Verrucomicrobia; c__Verrucomicrobiae; o__Chthoniobacterales; f__Terrimicrobiaceae; g__Terrimicrobium
+seq1391	k__Bacteria; p__Cyanobacteria; c__Oxyphotobacteria; o__Chloroplast
+seq1392	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Coprococcus_3
+seq1393	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq1394	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae
+seq1395	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Rikenellaceae; g__Alistipes
+seq1396	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq1398	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Moraxella
+seq1400	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq1401	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Streptococcaceae; g__Streptococcus
+seq1405	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rhodobacterales; f__Rhodobacteraceae
+seq1406	k__Bacteria; p__WPS-2
+seq1407	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Sphingomonadales; f__Sphingomonadaceae; g__Ellin6055
+seq1415	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq1416	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Fastidiosipila
+seq1417	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Shuttleworthia
+seq1418	k__Bacteria; p__Planctomycetes; c__Phycisphaerae; o__Phycisphaerales; f__Phycisphaeraceae; g__SM1A02
+seq1419	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminococcus_1
+seq1420	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Muribaculaceae
+seq1421	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Prevotellaceae_UCG-004
+seq1425	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rhizobiales; f__Beijerinckiaceae; g__Methylobacterium
+seq1426	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Micrococcales; f__Micrococcaceae; g__Pseudarthrobacter
+seq1430	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XII; g__Fusibacter
+seq1431	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq1434	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq1435	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq1436	k__Bacteria; p__Patescibacteria; c__Gracilibacteria
+seq1439	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII
+seq1440	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rickettsiales; f__Mitochondria
+seq1441	k__Bacteria
+seq1442	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales
+seq1443	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Peptoanaerobacter
+seq1444	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XI; g__Parvimonas
+seq1445	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XI
+seq1446	k__Bacteria
+seq1448	k__Bacteria; p__Cyanobacteria; c__Oxyphotobacteria; o__Chloroplast
+seq1449	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae
+seq1453	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Pseudomonadaceae; g__Pseudomonas
+seq1454	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminococcaceae_UCG-010
+seq1455	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Cytophagales; f__Cyclobacteriaceae; g__Lunatimonas
+seq1456	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rhizobiales
+seq1457	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Extensimonas
+seq1458	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales
+seq1462	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Christensenellaceae; g__Christensenellaceae_R-7_group
+seq1463	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Caulobacterales; f__Caulobacteraceae; g__Phenylobacterium
+seq1465	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Lactobacillaceae; g__Lactobacillus
+seq1466	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Dysgonomonadaceae; g__Proteiniphilum
+seq1467	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq1468	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Prevotella_6
+seq1473	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq1474	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Capnocytophaga
+seq1475	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Peptostreptococcus
+seq1476	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Tannerellaceae; g__Tannerella
+seq1477	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae
+seq1478	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII; g__Family_XIII_UCG-001
+seq1479	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq1480	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Rhizobacter
+seq1481	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae; g__Corticibacter
+seq1482	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XI; g__Ezakiella
+seq1484	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Cetobacterium
+seq1485	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq1486	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Leptotrichiaceae
+seq1487	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae; g__Fusobacterium
+seq1489	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Oceanospirillales; f__Marinomonadaceae; g__Marinomonas
+seq1490	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq1491	k__Bacteria; p__Firmicutes; c__Bacilli
+seq1492	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae
+seq1493	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminococcaceae_UCG-010
+seq1495	k__Bacteria
+seq1496	k__Bacteria; p__Firmicutes; c__Erysipelotrichia; o__Erysipelotrichales; f__Erysipelotrichaceae
+seq1497	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Rs-M59_termite_group
+seq1502	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales
+seq1514	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Lactobacillaceae; g__Lactobacillus
+seq1515	k__Bacteria; p__Patescibacteria; c__Saccharimonadia; o__Saccharimonadales; f__Saccharimonadaceae
+seq1516	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Prevotella_9
+seq1517	k__Bacteria; p__Bacteroidetes; c__Ignavibacteria; o__OPB56
+seq1518	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Propionibacteriales; f__Propionibacteriaceae; g__Propioniciclava
+seq1519	k__Bacteria; p__Bacteroidetes; c__Bacteroidia
+seq1520	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq1521	k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Actinomycetales; f__Actinomycetaceae; g__Actinomyces
+seq1522	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Enhydrobacter
+seq1523	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq1524	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq1525	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Paludibacteraceae; g__F0058
+seq1532	k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Carnobacteriaceae; g__Carnobacterium
+seq1533	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Desulfovibrionales; f__Desulfomicrobiaceae
+seq1534	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq1535	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Bergeriella
+seq1539	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Frederiksenia
+seq1540	k__Bacteria
+seq1541	k__Bacteria; p__Bacteroidetes; c__Bacteroidia
+seq1542	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria
+seq1543	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq1546	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Helicobacteraceae; g__Helicobacter
+seq1547	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Leptotrichiaceae; g__Oceanivirga
+seq1548	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptococcaceae; g__Peptococcus
+seq1549	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq1550	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales
+seq1551	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Prevotellaceae_UCG-004
+seq1552	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Chitinophagales; f__Chitinophagaceae; g__Segetibacter
+seq1553	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminococcaceae_UCG-013
+seq1554	k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Sphingomonadales; f__Sphingomonadaceae; g__Sphingomonas
+seq1555	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Arcobacteraceae; g__Arcobacter
+seq1556	k__Bacteria; p__Actinobacteria; c__Nitriliruptoria; o__Euzebyales; f__Euzebyaceae
+seq1557	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae; g__Alysiella
+seq1558	k__Bacteria; p__Tenericutes; c__Mollicutes; o__Mollicutes_RF39
+seq1559	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Proteocatella
+seq1560	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Weeksellaceae
+seq1562	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq1563	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae
+seq1564	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII
+seq1565	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Clostridiales_vadinBB60_group
+seq1569	k__Bacteria; p__Firmicutes; c__Erysipelotrichia; o__Erysipelotrichales; f__Erysipelotrichaceae
+seq1570	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae; g__Frederiksenia
+seq1571	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Family_XIII; g__Family_XIII_AD3011_group
+seq1572	k__Bacteria
+seq1573	k__Bacteria; p__Spirochaetes; c__Spirochaetia; o__Spirochaetales; f__Spirochaetaceae; g__Treponema_2
+seq1574	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Pseudomonadaceae; g__Pseudomonas
+seq1575	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria
+seq1581	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Cryomorphaceae; g__Cryomorpha
+seq1591	k__Bacteria; p__Chloroflexi; c__Chloroflexia; o__Thermomicrobiales; f__JG30-KF-CM45
+seq1592	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq1593	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq1596	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae
+seq1597	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Neisseriaceae
+seq1598	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq1599	k__Bacteria
+seq1605	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Peptoanaerobacter
+seq1606	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales
+seq1607	k__Bacteria; p__Bacteroidetes; c__Bacteroidia
+seq1608	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Bacteroidaceae; g__Bacteroides
+seq1613	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Defluviitaleaceae; g__Defluviitaleaceae_UCG-011
+seq1614	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Acinetobacter
+seq1615	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae
+seq1618	k__Bacteria; p__Firmicutes; c__Erysipelotrichia; o__Erysipelotrichales; f__Erysipelotrichaceae; g__Dielma
+seq1619	k__Bacteria
+seq1620	k__Bacteria; p__Proteobacteria
+seq1625	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Betaproteobacteriales; f__Burkholderiaceae
+seq1627	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Porphyromonadaceae; g__Porphyromonas
+seq1629	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Ruminococcaceae; g__Ruminococcaceae_UCG-010
+seq1630	k__Bacteria
+seq1632	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Proteocatella
+seq1633	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Catonella
+seq1637	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae
+seq1638	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae; g__Alloprevotella
+seq1639	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae
+seq1640	k__Bacteria; p__Patescibacteria; c__Saccharimonadia; o__Saccharimonadales; f__Saccharimonadaceae; g__Candidatus_Saccharimonas
+seq1641	k__Bacteria; p__Epsilonbacteraeota; c__Campylobacteria; o__Campylobacterales; f__Helicobacteraceae; g__Wolinella
+seq1643	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae; g__Catonella
+seq1644	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria
+seq1645	k__Bacteria; p__Bacteroidetes; c__Bacteroidia
+seq1646	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Flavobacterium
+seq1647	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae
+seq1648	k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Peptostreptococcaceae; g__Peptoanaerobacter
+seq1651	k__Bacteria; p__Firmicutes
+seq1655	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales
+seq1656	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pseudomonadales; f__Moraxellaceae; g__Acinetobacter
+seq1657	k__Bacteria; p__Patescibacteria; c__Gracilibacteria; o__Absconditabacteriales_(SR1)
+seq1658	k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Chitinophagales; f__Chitinophagaceae
+seq1659	k__Bacteria; p__Patescibacteria; c__Saccharimonadia; o__Saccharimonadales; f__Saccharimonadaceae; g__Candidatus_Saccharimonas
+seq1660	k__Bacteria; p__Fusobacteria; c__Fusobacteriia; o__Fusobacteriales; f__Fusobacteriaceae
