@@ -1,29 +1,180 @@
+###############################################################################
+#                                                                             #
+###############################################################################
+
 #AUTHOR: HOLLY ARNOLD
 #DAY: September 25, 2022
 #DATE: 20220925
 #DESCRIPTION: 
-# Provides script for analyses performed in paper chronic clinical signs of upper respiratory 
-# microbiomes in a cohort of domestic felines
+# Provides script for analyses performed in paper chronic clinical signs of 
+# upper respiratory microbiomes in a cohort of domestic felines
 
-# LOAD LIBRARIES
-library(dplyr); 
+###############################################################################
+#  LOAD LIBRARIES                                                             #
+###############################################################################
 
-# Read in data files
-meta = readxl::read_excel(path = "data/Supplementary_Data.xlsx", 
+library(dplyr)
+library(phyloseq)
+library(ggplot2)
+library(ggtree)
+
+#library(vegan)
+#library(ape)
+#library(xtable)
+#library(gridExtra)
+#library(randomForest)
+#library(stringr)
+#library(pROC)
+#library(reshape)
+#library(ggsignif)
+
+###############################################################################
+#  SET DIRECTORIES                                                            #
+###############################################################################
+
+directory.data = file.path(getwd(), "data/")
+directory.figures = file.path(getwd(), "figures/")
+directory.scripts = getwd()
+directory.out = file.path(getwd(), "out/")
+
+
+###############################################################################
+#  LOAD SCRIPTS                                                               #
+###############################################################################
+
+setwd(directory.scripts)
+source("microbiome_analysis_domestic_feline_cohort_script_functions.R")
+
+
+###############################################################################
+#  SET COLOR PALLETE                                                          #
+###############################################################################
+
+pal = RColorBrewer::display.brewer.all()
+pal = RColorBrewer::brewer.pal(n = 7, "Dark2")
+
+###############################################################################
+#  INPUT DATA                                                                 #
+###############################################################################
+setwd(directory.data)
+
+# Metadata
+meta = readxl::read_excel(path = "Supplementary_Data.xlsx", 
                           sheet = "Animal Metadata",
-                          col_types = c("text", "text", "text", "text", "numeric", "numeric", "numeric", "numeric",
-                                        "text", "date", "text", "numeric", "numeric", "text", "text", "text", "text",
-                                        "text", "text", "text", "text", "text", "text", "text", "text", "text",
-                                        "text", "text", "text", "text", "date", "text", "text", "text", "text", 
-                                        "text", "date", "date", "text", "text", "text", "text", "text", "text", "text",
-                                        "text", "text", "text", "text", "text", "text", "text", "text", "text", "text"),
+                          col_types = c("text", "text", "text", "text", 
+                                        "numeric", "numeric", "numeric", 
+                                        "numeric", "text", "date", "text", 
+                                        "numeric", "numeric", "text", "text", 
+                                        "text", "text","text", "text", "text", 
+                                        "text", "text", "text", "text", "text", 
+                                        "text", "text", "text", "text", "text", 
+                                        "date", "text", "text", "text", "text", 
+                                        "text", "date", "date", "text", "text", 
+                                        "text", "text", "text", "text", "text",
+                                        "text", "text", "text", "text", "text", 
+                                        "text", "text", "text", "text", "text"),
                           na = "N/A")
-
 meta$GutID = sub(pattern = "$", replacement = "f", x = meta$Animal_ID)
 meta$NasalID = sub(pattern = "$", replacement = "o", x = meta$Animal_ID)
 
 
-laksdfj
+
+
+# ASV tables
+asvG = utils::read.table("asvGutRarify.txt", header = T)
+colnames(asvG) = sub(pattern = "X", replacement = "", x = colnames(asvG))
+head(asvG)
+dim(asvG)
+
+asvN = utils::read.table("asvNasalRarify.txt", header = T)
+colnames(asvN) = sub(pattern = "X", replacement = "", x = colnames(asvN))
+head(asvN)
+dim(asvN)
+
+## ASV Tax tables
+taxG = utils::read.table("asvGutTaxRarify.txt")
+head(taxG)
+dim(taxG)
+taxN = utils::read.table("asvNasalTaxRarify.txt")
+head(taxN)
+dim(taxN)
+
+taxN.String = utils::read.table("asvNasalTaxString.txt", sep = "\t", row.names = 1)
+head(taxN.String)
+taxG.String = utils::read.table("asvGutTaxString.txt", sep = "\t", row.names = 1)
+head(taxG.String)
+
+# CTU Tables
+ctuG = t(utils::read.table("ctuGut.txt", sep = "\t", header = T))
+head(ctuG)
+treeG = ape::read.tree("treeGut.tre")
+treeG
+
+ctuN = t(utils::read.table("ctuNasal.txt", sep = "\t", header = T))
+head(ctuN)
+treeN = ape::read.tree("treeNasal.tre")
+treeN
+
+# Convert relevant bloodwork values comparable units across laboratories
+bloodwork = readxl::read_excel(path = "Supplementary_Data.xlsx",
+                               sheet = "Animal Laboratory Database",
+                               range = "A1:Y60",
+                               col_names = c("Description", "Units_OSU_VDL",
+                                             "Reference_range_OSU_VDL_Low",
+                                             "Reference_range_OSU_VDL_High",
+                                             "Units_IDEXX",
+                                             "Reference_range_IDEXX_Low",
+                                             "Reference_range_IDEXX_High",
+                                             "1", "2", "6", "5", "11", "12",
+                                             "10", "7", "8", "9", "3", "4",
+                                             "13", "14", "15", "16", "17",
+                                             "18"))
+
+meta = 
+  bloodwork %>% 
+  filter(Description %in% 
+           c("Animal_ID", "Laboratory", "# Neutrophils","Albumin"))  %>% 
+  select(!c("Units_OSU_VDL", "Units_IDEXX", "Reference_range_OSU_VDL_Low", 
+            "Reference_range_OSU_VDL_High", "Reference_range_IDEXX_Low", 
+            "Reference_range_IDEXX_High", "Description")) %>%
+  t(.) %>% 
+  as.data.frame(.) %>%
+  magrittr::set_colnames(c("Animal_ID", "Laboratory", "Neutrophils", "Albumin")) %>%
+  tibble(.) %>%
+  mutate_at(c("Neutrophils", "Albumin"), as.numeric) %>%
+  mutate(Neutrophils = case_when(Neutrophils < 10 ~ Neutrophils*1000,
+                                 TRUE ~ Neutrophils)) %>%
+  left_join(meta, by = "Animal_ID") 
+
+
+# Phyloseq objects
+metaG = as.data.frame(meta)
+rownames(metaG) = metaG$GutID
+metaG = metaG[colnames(asvG),]
+asvG_ps = phyloseq::phyloseq(phyloseq::otu_table(object = asvG, taxa_are_rows = TRUE), 
+                        phyloseq::sample_data(metaG), 
+                        phyloseq::tax_table(as.matrix(taxG)),
+                        phyloseq::phy_tree(treeG))
+
+metaN = as.data.frame(meta)
+rownames(metaN) = metaN$NasalID
+metaN = metaN[colnames(asvN),]
+asvN_ps = phyloseq::phyloseq(phyloseq::otu_table(object = asvN, taxa_are_rows = TRUE), 
+                                    phyloseq::sample_data(metaN), 
+                                    phyloseq::tax_table(as.matrix(taxN)),
+                                    phyloseq::phy_tree(treeN))
+
+ctuG_ps = phyloseq::phyloseq(phyloseq::otu_table(object = ctuG, taxa_are_rows = TRUE), 
+                             phyloseq::sample_data(metaG))
+ctuN_ps = phyloseq::phyloseq(phyloseq::otu_table(object = ctuN, taxa_are_rows = TRUE), 
+                             phyloseq::sample_data(metaN))
+
+###############################################################################
+#  PCOA                                                                       #
+###############################################################################
+asvG_ps_clr = microbiome::transform(asvG_ps, "clr")
+asvN_ps_clr = microbiome::transform(asvN_ps)
+
 
 ## TO DO
 # Read in data
@@ -41,172 +192,11 @@ laksdfj
 
 # Write out session info
 
+######################################################################
 
 
-##############################################################################################################
-#LOCATIONS
-## 1. LOCAL
-## /Users/arnoldhk/Desktop/Research/2019CatMicrobiomes/version2/data/originalData
 
-## 2. SERVER
-## /nfs3/Sharpton_Lab/prod/projects/arnoldhk/furtd2019/version2/2.dada2
 
-#WRITE UP
-#See 20201104PaperDraftVersion1.tex for further details on this section.
-##############################################################################################################
-
-#LIBRARIES
-library(vegan)
-library(ape)
-library(xtable)
-library(ggplot2); packageVersion("ggplot2")
-library(gridExtra)
-library(phyloseq); packageVersion("phyloseq")
-library(ggtree)
-library(randomForest)
-library(stringr)
-library(pROC)
-library(reshape)
-library(ggsignif)
-
-#library(dada2)
-#library(reshape2)
-#library(pracma)
-#library(devtools)
-#library(ggbiplot)
-#library(ggfortify)
-#library(BiodiversityR)
-#library(ggrepel)
-#library(GUniFrac)
-#library(dplyr)
-#library(tidyr)
-#library(adespatial)
-#library(pROC)
-#library(caret)
-
-# DIRECTORIES
-directory.data.original = "/Users/arnoldhk/Desktop/Research/2019CatMicrobiomes/version2/data/originalData/"
-directory.data.rarify = "/Users/arnoldhk/Desktop/Research/2019CatMicrobiomes/version2/data/rarifiedData/"
-directory.data.metadata = "/Users/arnoldhk/Desktop/Research/2019CatMicrobiomes/version2/data/metaData/"
-directory.data = "/Users/arnoldhk/Desktop/Research/2019CatMicrobiomes/version2/data/"
-directory.data.ctu.gut = "/Users/arnoldhk/Desktop/Research/2019CatMicrobiomes/version2/data/cladalAnalysis/gut/"
-directory.data.ctu.nasal = "/Users/arnoldhk/Desktop/Research/2019CatMicrobiomes/version2/data/cladalAnalysis/nasal/"
-directory.figures = "/Users/arnoldhk/Desktop/Research/2019CatMicrobiomes/version2/figures/"
-directory.scripts = "/Users/arnoldhk/Desktop/Research/2019CatMicrobiomes/version2/scripts/"
-directory.out = "/Users/arnoldhk/Desktop/Research/2019CatMicrobiomes/version2/out/"
-
-# LOAD FUNCTIONS
-setwd(directory.scripts)
-source("catMicrobiomeAnalysisVersion2Functions.R")
-
-# SET COLOR PALLET
-pal = RColorBrewer::display.brewer.all()
-pal = RColorBrewer::brewer.pal(n = 7, "Dark2")
-
-# LOAD DATA TABLES
-## 1. Read in ASV tables
-setwd(directory.data.rarify)
-asvG = read.table("asvGutRarify.txt", header = T)
-colnames(asvG) = sub(pattern = "X", replacement = "", x = colnames(asvG))
-head(asvG)
-dim(asvG)
-
-asvN = read.table("asvNasalRarify.txt", header = T)
-colnames(asvN) = sub(pattern = "X", replacement = "", x = colnames(asvN))
-head(asvN)
-dim(asvN)
-
-## 2. Read in Tax Tables
-taxG = read.table("asvGutTaxRarify.txt")
-head(taxG)
-dim(taxG)
-taxN = read.table("asvNasalTaxRarify.txt")
-head(taxN)
-dim(taxN)
-
-taxN.String = read.table("asvNasalTaxString.txt", sep = "\t", row.names = 1)
-head(taxN.String)
-taxG.String = read.table("asvGutTaxString.txt", sep = "\t", row.names = 1)
-head(taxG.String)
-
-## 3. Read in metadata tables
-setwd(directory.out)
-meta = read.table("metaData.txt", sep = "\t")
-head(meta)
-metaG = meta[colnames(asvG),]
-head(metaG)  
-rownames(meta) = meta$NasalID.1
-metaN = meta[colnames(asvN),]
-head(metaN)
-
-# 4. Read in the cladal analysis files
-setwd(directory.data.ctu.gut)
-ctuG = t(read.table("ctuGut.txt", sep = "\t", header = T))
-head(ctuG)
-treeG = read.tree("new_prepped_tree.tre")
-treeG
-
-aG = getCladalAttributes(nodes2tax = "gutCladeStat_nodes2tax.txt", 
-                         size = "gutCladeStat_clade_size.txt",
-                         nodeTax = "taxCladesGut.txt",
-                         groupTest = "gutGroupTestSignsVetReport.txt_stats.txt",
-                         pTest = "gutPTest1000_stats.txt")
-head(aG)
-
-setwd(directory.data.ctu.nasal)
-ctuN = t(read.table("ctuNasal.txt", sep = "\t", header = T))
-head(ctuN)
-treeN = read.tree("new_prepped_tree.tre")
-treeN
-aN = getCladalAttributes(nodes2tax = "nasalCladeStat_nodes2tax.txt",
-                         size = "nasalCladeStat_clade_size.txt", 
-                         nodeTax = "taxCladesNasal.txt",
-                         groupTest = "nasalGroupTestSignsVetReport.txt_stats.txt",
-                         pTest = "nasalPTest1000_stats.txt")
-
-head(aN)
-
-# 5. Read in PCR Results
-setwd(directory.data)
-pcr = read.table("metaData/PCRResults.txt", sep = "\t", header = T)
-head(pcr)
-
-##############################################################################################################
-# 1. Get tables for owner reported signs
-setwd(directory.data.metadata)
-oCx = read.table("ownerReportedSigns.txt", sep = "\t", header = T)
-head(oCx)
-
-oCxP = oCx[which(oCx$OwnerReportedStatus == "P"),3:17]
-oCxSumP = apply(oCxP, 2, sum)
-oCxSumP = oCxSumP[order(oCxSumP, decreasing = T)]
-
-oCxN = oCx[which(oCx$OwnerReportedStatus == "N"), 3:17]
-oCxSumN = apply(oCxN, 2, sum)
-oCxSumN = oCxSumN[names(oCxSumP)]
-
-xtable(t(rbind(oCxSumP, oCxSumN)))
-
-# 2. Get table for vet reported signs
-vCx = read.table("vetReportedSigns.txt", sep = "\t", header = T)
-head(vCx)
-
-vCxP = vCx[which(vCx$OwnerReportedStatus == "P"), 3:15]
-vCxP
-vCxSumP = apply(vCxP, 2, sum)
-vCxSumP = vCxSumP[order(vCxSumP, decreasing = T)]
-vCxSumP
-
-vCxN = vCx[which(vCx$OwnerReportedStatus == "N"), 3:15]
-head(vCxN)
-vCxSumN = apply(vCxN, 2, sum)
-vCxSumN = vCxSumN[order(vCxSumN, decreasing = T)]
-vCxSumN
-xtable(t(rbind(vCxSumP, vCxSumN)))
-
-rm(list = c("vCxN", "vCxP", "vCxSumN", "vCx", "vCxSumP", "oCxP", "oCx", "oCxSumP", "oCxN", "oCxSumN"))
-
-##############################################################################################################
 
 # Plot PCoAs
 
