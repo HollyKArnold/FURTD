@@ -8,9 +8,14 @@
 #DESCRIPTION: 
 # Provides functions for analyses performed in paper chronic clinical signs of 
 # upper respiratory microbiomes in a cohort of domestic felines
-
-
-
+#' 
+#' #AUTHOR: ARNOLD
+#' #DAY: July 8th, 2019
+#' #DATE: 20190708
+#' #PURPOSE:
+#' # To identify a proper rarification threshold for the sheep analysis. 
+#' 
+#' 
 #' # FUNCTION: splitDada2Tax
 #' # PURPOSE: To take a data 2 taxonomy table and split into a data frame
 #' #          which only has one taxonomy classification per column
@@ -1007,8 +1012,8 @@
 #' # Returns data frame with results of ANOVA (baseModel, microbeModel)
 #' getGLMS = function(covariates, phyloseq, prevalenceThresh, baseVariables){
 #'   prevDF = apply(X = otu_table(phyloseq),
-#'                        MARGIN = 1,
-#'                        FUN = function(x){sum(x > 0)})
+#'                  MARGIN = 1,
+#'                  FUN = function(x){sum(x > 0)})
 #'   
 #'   curTaxa = names(prevDF)[which(prevDF >= length(sample_names(phyloseq))*prevalenceThresh)]
 #'   if(length(curTaxa) == 0){
