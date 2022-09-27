@@ -16,7 +16,7 @@
 library(dplyr)
 library(phyloseq)
 library(ggplot2)
-library(ggtree)
+#library(ggtree)
 
 #library(vegan)
 #library(ape)
@@ -155,6 +155,11 @@ asvG_ps = phyloseq::phyloseq(phyloseq::otu_table(object = asvG, taxa_are_rows = 
                         phyloseq::sample_data(metaG), 
                         phyloseq::tax_table(as.matrix(taxG)),
                         phyloseq::phy_tree(treeG))
+phyloseq::sample_data(asvG_ps)$Status = factor(phyloseq::sample_data(asvG_ps)$Status, levels = c("Control", "Case"))
+phyloseq::sample_data(asvG_ps)$Household = factor(phyloseq::sample_data(asvG_ps)$Household)
+
+asvG_ps %>% sample_data %>% count(Status)
+
 
 metaN = as.data.frame(meta)
 rownames(metaN) = metaN$NasalID
@@ -163,22 +168,355 @@ asvN_ps = phyloseq::phyloseq(phyloseq::otu_table(object = asvN, taxa_are_rows = 
                                     phyloseq::sample_data(metaN), 
                                     phyloseq::tax_table(as.matrix(taxN)),
                                     phyloseq::phy_tree(treeN))
+phyloseq::sample_data(asvN_ps)$Status = factor(phyloseq::sample_data(asvN_ps)$Status, levels = c("Control", "Case"))
+phyloseq::sample_data(asvN_ps)$Household = factor(phyloseq::sample_data(asvN_ps)$Household)
+
+asvN_ps %>% sample_data %>% count(Status)
 
 ctuG_ps = phyloseq::phyloseq(phyloseq::otu_table(object = ctuG, taxa_are_rows = TRUE), 
                              phyloseq::sample_data(metaG))
+phyloseq::sample_data(ctuG_ps)$Status = factor(phyloseq::sample_data(ctuG_ps)$Status, levels = c("Control", "Case"))
+
 ctuN_ps = phyloseq::phyloseq(phyloseq::otu_table(object = ctuN, taxa_are_rows = TRUE), 
                              phyloseq::sample_data(metaN))
+phyloseq::sample_data(ctuN_ps)$Status = factor(phyloseq::sample_data(ctuN_ps)$Status, levels = c("Control", "Case"))
 
 ###############################################################################
-#  PCOA                                                                       #
+#  Beta Diversity Gut Microbiome                                              #
 ###############################################################################
+
+# Center log transform and ordinate
 asvG_ps_clr = microbiome::transform(asvG_ps, "clr")
-asvN_ps_clr = microbiome::transform(asvN_ps)
+ordG_clr_unifrac = phyloseq::ordinate(asvG_ps_clr, "RDA",  formula = asvG_ps_clr~Status, distance = "unifrac")
+
+# Scree plot
+screeG = phyloseq::plot_scree(ordG_clr_unifrac) + 
+  geom_bar(stat = "identity", fill = "black") + 
+  labs (x = "\nAxis", y = "Proportion of Variance\n") +
+  ggtitle(label = "Unifrac")
+
+# RDA plot
+clr1G = ordG_clr_unifrac$CA$eig[1] / sum(ordG_clr_unifrac$CA$eig)
+clr2G = ordG_clr_unifrac$CA$eig[2] / sum(ordG_clr_unifrac$CA$eig)
+rdaG = phyloseq::plot_ordination(asvG_ps_clr, ordG_clr_unifrac, type="samples", color="Status", axes = c(1, 2)) + 
+  geom_point(size = 6, alpha = 0.8) +
+  geom_text(aes(label = Household), hjust = 0.5, vjust = 0.5, size = 2, color = "black") +
+  scale_color_manual(values = c(pal[1], pal[3]), labels = c("Control", "FURTD")) +
+  coord_fixed(clr2G / clr1G) +
+  stat_ellipse(aes(group = Status), linetype = 2) +
+  ggtitle("Gut Microbiome Unifrac")
+
+beta_diversity_gut = gridExtra::grid.arrange(grobs = list(rdaG, screeG), 
+                                             layout_matrix = cbind(c(1, 1, 1, 2, 2)))
+beta_diversity_gut
+setwd(directory.figures)
+ggsave(file = "gut_beta_diversity.pdf", beta_diversity_gut)
+
+# PERMANOVA
+clr_dist_matrix_gut = phyloseq::distance(asvG_ps_clr, method = "unifrac")
+clr_adonis = vegan::adonis(clr_dist_matrix_gut ~ phyloseq::sample_data(asvG_ps_clr)$Status)
+clr_adonis
+clr_adonis = vegan::adonis(clr_dist_matrix_gut ~ phyloseq::sample_data(asvG_ps_clr)$Status, strata = phyloseq::sample_data(asvG_ps_clr)$Household)
+clr_adonis
+
+# Beta dispersion
+dispr_G = vegan::betadisper(clr_dist_matrix_gut, phyloseq::sample_data(asvG_ps_clr)$Status)
+
+# PCOA beta dispersion plot
+setwd(directory.figures)
+pdf(file = "Beta_Dispersion_PCOA_Gut.pdf")
+plot(dispr_G, main = "Gut Microbiome Beta Dispersion", sub = "")
+dev.off()
+
+# Box plot beta dispersion
+beta_dispersion_gut_boxplot = 
+  data.frame("Distance" = dispr_G$distances, 
+           "Status" = as.vector(dispr_G$group)) %>%                            
+  ggplot(aes(x = Status, y = Distance)) +
+  geom_boxplot(outlier.size = 0) +
+  geom_jitter(aes(color = Status), size = 2, alpha = 0.8) + 
+  scale_color_manual(values = c(pal[1], pal[3])) +
+  ylab("Distance to Centroid") +
+  theme(legend.position = "none") +
+  ggtitle("Beta Dispersion Gut Microbiome")
+
+setwd(directory.figures)
+ggsave(file = "beta_dispersion_boxplot_Gut.pdf", beta_dispersion_gut_boxplot)
+
+
+# Beta dispersion permutation
+vegan::permutest(dispr_G)
+
+###############################################################################
+#  Beta Diversity Nasal Microbiome                                            #
+###############################################################################
+
+# Center log transform and ordinate
+asvN_ps_clr = microbiome::transform(asvN_ps, "clr")
+ordN_clr_unifrac = phyloseq::ordinate(asvN_ps_clr, "RDA",  formula = asvN_ps_clr~Status, distance = "unifrac")
+
+# Scree plot
+screeN = phyloseq::plot_scree(ordN_clr_unifrac) + 
+  geom_bar(stat = "identity", fill = "black") + 
+  labs (x = "\nAxis", y = "Proportion of Variance\n") +
+  ggtitle(label = "Unifrac")
+
+# RDA plot 
+clr1G = ordN_clr_unifrac$CA$eig[1] / sum(ordN_clr_unifrac$CA$eig)
+clr2G = ordN_clr_unifrac$CA$eig[2] / sum(ordN_clr_unifrac$CA$eig)
+rdaN = phyloseq::plot_ordination(asvN_ps_clr, ordN_clr_unifrac, type="samples", color="Status", axes = c(1, 2)) + 
+  geom_point(size = 6, alpha = 0.8) +
+  geom_text(aes(label = Household), hjust = 0.5, vjust = 0.5, size = 2, color = "black") +
+  scale_color_manual(values = c(pal[1], pal[3]), labels = c("Control", "FURTD")) +
+  coord_fixed(clr2G / clr1G) +
+  stat_ellipse(aes(group = Status), linetype = 2) +
+  ggtitle("Nasal Microbiome Unifrac")
+
+beta_diversity_nasal = gridExtra::grid.arrange(grobs = list(rdaN, screeN), 
+                                               layout_matrix = cbind(c(1, 1, 1, 2, 2)))
+setwd(directory.figures)
+ggsave(file = "nasal_beta_diversity.pdf", beta_diversity_nasal)
+
+# PERMANOVA
+clr_dist_matrix_nasal = phyloseq::distance(asvN_ps_clr, method = "unifrac")
+clr_adonis = vegan::adonis(clr_dist_matrix_nasal ~ phyloseq::sample_data(asvN_ps_clr)$Status)
+clr_adonis
+clr_adonis = vegan::adonis(clr_dist_matrix_nasal ~ phyloseq::sample_data(asvN_ps_clr)$Status, strata = phyloseq::sample_data(asvN_ps_clr)$Household)
+clr_adonis
+
+# Beta dispersion
+dispr_N = vegan::betadisper(clr_dist_matrix_nasal, phyloseq::sample_data(asvN_ps_clr)$Status)
+
+# PCOA beta dispersion plot
+setwd(directory.figures)
+pdf(file = "Beta_Dispersion_PCOA_Nasal.pdf")
+plot(dispr_N, main = "Nasal Microbiome Beta Dispersion", sub = "")
+dev.off()
+
+# Box plot beta dispersion
+beta_dispersion_nasal_boxplot = 
+  data.frame("Distance" = dispr_N$distances, 
+             "Status" = as.vector(dispr_N$group)) %>%                            
+  ggplot(aes(x = Status, y = Distance)) +
+  geom_boxplot(outlier.size = 0) +
+  geom_jitter(aes(color = Status), size = 2, alpha = 0.8) + 
+  scale_color_manual(values = c(pal[1], pal[3])) +
+  ylab("Distance to Centroid") +
+  theme(legend.position = "none") +
+  ggtitle("Beta Dispersion Nasal Microbiome")
+
+setwd(directory.figures)
+ggsave(file = "beta_dispersion_boxplot_Nasal.pdf", beta_dispersion_nasal_boxplot)
+
+
+# Beta dispersion permutation
+vegan::permutest(dispr_N)
+
+###############################################################################
+#  Alpha Diversity Gut Microbiome                                             #
+###############################################################################
+
+# Calculate alpha diversity for three different measures
+alpha_diversity_gut = data.frame(
+  "Observed" = phyloseq::estimate_richness(asvG_ps, measures = "Observed"),
+  "Shannon" = phyloseq::estimate_richness(asvG_ps, measures = "Shannon"),
+  "PD" = picante::pd(samp = data.frame(t(data.frame(phyloseq::otu_table(asvG_ps)))), tree = phyloseq::phy_tree(asvG_ps))[, 1],
+  "Status" = phyloseq::sample_data(asvG_ps)$Status)
+
+# Plot alpha diversity
+alpha_diveristy_gut_plot = 
+  alpha_diversity_gut %>%
+  tidyr::gather(key = metric, value = value, c("Observed", "Shannon", "PD")) %>%
+  mutate(metric = factor(metric, levels = c("Observed", "Shannon", "PD"))) %>%
+  ggplot(aes(x = Status, y = value)) +
+  geom_boxplot(outlier.color = NA) +
+  geom_jitter(aes(color = Status), height = 0, width = .2, size = 2, alpha = 0.8) +
+  labs(x = "", y = "") +
+  facet_wrap(~ metric, scales = "free") +
+  theme(legend.position="none", plot.title = element_text(size = 20)) +
+  ggtitle("Alpha Diversity Gut Microbiome") +
+  scale_color_manual(values = c(pal[1], pal[3])) 
+setwd(directory.figures)
+ggsave(filename = "alpha_diversity_gut.pdf", plot = alpha_diveristy_gut_plot)
+
+# Summarize
+alpha_diversity_gut %>%
+  dplyr::group_by(Status) %>%
+  dplyr::summarise(median_observed = median(Observed),
+                   median_shannon = median(Shannon),
+                   median_pd = median(PD))
+
+# Test for significantly different alpha diversity measures based on status
+wilcox.test(Observed ~ Status, data = alpha_diversity_gut, alternative = "two.sided")
+wilcox.test(Shannon ~ Status, data = alpha_diversity_gut, alternative = "two.sided")              
+wilcox.test(PD ~ Status, data = alpha_diversity_gut, alternative = "two.sided")
+
+
+
+###############################################################################
+#  Alpha Diversity Nasal Microbiome                                           #
+###############################################################################
+
+# Calculate alpha diversity for three different measures
+alpha_diversity_nasal = data.frame(
+  "Observed" = phyloseq::estimate_richness(asvN_ps, measures = "Observed"),
+  "Shannon" = phyloseq::estimate_richness(asvN_ps, measures = "Shannon"),
+  "PD" = picante::pd(samp = data.frame(t(data.frame(phyloseq::otu_table(asvN_ps)))), tree = phyloseq::phy_tree(asvN_ps))[, 1],
+  "Status" = phyloseq::sample_data(asvN_ps)$Status)
+
+# Plot alpha diversity
+alpha_diveristy_nasal_plot = 
+  alpha_diversity_nasal %>%
+  tidyr::gather(key = metric, value = value, c("Observed", "Shannon", "PD")) %>%
+  mutate(metric = factor(metric, levels = c("Observed", "Shannon", "PD"))) %>%
+  ggplot(aes(x = Status, y = value)) +
+  geom_boxplot(outlier.color = NA) +
+  geom_jitter(aes(color = Status), height = 0, width = .2, size = 2, alpha = 0.8) +
+  labs(x = "", y = "") +
+  facet_wrap(~ metric, scales = "free") +
+  theme(legend.position="none", plot.title = element_text(size = 20)) +
+  ggtitle("Alpha Diversity Nasal Microbiome") +
+  scale_color_manual(values = c(pal[1], pal[3])) 
+setwd(directory.figures)
+ggsave(filename = "alpha_diversity_nasal.pdf", plot = alpha_diveristy_nasal_plot)
+
+# Summarize
+alpha_diversity_nasal %>%
+  dplyr::group_by(Status) %>%
+  dplyr::summarise(median_observed = median(Observed),
+                   median_shannon = median(Shannon),
+                   median_pd = median(PD))
+
+# Test for significantly different alpha diversity measures based on status
+wilcox.test(Observed ~ Status, data = alpha_diversity_nasal, alternative = "two.sided")
+wilcox.test(Shannon ~ Status, data = alpha_diversity_nasal, alternative = "two.sided")              
+wilcox.test(PD ~ Status, data = alpha_diversity_nasal, alternative = "two.sided")
+
+###############################################################################
+#  Phyla Differential Abundance Testing Gut Microbiome                        #
+###############################################################################
+
+#Agglomerate to phylum-level and rename
+ps_phylum_gut <- phyloseq::tax_glom(asvG_ps, "Phylum")
+phyloseq::taxa_names(ps_phylum_gut) <- phyloseq::tax_table(ps_phylum_gut)[, "Phylum"]
+
+# Get top 6 most abundant phyla for differential 
+taxa_counts_gut = apply(phyloseq::otu_table(ps_phylum_gut), 1, sum)[order(apply(phyloseq::otu_table(ps_phylum_gut), 1, sum), decreasing = TRUE)]
+top_taxa_gut = names(taxa_counts_gut[1:6])
+ps_phylum_gut_top = phyloseq::subset_taxa(ps_phylum_gut, Phylum %in% top_taxa_gut)
+
+# Plot the top 6 most abundant phyla
+top_phyla_gut = 
+  phyloseq::psmelt(ps_phylum_gut_top)
+top_phyla_gut$Phylum = factor(top_phyla_gut$Phylum, levels = top_taxa_gut, ordered = FALSE)
+top_phyla_gut$Phylum  
+
+top_phyla_gut_plot = 
+  top_phyla_gut %>%
+  ggplot(data = ., aes(x = Status, y = Abundance)) +
+  geom_boxplot(outlier.shape  = NA) +
+  geom_jitter(aes(color = OTU), height = 0, width = .2) +
+  labs(x = "", y = "Abundance\n") +
+  facet_wrap(~ Phylum, scales = "free", nrow = 1) +
+  theme(legend.position = "none")
+top_phyla_gut_plot
+setwd(directory.figures)
+ggsave(file = "phylum_abundances_gut.pdf", top_phyla_gut_plot)
+
+# Test for significance between abundance between top 6 phyla
+differential_abundance_gut = data.frame(matrix(nrow = 6, ncol = 4))
+colnames(differential_abundance_gut) = c("Phylum", "W", "p", "q")
+for(i in 1:length(top_taxa_gut)){
+  print(paste0(c("Testing Phylum: ", top_taxa_gut[i]), sep = "", collapse = ""))
+  
+  case_abundance = top_phyla_gut %>% filter(Phylum == top_taxa_gut[i], Status == "Case") %>% select(Abundance) %>% pull(.)
+  control_abundance = top_phyla_gut %>% filter(Phylum == top_taxa_gut[i], Status == "Control") %>% select(Abundance) %>% pull(.)
+  
+  test = wilcox.test(x = case_abundance, y = control_abundance, alternative = "two.sided", exact = FALSE)
+  differential_abundance_gut[i, 1] = top_taxa_gut[i]
+  differential_abundance_gut[i, 2] = as.vector(test$statistic)
+  differential_abundance_gut[i, 3] = as.vector(test$p.value)
+  
+  print(test)
+  
+}
+differential_abundance_gut$q = p.adjust(p = differential_abundance_gut$p, method = "fdr")
+differential_abundance_gut
+
+
+
+###############################################################################
+#  Phyla Differential Abundance Testing Nasal Microbiome                     #
+###############################################################################
+
+#Agglomerate to phylum-level and rename
+ps_phylum_nasal <- phyloseq::tax_glom(asvN_ps, "Phylum")
+phyloseq::taxa_names(ps_phylum_nasal) <- phyloseq::tax_table(ps_phylum_nasal)[, "Phylum"]
+
+# Get top 6 most abundant phyla for differential 
+taxa_counts_nasal = apply(phyloseq::otu_table(ps_phylum_nasal), 1, sum)[order(apply(phyloseq::otu_table(ps_phylum_nasal), 1, sum), decreasing = TRUE)]
+top_taxa_nasal = names(taxa_counts_nasal[1:6])
+ps_phylum_nasal_top = phyloseq::subset_taxa(ps_phylum_nasal, Phylum %in% top_taxa_nasal)
+ps_phylum_nasal_top
+
+# Plot the top 6 most abundant phyla
+top_phyla_nasal = 
+  phyloseq::psmelt(ps_phylum_nasal_top)
+top_phyla_nasal$Phylum = factor(top_phyla_nasal$Phylum, levels = top_taxa_nasal, ordered = FALSE)
+top_phyla_nasal$Phylum  
+
+top_phyla_nasal_plot = 
+  top_phyla_nasal %>%
+  ggplot(data = ., aes(x = Status, y = Abundance)) +
+  geom_boxplot(outlier.shape  = NA) +
+  geom_jitter(aes(color = OTU), height = 0, width = .2) +
+  labs(x = "", y = "Abundance\n") +
+  facet_wrap(~ Phylum, scales = "free", nrow = 1) +
+  theme(legend.position = "none")
+top_phyla_nasal_plot
+setwd(directory.figures)
+ggsave(file = "phylum_abundances_nasal.pdf", top_phyla_nasal_plot)
+
+# Test for significance between abundance between top 6 phyla
+differential_abundance_nasal = data.frame(matrix(nrow = 6, ncol = 4))
+colnames(differential_abundance_nasal) = c("Phylum", "W", "p", "q")
+for(i in 1:length(top_taxa_nasal)){
+  print(paste0(c("Testing Phylum: ", top_taxa_nasal[i]), sep = "", collapse = ""))
+  
+  case_abundance = top_phyla_nasal %>% filter(Phylum == top_taxa_nasal[i], Status == "Case") %>% select(Abundance) %>% pull(.)
+  control_abundance = top_phyla_nasal %>% filter(Phylum == top_taxa_nasal[i], Status == "Control") %>% select(Abundance) %>% pull(.)
+  
+  test = wilcox.test(x = case_abundance, y = control_abundance, alternative = "two.sided", exact = FALSE)
+  differential_abundance_nasal[i, 1] = top_taxa_nasal[i]
+  differential_abundance_nasal[i, 2] = as.vector(test$statistic)
+  differential_abundance_nasal[i, 3] = as.vector(test$p.value)
+  
+  print(test)
+  
+}
+differential_abundance_nasal$q = p.adjust(p = differential_abundance_nasal$p, method = "fdr")
+differential_abundance_nasal
+
+###############################################################################
+#  Diversity Summary Figure                                                   #
+###############################################################################
+
+
+lay = rbind(c(1, 1, 1, 1, 2, 2, 4, 4, 4, 4), 
+            c(1, 1, 1, 1, 2, 2, 4, 4, 4, 4), 
+            c(1, 1, 1, 1, 3, 3, 4, 4, 4, 4),
+            c(1, 1, 1, 1, 3, 3, 4, 4, 4, 4), 
+            c(5, 5, 5, 5, 6, 6, 8, 8, 8, 8), 
+            c(5, 5, 5, 5, 6, 6, 8, 8, 8, 8), 
+            c(5, 5, 5, 5, 7, 7, 8, 8, 8, 8),
+            c(5, 5, 5, 5, 7, 7, 8, 8, 8, 8))
+            
+           
+pp = arrangeGrob(layout_matrix = lay)
+grid.arrange(pp)
 
 
 ## TO DO
-# Read in data
-# PCOA
 
 # Alpha Diversity
 
@@ -194,493 +532,6 @@ asvN_ps_clr = microbiome::transform(asvN_ps)
 
 ######################################################################
 
-
-
-
-
-# Plot PCoAs
-
-## 2A. Make a quantitative signs vector based on vet PE
-metaG$sumSigns = metaG$Eyes + metaG$Ears + metaG$Nose + metaG$Oral + metaG$Ln + metaG$CV + metaG$LungsRespiratory + metaG$AbdominalGastrointestinal + metaG$UrogenitalPerineal + metaG$Musculoskeletal + metaG$Integument + metaG$Neurologic
-metaG$sumSigns
-metaN$sumSigns = metaN$Eyes + metaN$Ears + metaN$Nose + metaN$Oral + metaN$Ln + metaN$CV + metaN$LungsRespiratory + metaN$AbdominalGastrointestinal + metaN$UrogenitalPerineal + metaN$Musculoskeletal + metaN$Integument + metaN$Neurologic
-metaN$sumSigns
-
-## 2B. Distance matrix
-bc.dist.gut.ab = vegdist(t(asvG), method = "bray", binary = F)
-bc.dist.gut.pa = vegdist(t(asvG), method = "bray", binary = T)
-bc.dist.nasal.ab = vegdist(t(asvN), method = "bray", binary = F)
-bc.dist.nasal.pa = vegdist(t(asvN), method = "bray", binary = T)
-
-pcoa.gut.ab = cmdscale(bc.dist.gut.ab, eig = T, k = 2)
-pcoa.gut.pa = cmdscale(bc.dist.gut.pa, eig = T, k = 2)
-pcoa.nasal.ab = cmdscale(bc.dist.nasal.ab, eig = T, k = 2)
-pcoa.nasal.pa = cmdscale(bc.dist.nasal.pa, eig = T, k = 2)
-
-pcoa.gut.ab.d = as.data.frame(pcoa.gut.ab$points)
-colnames(pcoa.gut.ab.d) = c("PC1", "PC2")
-pcoa.gut.ab.d$Household = metaG[rownames(pcoa.gut.ab.d), "Household"]
-pcoa.gut.ab.d$SignsVetReported = metaG[rownames(pcoa.gut.ab.d), "SignsVetReported"]
-pcoa.gut.ab.d$sumSigns = metaG[rownames(pcoa.gut.ab.d), "sumSigns"]
-
-pcoa.gut.pa.d = as.data.frame(pcoa.gut.pa$points)
-colnames(pcoa.gut.pa.d) = c("PC1", "PC2")
-pcoa.gut.pa.d$Household = metaG[rownames(pcoa.gut.pa.d), "Household"]
-pcoa.gut.pa.d$SignsVetReported = metaG[rownames(pcoa.gut.pa.d), "SignsVetReported"]
-pcoa.gut.pa.d$sumSigns = metaG[rownames(pcoa.gut.pa.d), "sumSigns"]
-
-pcoa.nasal.ab.d = as.data.frame(pcoa.nasal.ab$points)
-colnames(pcoa.nasal.ab.d) = c("PC1", "PC2")
-pcoa.nasal.ab.d$Household = metaN[rownames(pcoa.nasal.ab.d), "Household"]
-pcoa.nasal.ab.d$SignsVetReported = metaN[rownames(pcoa.nasal.ab.d), "SignsVetReported"]
-pcoa.nasal.ab.d$sumSigns = metaN[rownames(pcoa.nasal.ab.d), "sumSigns"]
-
-pcoa.nasal.pa.d = as.data.frame(pcoa.nasal.pa$points)
-colnames(pcoa.nasal.pa.d) = c("PC1", "PC2")
-pcoa.nasal.pa.d$Household = metaN[rownames(pcoa.nasal.pa.d), "Household"]
-pcoa.nasal.pa.d$SignsVetReported = metaN[rownames(pcoa.nasal.ab.d), "SignsVetReported"]
-pcoa.nasal.pa.d$sumSigns = metaN[rownames(pcoa.nasal.pa.d), "sumSigns"]
-
-
-## 2C. PCoAs by household and disease status
-setwd(directory.figures)
-#pdf("gutAbundancePCOAColoredByHouseholdAndStatus1.pdf", width = 14, height = 10)
-ggplot(data = pcoa.gut.ab.d, aes(x = PC1, y = PC2)) +
-  geom_point(data = pcoa.gut.ab.d, aes(color = as.factor(SignsVetReported)), size = 30, alpha = 0.8) +
-  geom_text(aes(label = Household), hjust = 0.5, vjust = 0.5, size = 20) +
-  scale_color_manual(values = c(pal[1], pal[3]), labels = c("Control", "FURTD")) +
-  labs(title = "Gut Abun BC", x = "PC1", y = "PC2") +
-  theme(axis.text = element_text(size = 50), plot.title = element_text(size = 50), axis.title = element_text(size = 50), legend.text=element_text(size=50), legend.title = element_text(size = 50)) +
-  labs(color = "Status")
-#dev.off()
-
-#pdf("gutPAPCOAColoredByHouseholdAndStatus1.pdf", width = 14, height = 10)
-ggplot(data = pcoa.gut.pa.d, aes(x = PC1, y = PC2)) +
-  geom_point(data = pcoa.gut.pa.d, aes(color = as.factor(SignsVetReported)), size = 30, alpha = 0.8) +
-  geom_text(aes(label = Household), hjust = 0.5, vjust = 0.5, size = 20) +
-  scale_color_manual(values = c(pal[1], pal[3]), labels = c("Control", "FURTD")) +
-  labs(title = "Gut PA BC", x = "PC1", y = "PC2") +
-  theme(axis.text = element_text(size = 50), plot.title = element_text(size = 50), axis.title = element_text(size = 50), legend.text=element_text(size=50), legend.title = element_text(size = 50)) +
-  labs(color = "Status")
-#dev.off()
-
-#pdf("nasalAbundancePCOAColoredByHouseholdAndStatus1.pdf", width = 14, height = 10)
-ggplot(data = pcoa.nasal.ab.d, aes(x = PC1, y = PC2)) +
-  geom_point(data = pcoa.nasal.ab.d, aes(color = as.factor(SignsVetReported)), size = 30, alpha = 0.8) +
-  geom_text(aes(label = Household), hjust = 0.5, vjust = 0.5, size = 20) +
-  scale_color_manual(values = c(pal[1], pal[3]), labels = c("Control", "FURTD")) +
-  labs(title = "Nasopharyngeal Abun BC", x = "PC1", y = "PC2") +
-  theme(axis.text = element_text(size = 50), plot.title = element_text(size = 50), axis.title = element_text(size = 50), legend.text=element_text(size=50), legend.title = element_text(size = 50)) +
-  labs(color = "Status")
-#dev.off()
-
-#pdf("nasalPAPCOAColoredByHouseholdAndStatus1.pdf", width = 14, height = 10)
-ggplot(data = pcoa.nasal.pa.d, aes(x = PC1, y = PC2)) +
-  geom_point(data = pcoa.nasal.pa.d, aes(color = as.factor(SignsVetReported)), size = 30, alpha = 0.8) +
-  geom_text(aes(label = Household), hjust = 0.5, vjust = 0.5, size = 20) +
-  scale_color_manual(values = c(pal[1], pal[3]), labels = c("Control", "FURTD")) +
-  labs(title = "Nasopharyngeal PA BC", x = "PC1", y = "PC2") +
-  theme(axis.text = element_text(size = 18), plot.title = element_text(size = 50), axis.title = element_text(size = 50), legend.text=element_text(size=50), legend.title = element_text(size = 50)) +
-  labs(color = "Status") 
-#dev.off()
-
-## 2C. Check that there aren't significant beta dispersion differences
-### i. Gut Abundances by status
-beta.bc.dist.gut.ab = betadisper(d = bc.dist.gut.ab, group = metaG[, "SignsVetReported"])
-anova(beta.bc.dist.gut.ab) # Not significant 0.36
-permutest(beta.bc.dist.gut.ab) #Not significant 0.33
-labs = paste("Dimension", 1:4, "(", round(100*beta.bc.dist.gut.ab$eig/sum(beta.bc.dist.gut.ab$eig), 2), "% )")
-setwd(directory.figures)
-
-#pdf("betaDispersionGutAbundances68Conf.pdf")
-par(mar = c(5, 5, 4, 2))
-plot(beta.bc.dist.gut.ab, cex = 2, cex.lab = 2, cex.main = 2, pch = 15:16, xlab = labs[1], ylab = labs[2], hull = FALSE, ellipse = TRUE, conf = 0.68, lwd = 3, main = "Beta Dispersion \nBC Gut Abundance", col = c(pal[1], pal[3]) )
-ordilabel(scores(beta.bc.dist.gut.ab, "centroids"), labels = c("Control", "FURTD"), col = c(pal[1], pal[3]), cex = 1.2)
-#dev.off()
-
-#pdf("betaDispersionGutAbundancesBoxplot.pdf")
-par(mar = c(5, 5, 4, 2))
-boxplot(beta.bc.dist.gut.ab, xlab = "Status", notch = F, cex.lab = 2, col = c(pal[1], pal[3]), main = "Beta Dispersion \nBC Gut Abundance", cex.main = 2, cex.axis = 2, names = c("Control", "FURTD"))
-#dev.off()
-
-### ii. Gut Presence absence by status
-beta.bc.dist.gut.pa = betadisper(d = bc.dist.gut.pa, group = metaG[, "SignsVetReported"])
-anova(beta.bc.dist.gut.pa) # Not significant 0.41
-permutest(beta.bc.dist.gut.pa) # Not significant 0.5
-labs = paste("Dimension", 1:4, "(", round(100*beta.bc.dist.gut.pa$eig/sum(beta.bc.dist.gut.pa$eig), 2), "% )")
-setwd(directory.figures)
-
-#pdf("betaDispersionGutPA68Conf.pdf")
-par(mar = c(5, 5, 4, 2))
-plot(beta.bc.dist.gut.pa, cex = 2, cex.main = 2, cex.lab = 2, pch = 15:16, xlab = labs[1], ylab = labs[2], hull = FALSE, ellipse = TRUE, conf = 0.68, lwd = 2, main = "Beta Dispersion\n BC Gut Presence Absence", col = c(pal[1], pal[3]))
-ordilabel(scores(beta.bc.dist.gut.pa, "centroids"), labels = c("Control", "FURTD"), col = c(pal[1], pal[3]), cex = 1.2)
-#dev.off()
-
-#pdf("betaDispersionGutPABoxplot.pdf")
-par(mar = c(5, 5, 4, 2))
-boxplot(beta.bc.dist.gut.pa, xlab = "Status", notch = F, cex.lab = 2, col = c(pal[1], pal[3]), main = "Beta Dispersion \nBC Gut Presnece Absence", cex.main = 2, cex.axis = 2, names = c("Control", "FURTD"))
-#dev.off()
-
-### iii. Nasal Abundances
-beta.bc.dist.nasal.ab = betadisper(d = bc.dist.nasal.ab, group = metaN[, "SignsVetReported"])
-anova(beta.bc.dist.nasal.ab) # Not significant 0.19
-permutest(beta.bc.dist.nasal.ab) # Not significant 0.2
-labs = paste("Dimension", 1:4, "(", round(100*beta.bc.dist.nasal.ab$eig/sum(beta.bc.dist.nasal.ab$eig), 2), "% )")
-setwd(directory.figures)
-
-#pdf("betaDispersionNasalAbundances68Conf.pdf")
-par(mar = c(5, 5, 4, 2))
-plot(beta.bc.dist.nasal.ab, cex = 2, cex.lab = 2, cex.main = 2, pch = 15:16, xlab = labs[1], ylab = labs[2], hull = FALSE, ellipse = TRUE, conf = 0.68, lwd = 3, main = "Beta Dispersion \nBC Nasopharyngeal Abundance", col = c(pal[1], pal[3]))
-ordilabel(scores(beta.bc.dist.nasal.ab, "centroids"), labels = c("Control", "FURTD"), col = c(pal[1], pal[3]), cex = 1.2)
-#dev.off()
-
-#pdf("betaDispersionNasalAbundancesBoxplot.pdf")
-par(mar = c(5, 5, 4, 2))
-boxplot(beta.bc.dist.nasal.ab, xlab = "Status", notch = F, cex.lab = 2, col = c(pal[1], pal[3]), main = "Beta Dispersion \nBC Nasopharyngeal Abundance", cex.main = 2, cex.axis = 2, names = c("Control", "FURTD"))
-#dev.off()
-
-### iv. Nasal Presence absence
-beta.bc.dist.nasal.pa = betadisper(d = bc.dist.nasal.pa, group = metaN[, "SignsVetReported"])
-anova(beta.bc.dist.nasal.pa) # Not significant 0.36
-permutest(beta.bc.dist.nasal.pa) # Not significant 0.43
-labs = paste("Dimension", 1:4, "(", round(100*beta.bc.dist.nasal.pa$eig/sum(beta.bc.dist.nasal.pa$eig), 2), "% )")
-
-setwd(directory.figures)
-#pdf("betaDispersionNasalPA68Conf.pdf")
-par(mar = c(5, 5, 4, 2))
-plot(beta.bc.dist.nasal.pa, cex = 2, cex.lab = 2, cex.main = 2, pch = 15:16, xlab = labs[1], ylab = labs[2], hull = FALSE, ellipse = TRUE, conf = 0.68, lwd = 2, main = "Beta Dispersion \n BC Nasopharyngeal Presence Absence", col = c(pal[1], pal[3]))
-ordilabel(scores(beta.bc.dist.nasal.pa, "centroids"), labels = c("Control", "FURTD"), col = c(pal[1], pal[3]), cex = 1.2)
-#dev.off()
-
-#pdf("betaDispersionNasalPABoxplot.pdf")
-par(mar = c(5, 5, 4, 2))
-boxplot(beta.bc.dist.nasal.pa, xlab = "Status", notch = F, cex.lab = 2, col = c(pal[1], pal[3]), main = "Beta Dispersion BC \n Nasopharyngeal Presence Absence", cex.main = 2, cex.axis = 2, names = c("Control", "FURTD"))
-#dev.off()
-
-### v. Household
-beta.bc.dist.nasal.ab = betadisper(d = bc.dist.nasal.ab, group = metaN[, "Household"])
-anova(beta.bc.dist.nasal.ab) # Not significant 0.60
-permutest(beta.bc.dist.nasal.ab) # Not significant 0.2
-
-
-## 2D. Get significance between groups for bray curtis
-dim(metaG)
-adonis(formula = bc.dist.gut.ab ~ SignsVetReported, data = metaG) #p = 0.54
-adonis(formula = bc.dist.gut.pa ~ SignsVetReported, data = metaG) #p = 0.39
-adonis(formula = bc.dist.nasal.ab ~ SignsVetReported, data = metaN) #p = 0.92
-adonis(formula = bc.dist.nasal.pa ~ SignsVetReported, data = metaN) # p = 0.99
-
-adonis(formula = bc.dist.gut.ab ~ sumSigns, data = metaG) #p = 0.26
-adonis(formula = bc.dist.gut.pa ~ sumSigns, data = metaG) #p = 0.15
-adonis(formula = bc.dist.nasal.ab ~ sumSigns, data = metaN) #p = 0.6
-adonis(formula = bc.dist.nasal.pa ~ sumSigns, data = metaN) # p = 0.95
-
-adonis(formula = bc.dist.gut.ab ~ Household, data = metaG) #p = 0.14
-adonis(formula = bc.dist.gut.pa ~ Household, data = metaG) #p = 0.008 **
-adonis(formula = bc.dist.nasal.ab ~ Household, data = metaN) #p = 0.17
-adonis(formula = bc.dist.nasal.pa ~ Household, data = metaN) #p = 0.22
-
-adonis(bc.dist.gut.ab ~ SignsVetReported / Household, data = metaG, strata = factor(metaG$Household)) #0.03 *
-adonis(bc.dist.gut.ab ~ SignsVetReported, data = metaG, strata = factor(metaG$Household)) #0.03 *
-
-
-adonis(bc.dist.gut.pa ~ SignsVetReported / Household, data = metaG, strata = factor(metaG$Household)) #0.15
-adonis(bc.dist.gut.pa ~ SignsVetReported, data = metaG, strata = factor(metaG$Household)) #0.15
-
-
-adonis(bc.dist.nasal.ab ~ SignsVetReported / Household, data = metaN, strata = factor(metaN$Household))  #0.81
-adonis(bc.dist.nasal.ab ~ SignsVetReported, data = metaN, strata = factor(metaN$Household))  #0.81
-
-adonis(bc.dist.nasal.pa ~ SignsVetReported / Household, data = metaN, strata = factor(metaN$Household)) #0.88
-adonis(bc.dist.nasal.pa ~ SignsVetReported , data = metaN, strata = factor(metaN$Household)) #0.88
-
-
-adonis(bc.dist.gut.ab ~ sumSigns / Household, data = metaG, strata = factor(metaG$Household)) #0.02 ***
-adonis(bc.dist.gut.ab ~ sumSigns, data = metaG, strata = factor(metaG$Household)) #0.02 ***
-
-adonis(bc.dist.gut.pa ~ sumSigns / Household, data = metaG, strata = factor(metaG$Household)) #0.11
-adonis(bc.dist.nasal.ab ~ sumSigns / Household, data = metaN, strata = factor(metaN$Household))  #0.4
-adonis(bc.dist.nasal.pa ~ sumSigns / Household, data = metaN, strata = factor(metaN$Household)) #0.82
-
-
-adonis(formula = bc.dist.gut.ab ~ Household + SignsVetReported + Household*SignsVetReported, data = metaG)
-adonis(formula = bc.dist.gut.pa ~ Household + SignsVetReported + Household*SignsVetReported, data = metaG)
-adonis(formula = bc.dist.nasal.ab ~ Household + SignsVetReported + Household*SignsVetReported, data = metaN)
-adonis(formula = bc.dist.nasal.pa ~ Household + SignsVetReported + Household*SignsVetReported, data = metaN)
-
-## 2E. Now, determine if Unifrac holds the same patterns.
-
-## A. Make phyloseq objects
-metaG$color = ifelse(metaG$SignsVetReported == "P", pal[3], pal[1])
-otu.gut.physeq = otu_table(asvG, taxa_are_rows = T)
-tax.gut.physeq = tax_table(as.matrix(taxG))
-meta.gut.physeq = sample_data(metaG)
-tree.gut.physeq = phy_tree(treeG)
-psG = phyloseq(otu.gut.physeq, tax.gut.physeq, meta.gut.physeq, tree.gut.physeq)
-
-metaN$color = ifelse(metaN$SignsVetReported == "P", pal[3], pal[1])
-otu.nasal.physeq = otu_table(asvN, taxa_are_rows = T)
-tax.nasal.physeq = tax_table(as.matrix(taxN))
-meta.nasal.physeq = sample_data(metaN)
-tree.nasal.physeq = phy_tree(treeN)
-psN = phyloseq(otu.nasal.physeq, tax.nasal.physeq, meta.nasal.physeq, tree.nasal.physeq)
-
-uni.dist.gut.ab = UniFrac(physeq = psG, weighted = TRUE, normalized = T, parallel = FALSE)
-uni.dist.gut.pa = UniFrac(physeq = psG, weighted = FALSE, normalized = T, parallel = FALSE)
-uni.dist.nasal.ab = UniFrac(physeq = psN, weighted = TRUE, normalized = T, parallel = FALSE)
-uni.dist.nasal.pa = UniFrac(physeq = psN, weighted = FALSE, normalized= T, parallel = FALSE)
-
-adonis(formula = uni.dist.gut.ab ~ SignsVetReported, data = metaG) #p = 0.52
-adonis(formula = uni.dist.gut.pa ~ SignsVetReported, data = metaG) #p = 0.17
-adonis(formula = uni.dist.nasal.ab ~ SignsVetReported, data = metaN) #p = 0.65
-adonis(formula = uni.dist.nasal.pa ~ SignsVetReported, data = metaN) # p = 0.98
-
-adonis(formula = uni.dist.gut.ab ~ sumSigns, data = metaG) #p = 0.41
-adonis(formula = uni.dist.gut.pa ~ sumSigns, data = metaG) #p = 0.0.9
-adonis(formula = uni.dist.nasal.ab ~ sumSigns, data = metaN) #p = 0.57
-adonis(formula = uni.dist.nasal.pa ~ sumSigns, data = metaN) # p = 0.90
-
-adonis(formula = uni.dist.gut.ab ~ Household, data = metaG) #p = 0.32
-adonis(formula = uni.dist.gut.pa ~ Household, data = metaG) #p = 0.17
-adonis(formula = uni.dist.nasal.ab ~ Household, data = metaN) #p = 0.37
-adonis(formula = uni.dist.nasal.pa ~ Household, data = metaN) #p = 0.713
-
-adonis(uni.dist.gut.ab ~ SignsVetReported / Household, data = metaG, strata = factor(metaG$Household)) #0.50
-adonis(uni.dist.gut.ab ~ SignsVetReported, data = metaG, strata = factor(metaG$Household)) #0.5
-
-adonis(uni.dist.gut.pa ~ SignsVetReported / Household, data = metaG, strata = factor(metaG$Household)) #0.15
-adonis(uni.dist.gut.pa ~ SignsVetReported, data = metaG, strata = factor(metaG$Household)) #0.16
-
-adonis(uni.dist.nasal.ab ~ SignsVetReported / Household, data = metaN, strata = factor(metaN$Household))  #0.38
-adonis(uni.dist.nasal.ab ~ SignsVetReported, data = metaN, strata = factor(metaN$Household))  #0.38
-
-adonis(uni.dist.nasal.pa ~ SignsVetReported / Household, data = metaN, strata = factor(metaN$Household)) #0.93
-adonis(uni.dist.nasal.pa ~ SignsVetReported , data = metaN, strata = factor(metaN$Household)) #0.93
-
-
-adonis(uni.dist.gut.ab ~ sumSigns / Household, data = metaG, strata = factor(metaG$Household)) #0.43
-adonis(uni.dist.gut.ab ~ sumSigns, data = metaG, strata = factor(metaG$Household)) #0.40
-
-adonis(uni.dist.gut.pa ~ sumSigns / Household, data = metaG, strata = factor(metaG$Household)) #0.06
-adonis(uni.dist.nasal.ab ~ sumSigns / Household, data = metaN, strata = factor(metaN$Household))  #0.46
-adonis(uni.dist.nasal.pa ~ sumSigns / Household, data = metaN, strata = factor(metaN$Household)) #0.66
-
-
-adonis(formula = uni.dist.gut.ab ~ Household + SignsVetReported + Household*SignsVetReported, data = metaG)
-adonis(formula = uni.dist.gut.pa ~ Household + SignsVetReported + Household*SignsVetReported, data = metaG)
-adonis(formula = uni.dist.nasal.ab ~ Household + SignsVetReported + Household*SignsVetReported, data = metaN)
-adonis(formula = uni.dist.nasal.pa ~ Household + SignsVetReported + Household*SignsVetReported, data = metaN)
-
-
-### B. Test RDA of unifrac
-colVector = factor((metaG$SignsVetReported))
-col_palette = palette(value = c(pal[1], pal[3]))[colVector]
-col_palette
-
-dbrda.uni.dist.gut.ab = capscale(uni.dist.gut.ab ~ sumSigns, data = metaG)
-plot(dbrda.uni.dist.gut.ab, type = "n", xlim = c(-1.5, 1.5), ylim = c(-1.5, 1.5), tck = 0)
-groups = metaG$SignsVetReported
-household = metaG$Household
-points(dbrda.uni.dist.gut.ab, col = as.numeric(factor(groups)), pch = 19, cex = 3)
-ordispider(dbrda.uni.dist.gut.ab, groups, lty = 2, col = c(pal[1], pal[3]), label = F)
-ordiellipse(dbrda.uni.dist.gut.ab, groups, lty = 2, col = c(pal[1], pal[3]), label = F, conf = 0.95)
-text(y = dbrda.uni.dist.gut.ab$CCA$Xbar[,1], x = dbrda.uni.dist.gut.ab$CA$u[,1], labels = as.vector(metaG$Household))
-legend('topright', legend=c("Control", "FURTD"), col=c(pal[1],pal[3]), pch = 16, pt.cex = 2.3, bty = "n")
-
-anova.cca(dbrda.uni.dist.gut.ab, by = "terms") #0.39
-anova.cca(dbrda.uni.dist.gut.ab, by = "axis") #0.4
-
-dbrda.uni.dist.gut.pa = capscale(uni.dist.gut.pa ~ sumSigns + Condition(Household), data = metaG)
-plot(dbrda.uni.dist.gut.pa)
-plot(dbrda.uni.dist.gut.pa, type = "n")
-groups = metaG$SignsVetReported
-points(dbrda.uni.dist.gut.ab, col = as.numeric(as.factor(groups)), pch = as.numeric(as.factor(groups)))
-ordispider(dbrda.uni.dist.gut.ab, groups, lty = 2, col = "grey", label = F)
-ordiellipse(dbrda.uni.dist.gut.ab, groups, lty = 2, col = "grey", label = F)
-anova.cca(dbrda.uni.dist.gut.ab, by = "terms")
-
-
-
-plot(gut.ab.cap, type = "n")
-
-points(gut.ab.cap, col = as.numeric(as.factor(groups)),
-       pch = as.numeric(as.factor(groups)))
-
-ordispider(gut.ab.cap, groups, lty=2, col="grey", label=F)
-ordiellipse(gut.ab.cap, groups, lty=2, col="grey", label=F)
-
-
-
-gut.ab = decostand(t(asvG), 'hell')
-cca.gut.ab = cca(gut.ab ~ sumSigns, data = metaG)
-cca.gut.ab
-anova(cca.gut.ab)
-
-anova(cca.gut.ab, by = 'axis', step = 1000)
-anova(cca.gut.ab, by = 'term', step = 1000)
-ordistep(cca(gut.ab ~1, data = metaG), scope = formula(cca.gut.ab), direction = "forward", pstep = 1000)
-anova(cca(gut.ab[rownames(metaG),]~ sumSigns + Household + NumberNeutrophils, data = metaG, na.action = na.omit))
-
-cca.gut.uni.ab = cca(uni.dist.gut.ab~sumSigns, data = metaG)
-
-gut.ab.cap = capscale(t(asvG) ~ SignsVetReported + Household + OwnerReportedStatus, data = metaG, dist = "bray")
-
-modNull.gut.ab.cap = capscale(t(asvG) ~ 1, data = metaG, distance = "bray")
-anova(gut.ab.cap)
-anova(gut.ab.cap, by = "axis", step = 1000)
-anova(gut.ab.cap, by = "terms", step = 1000)
-
-
-vasc <- read.delim ('https://raw.githubusercontent.com/zdealveindy/anadat-r/master/data/vasc_plants.txt', row.names = 1)
-chem <- read.delim ('https://raw.githubusercontent.com/zdealveindy/anadat-r/master/data/chemistry.txt', row.names = 1)
-
-# transform data using Hellinger transformation to prepare them for tb-RDA:
-library (vegan)
-vasc.hell <- decostand (vasc, 'hell')
-
-# the last variable in the 'chem' dataset is 'slope', which is not a chemical variable - remove it:
-chem1 <- chem[,-15]
-head(vasc.hell)
-head(chem1)
-         
-step = ordistep(gut.ab.cap, scope = modNull.gut.ab.cap, direction = "forward", permutations = 999)
-vegan::anova.cca(step, by = "terms")
-anova(step)
-summary(step)
-anova(step)
-ordistep(modNull.gut.ab.cap, scope = formula(gut.ab.cap), perm.max = 200)
-ordistep(gut.ab.cap, perm.max = 200)
-
-asv.gut = t(asvG)
-gut.ab.cap = capscale(t(asvG) ~ sumSigns, data = metaG, dist = "bray")
-anova(gut.ab.cap)
-anova(gut.ab.cap, by = "axis", step = 1000)
-anova(gut.ab.cap, by = "terms", step = 1000)
-
-nasal.ab.cap = capscale(t(asvN) ~ sumSigns, data = metaN, dist = "bray")
-anova(nasal.ab.cap)
-anova(nasal.ab.cap, by = "axis", step = 1000)
-anova(nasal.ab.cap, by = "terms", step = 1000)
-
-groups = metaG$SignsVetReported
-plot(gut.ab.cap, type = "n")
-points(gut.ab.cap, col = as.numeric(as.factor(groups)),
-       pch = as.numeric(as.factor(groups)))
-
-ordispider(gut.ab.cap, groups, lty=2, col="grey", label=F)
-ordiellipse(gut.ab.cap, groups, lty=2, col="grey", label=F)
-
-anova(gut.ab.cap, step = 1000, by = "terms")
-
-###################################
-#3. Redo analysis but with clades
-
-# Plot Cladal PCoAs 
-## A. Distance matrix clades
-bc.dist.gut.ab.ctu = vegdist(t(ctuG), method = "bray", binary = F)
-bc.dist.gut.pa.ctu = vegdist(t(ctuG), method = "bray", binary = T)
-bc.dist.nasal.ab.ctu = vegdist(t(ctuN), method = "bray", binary = F)
-bc.dist.nasal.pa.ctu = vegdist(t(ctuN), method = "bray", binary = T)
-
-pcoa.gut.ab.ctu = cmdscale(bc.dist.gut.ab.ctu, eig = T, k = 2)
-pcoa.gut.pa.ctu = cmdscale(bc.dist.gut.pa.ctu, eig = T, k = 2)
-pcoa.nasal.ab.ctu = cmdscale(bc.dist.nasal.ab.ctu, eig = T, k = 2)
-pcoa.nasal.pa.ctu = cmdscale(bc.dist.nasal.pa.ctu, eig = T, k = 2)
-
-pcoa.gut.ab.d.ctu = as.data.frame(pcoa.gut.ab.ctu$points)
-colnames(pcoa.gut.ab.d.ctu) = c("PC1", "PC2")
-pcoa.gut.ab.d.ctu$Household = metaG[rownames(pcoa.gut.ab.d.ctu), "Household"]
-pcoa.gut.ab.d.ctu$SignsVetReported = metaG[rownames(pcoa.gut.ab.d.ctu), "SignsVetReported"]
-pcoa.gut.pa.d.ctu = as.data.frame(pcoa.gut.pa.ctu$points)
-colnames(pcoa.gut.pa.d.ctu) = c("PC1", "PC2")
-pcoa.gut.pa.d.ctu$Household = metaG[rownames(pcoa.gut.pa.d.ctu), "Household"]
-pcoa.gut.pa.d.ctu$SignsVetReported = metaG[rownames(pcoa.gut.pa.d.ctu), "SignsVetReported"]
-pcoa.nasal.ab.d.ctu = as.data.frame(pcoa.nasal.ab.ctu$points)
-colnames(pcoa.nasal.ab.d.ctu) = c("PC1", "PC2")
-pcoa.nasal.ab.d.ctu$Household = metaN[rownames(pcoa.nasal.ab.d.ctu), "Household"]
-pcoa.nasal.ab.d.ctu$SignsVetReported = metaN[rownames(pcoa.nasal.ab.d.ctu), "SignsVetReported"]
-pcoa.nasal.pa.d.ctu = as.data.frame(pcoa.nasal.pa.ctu$points)
-colnames(pcoa.nasal.pa.d.ctu) = c("PC1", "PC2")
-pcoa.nasal.pa.d.ctu$Household = metaN[rownames(pcoa.nasal.pa.d.ctu), "Household"]
-pcoa.nasal.pa.d.ctu$SignsVetReported = metaN[rownames(pcoa.nasal.ab.d.ctu), "SignsVetReported"]
-
-
-## 2B. PCoAs by household and disease status
-setwd(directory.figures)
-#pdf("gutAbundancePCOAColoredByHouseholdAndStatusCTU1.pdf", width = 14, height = 10)
-ggplot(data = pcoa.gut.ab.d.ctu, aes(x = PC1, y = PC2)) +
-  geom_point(data = pcoa.gut.ab.d.ctu, aes(color = as.factor(SignsVetReported)), size = 30, alpha = 0.8) +
-  geom_text(aes(label = Household), hjust = 0.5, vjust = 0.5, size = 20) +
-  scale_color_manual(values = c(pal[1], pal[3]), labels = c("Control", "FURTD")) +
-  labs(title = "CTU Gut Abun BC", x = "PC1", y = "PC2") +
-  theme(axis.text = element_text(size = 50), plot.title = element_text(size = 50), axis.title = element_text(size = 50), legend.text=element_text(size=50), legend.title = element_text(size = 50)) +
-  labs(color = "Status")
-#dev.off()
-
-#pdf("gutPAPCOAColoredByHouseholdAndStatusCTU1.pdf", width = 14, height = 10)
-ggplot(data = pcoa.gut.pa.d.ctu, aes(x = PC1, y = PC2)) +
-  geom_point(data = pcoa.gut.pa.d.ctu, aes(color = as.factor(SignsVetReported)), size = 30, alpha = 0.8) +
-  geom_text(aes(label = Household), hjust = 0.5, vjust = 0.5, size = 20) +
-  scale_color_manual(values = c(pal[1], pal[3]), labels = c("Control", "FURTD")) +
-  labs(title = "CTU Gut PA BC", x = "PC1", y = "PC2") +
-  theme(axis.text = element_text(size = 50), plot.title = element_text(size = 50), axis.title = element_text(size = 50), legend.text=element_text(size=50), legend.title = element_text(size = 50)) +
-  labs(color = "Status")
-#dev.off()
-
-#pdf("nasalAbundancePCOAColoredByHouseholdAndStatusCTU1.pdf", width = 14, height = 10)
-ggplot(data = pcoa.nasal.ab.d.ctu, aes(x = PC1, y = PC2)) +
-  geom_point(data = pcoa.nasal.ab.d.ctu, aes(color = as.factor(SignsVetReported)), size = 30, alpha = 0.8) +
-  geom_text(aes(label = Household), hjust = 0.5, vjust = 0.5, size = 20) +
-  scale_color_manual(values = c(pal[1], pal[3]), labels = c("Control", "FURTD")) +
-  labs(title = "CTU Nasopharyngeal Abun BC", x = "PC1", y = "PC2") +
-  theme(axis.text = element_text(size = 50), plot.title = element_text(size = 50), axis.title = element_text(size = 50), legend.text=element_text(size=50), legend.title = element_text(size = 50)) +
-  labs(color = "Status")
-#dev.off()
-
-#pdf("nasalPAPCOAColoredByHouseholdAndStatusCTU1.pdf", width = 14, height = 10)
-ggplot(data = pcoa.nasal.pa.d.ctu, aes(x = PC1, y = PC2)) +
-  geom_point(data = pcoa.nasal.pa.d.ctu, aes(color = as.factor(SignsVetReported)), size = 30, alpha = 0.8) +
-  geom_text(aes(label = Household), hjust = 0.5, vjust = 0.5, size = 20) +
-  scale_color_manual(values = c(pal[1], pal[3]), labels = c("Control", "FURTD")) +
-  labs(title = "CTU Nasopharyngeal PA BC", x = "PC1", y = "PC2") +
-  theme(axis.text = element_text(size = 50), plot.title = element_text(size = 50), axis.title = element_text(size = 50), legend.text=element_text(size=50), legend.title = element_text(size = 50)) +
-  labs(color = "Status")
-#dev.off()
-
-
-## C. Get significance between groups for bray curtis
-
-adonis(formula = bc.dist.gut.ab.ctu ~ SignsVetReported, data = metaG) #p = 0.80
-adonis(formula = bc.dist.gut.pa.ctu ~ SignsVetReported, data = metaG) #p = 0.40
-adonis(formula = bc.dist.nasal.ab.ctu ~ SignsVetReported, data = metaN) #p = 0.37
-adonis(formula = bc.dist.nasal.pa.ctu ~ SignsVetReported, data = metaN) # p = 0.08
-
-adonis(formula = bc.dist.gut.ab.ctu ~ sumSigns, data = metaG) #p = 0.48
-adonis(formula = bc.dist.gut.pa.ctu ~ sumSigns, data = metaG) #p = 0.63
-adonis(formula = bc.dist.nasal.ab.ctu ~ sumSigns, data = metaN) #p = 0.34
-adonis(formula = bc.dist.nasal.pa.ctu ~ sumSigns, data = metaN) # p = 0.014 *
-
-
-adonis(formula = bc.dist.gut.ab.ctu ~ Household, data = metaG) #p = 0.82
-adonis(formula = bc.dist.gut.pa.ctu ~ Household, data = metaG) #p = 0.79
-adonis(formula = bc.dist.nasal.ab.ctu ~ Household, data = metaN) #p = 0.48
-adonis(formula = bc.dist.nasal.pa.ctu ~ Household, data = metaN) #p = 0.86
-
-
-adonis(bc.dist.gut.ab.ctu ~ SignsVetReported / Household, data = metaG, strata = factor(metaG$Household)) #0.94
-adonis(bc.dist.gut.pa.ctu ~ SignsVetReported / Household, data = metaG, strata = factor(metaG$Household)) #0.47
-adonis(bc.dist.nasal.ab.ctu ~ SignsVetReported / Household, data = metaN, strata = factor(metaN$Household))  #0.48
-adonis(bc.dist.nasal.pa.ctu ~ SignsVetReported / Household, data = metaN, strata = factor(metaN$Household)) #0.21
-
-adonis(bc.dist.gut.ab.ctu ~ sumSigns / Household, data = metaG, strata = factor(metaG$Household)) #0.9
-adonis(bc.dist.gut.pa.ctu ~ sumSigns / Household, data = metaG, strata = factor(metaG$Household)) #0.80
-adonis(bc.dist.nasal.ab.ctu ~ sumSigns / Household, data = metaN, strata = factor(metaN$Household))  #0.52
-adonis(bc.dist.nasal.pa.ctu ~ sumSigns / Household, data = metaN, strata = factor(metaN$Household)) #0.01
-
-adonis(formula = bc.dist.gut.ab.ctu ~ Household + SignsVetReported + Household*SignsVetReported, data = metaG)
-adonis(formula = bc.dist.gut.pa.ctu ~ Household + SignsVetReported + Household*SignsVetReported, data = metaG)
-adonis(formula = bc.dist.nasal.ab.ctu ~ Household + SignsVetReported + Household*SignsVetReported, data = metaN)
-adonis(formula = bc.dist.nasal.pa.ctu ~ Household + SignsVetReported + Household*SignsVetReported, data = metaN)
 
 
 # Make box plots of metadata
