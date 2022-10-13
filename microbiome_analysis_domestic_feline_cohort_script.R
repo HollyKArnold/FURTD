@@ -2122,11 +2122,16 @@ ggsave(filename = "full_nasal_tree_labeless.png",
        height = 40, 
        width = 40)
 
+###############################################################################
+#  Visualize significant microbial features nasal reduced                     #
+###############################################################################
 
+# Get a vector of descendant tips of significant clades
 tipsN = vector()
+
 for(i in 1:length(rootsN)){
   curNode = idxsN[which(idxsN == rootsN[i])]
-  curClade = extract.clade(treeN, curNode)
+  curClade = ape::extract.clade(treeN, curNode)
   tipsN = c(tipsN, curClade$tip.label)
   tipsN = unique(tipsN)
 }
@@ -2135,10 +2140,15 @@ tipsN = unique(c(tipsN, sigNasal %>%
                    filter(covariate %in% c("Status")) %>%
                    pull(clade)))
 
+# Drop unwanted tips
 treeNSub = ape::drop.tip(phy = treeN, tip = setdiff(treeN$tip.label, tipsN))  
 dNSub = dN[c(treeNSub$tip.label, treeNSub$node.label),]
-dNSub$node = seq(from = 1, to = length(treeNSub$tip.label) + length(treeNSub$node.label), by = 1)
-idxsN = seq(from = 1, to = length(treeNSub$tip.label) + length(treeNSub$node.label), by = 1)
+dNSub$node = seq(from = 1, 
+                 to = length(treeNSub$tip.label) + length(treeNSub$node.label),
+                 by = 1)
+idxsN = seq(from = 1, 
+            to = length(treeNSub$tip.label) + length(treeNSub$node.label), 
+            by = 1)
 names(idxsN) = c(treeNSub$tip.label, treeNSub$node.label)
 
 nodeids = idxsN[rootsN]
@@ -2156,15 +2166,15 @@ nodedf = nodedf %>%
     is.na(Genus) ~ Family,
     is.na(Species) ~ Genus
     
-  )
-  )
+  ))
 
 # Move labels outward from smaller clades
 nodedf$size = NA
 for(i in 1:nrow(nodedf)){
-  curClade = extract.clade(treeNSub, node = nodedf[i, "node"])
+  curClade = ape::extract.clade(treeNSub, node = nodedf[i, "node"])
   nodedf[i, "size"] = length(curClade$tip.label)
 }
+
 nodedf = nodedf %>% 
   mutate(
     pos = case_when(
@@ -2176,8 +2186,20 @@ nodedf = nodedf %>%
 
 
 cxNasalTree = ggtree(treeNSub, layout = "fan", size = 0.2, open.angle = 5) +
-  geom_hilight(data=nodedf, mapping=aes(node=node),extendto=2.3, alpha=0.2, fill="grey", color="grey50",size=0.05) + 
-  geom_hilight(data=nodedf, mapping=aes(node=node),extendto=3.5, alpha=0.3, fill="white", color="grey50",size=0.05) + 
+  geom_hilight(data=nodedf, 
+               mapping=aes(node=node),
+               extendto=2.3, 
+               alpha=0.2, 
+               fill="grey", 
+               color="grey50",
+               size=0.05) + 
+  geom_hilight(data=nodedf, 
+               mapping=aes(node=node),
+               extendto=3.5, 
+               alpha=0.3, 
+               fill="white", 
+               color="grey50",
+               size=0.05) + 
   geom_cladelab(data=nodedf, 
                 mapping=aes(node=node, 
                             label=label,
@@ -2190,43 +2212,65 @@ cxNasalTree = ggtree(treeNSub, layout = "fan", size = 0.2, open.angle = 5) +
                 fontface="italic")
 cxNasalTree
 
+
+# Output a labeled version for checking tips / labels match graph
+setwd(directory.figures)
+pdf(file = "tree_reduced_nasal_tip_node_labels.pdf")
+cxNasalTree + geom_tiplab(size = 0.5) + geom_nodelab(size = 0.5)
+dev.off()
+
+# Decorate tree with the significant associations 
 colnames(dNSub)[which(colnames(dNSub) == "Status" )] = "Association"
 cxNasalTree = cxNasalTree %<+% dNSub + 
-  geom_point2(aes(color = Family), alpha = 0.5, size = 1) +
-  geom_star(mapping=aes(fill=Association, starshape=Association), position="identity", starstroke=0.1, size = 2, alpha = 1) +
-  scale_fill_manual(values = c(steelblue, rust)) +
-  guides(starshape = guide_legend(override.aes = list(size = 8))) 
+  geom_point2(aes(subset = (!is.na(Association)), color = Association), 
+              alpha = 0.6, size = 2, shape = 16) +
+  scale_color_manual(values = c(pal[1], pal[3])) 
 cxNasalTree
 
-
-tmpPhyloseq = phyloseq(otu_table(psNASV), phy_tree(psNASV), tax_table(psNASV), sample_data(metaN))
-tmpPhyloseq = prune_taxa(taxa = treeNSub$tip.label, x = tmpPhyloseq)
-tmpPhyloseq = prune_samples(samples = rownames(sample_data(tmpPhyloseq)[which(sample_data(tmpPhyloseq)$status == "FURTD"),]), x = tmpPhyloseq)
+# Create tiles 
+tmpPhyloseq = phyloseq(otu_table(asvN_ps), 
+                       phy_tree(asvN_ps), 
+                       tax_table(asvN_ps), 
+                       sample_data(asvN_ps))
+tmpPhyloseq = prune_taxa(taxa = treeNSub$tip.label, 
+                         x = tmpPhyloseq)
+tmpPhyloseq = 
+  prune_samples(samples = 
+                  rownames(
+                    sample_data(tmpPhyloseq)[which(sample_data(
+                      tmpPhyloseq)$Status == "FURTD"),]), x = tmpPhyloseq)
 furtdAve = apply(otu_table(tmpPhyloseq)[treeNSub$tip.label,], 1, mean)
 
 
 furtdAve = data.frame("Average" = log(furtdAve + 0.001),
-                      "Cx" = rep("FURTD", times = length(furtdAve)))
+                      "Status" = rep("FURTD", times = length(furtdAve)))
 furtdAve$ID = rownames(furtdAve)
 
-tmpPhyloseq = phyloseq(otu_table(psNASV), phy_tree(psNASV), tax_table(psNASV), sample_data(metaN))
+tmpPhyloseq = phyloseq(otu_table(asvN_ps), 
+                       phy_tree(asvN_ps), 
+                       tax_table(asvN_ps), 
+                       sample_data(asvN_ps))
 tmpPhyloseq = prune_taxa(taxa = treeNSub$tip.label, x = tmpPhyloseq)
-tmpPhyloseq = prune_samples(samples = rownames(sample_data(tmpPhyloseq)[which(sample_data(tmpPhyloseq)$status == "Control"),]), x = tmpPhyloseq)
+tmpPhyloseq = 
+  prune_samples(samples = 
+                  rownames(sample_data(
+                    tmpPhyloseq)[which(sample_data(
+                      tmpPhyloseq)$Status == "Control"),]), x = tmpPhyloseq)
 controlAve = apply(otu_table(tmpPhyloseq)[treeNSub$tip.label,], 1, mean)
 
 
 controlAve = data.frame("Average" = log(controlAve + 0.001),
-                        "Cx" = rep("Control", times = length(controlAve)))
+                        "Status" = rep("Control", times = length(controlAve)))
 controlAve$ID = rownames(controlAve)
 datAve = rbind(furtdAve, controlAve)
 
-
+# Plot tiles
 cxNasalTree = cxNasalTree + 
-  new_scale_fill() +
-  geom_fruit(data=datAve, geom=geom_tile,
-             mapping=aes(y=ID, x=Cx, fill=Cx, alpha = Average),
+  ggnewscale::new_scale_fill() +
+  ggtreeExtra::geom_fruit(data=datAve, geom=geom_tile,
+             mapping=aes(y=ID, x=Status, fill=Status, alpha = Average),
              color = "grey50", offset = 0.31,size = 0.01) +
-  scale_fill_manual(values = c(steelblue, rust, "grey")) 
+  scale_fill_manual(values = c(pal[1], pal[3], "grey")) 
 cxNasalTree
 
 # Make a higher abundance table
@@ -2249,69 +2293,41 @@ dat3 = as_tibble(furtdAve) %>%
     
   )
 
-
+dat3 = as.data.frame(dat3)
+as.data.frame(dat3)
+rownames(dat3) = dat3$ID
 
 cxNasalTree = cxNasalTree + 
-  geom_fruit(data=dat3, geom=geom_bar, mapping=aes(y=ID, x=HigherAve, fill = HigherClass) , pwidth=0.38, offset = .1,orientation="y",  stat="identity") 
+  ggtreeExtra::geom_fruit(data = dat3, 
+                          geom = geom_bar, 
+                          mapping = aes(y = ID, 
+                                      x = HigherAve, 
+                                      fill = HigherClass) , 
+                          pwidth=0.38, offset = .1,orientation="y",  
+                          stat="identity") 
 cxNasalTree
 
 cxNasalTree = cxNasalTree + 
   guides(color = guide_legend(override.aes = list(size=8))) +
-  theme(legend.text = element_text(size = 9), legend.title = element_text(size = 12), legend.position = "right") +
+  theme(legend.text = element_text(size = 9), 
+        legend.title = element_text(size = 12), legend.position = "bottom") +
   guides(alpha=guide_legend(title="Log Average\nAbundance"))
+cxNasalTree
+cxNasalTreeLegend = ggpubr::get_legend(cxNasalTree)
 
-cxNasalTreeLegend = get_legend(cxNasalTree)
+# Plot reduced tree
+setwd(directory.figures)
+ggsave(cxNasalTree, file = "cladesClinicalSignsReducedNasal.pdf", 
+       height = 25, 
+       width = 23, 
+       units = "cm")
+ggsave(cxNasalTree, file = "cladesClinicalSignsReducedNasal.png", 
+       height = 25, 
+       width = 23, units = "cm")
 
-lay = rbind(c(1, 1, 1, 1, 1, 1),
-            c(1, 1, 1, 1, 1, 1), 
-            c(1, 1, 1, 1, 1, 1),
-            c(1, 1, 1, 1, 1, 1),
-            c(1, 1, 1, 1, 1, 1),
-            c(1, 1, 1, 1, 1, 1))
-
-
-# Arrange plots
-pp = arrangeGrob(cxNasalTree + theme(legend.position = "none"), layout_matrix = lay)
-plot(pp)
-ggsave(pp, file = "cladesClinicalSignsReducedNasal.pdf", height = 10, width = 10, units = "in")
-
-lay = rbind(c(6, 6,  1, 1),
-            c(2, 2, 1, 1),
-            c(3, 3, 1, 1),
-            c(4, 4, 1, 1), 
-            c(5, 5, 1, 1))
-
-pp = arrangeGrob(cxNasalTreeLegend$grobs[[4]], cxNasalTreeLegend$grobs[[1]],  cxNasalTreeLegend$grobs[[3]], cxNasalTreeLegend$grobs[[2]],  layout_matrix = lay)
-plot(pp)
-ggsave(pp, file = "cladesClinicalSignsReducedNasalKey.pdf", height = 9, width = 5)
-
-
-
-## TO DO
-
-
-
-# Figure 2: Tree gut 
-
-# Figure 3: Tree Nasal
-
-# Figure 4: Violin plot gut
-
-# Figure 5: Circle gut
-
-# Figure 6: Violin nasal
-
-# Figure 7: Circle nasal
-
-# Write out session info
-
-
-
-##############################################################################################################
-# 5. DETERMINE CLADES LINIKED TO CLINICAL SIGNS
-##############################################################################################################
-## GUT MICROBIOME
-
+###############################################################################
+#  Determine if clades are phylogenetically clustered                         #
+###############################################################################
 
 
 # See if the significant clades are clustered.
@@ -2487,6 +2503,27 @@ violinNasalPerm = ggplot(dN, aes(x=Node, y=Dist, fill = Node)) +
   stat_compare_means(method = "kruskal.test", label.y = 4)
 violinNasalPerm
 dev.off()
+
+
+## TO DO
+
+
+
+
+# Figure 4: Violin plot gut
+# Figure whatever: voloin plot nasal
+
+# Write out session info
+
+
+
+##############################################################################################################
+# 5. DETERMINE CLADES LINIKED TO CLINICAL SIGNS
+##############################################################################################################
+## GUT MICROBIOME
+
+
+
 
 ###
 # Random Forest
