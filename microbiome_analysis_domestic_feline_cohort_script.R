@@ -18,16 +18,6 @@ library(phyloseq)
 library(ggplot2)
 library(ggtree)
 
-#library(vegan)
-#library(ape)
-#library(xtable)
-#library(gridExtra)
-#library(randomForest)
-#library(stringr)
-#library(pROC)
-#library(reshape)
-#library(ggsignif)
-
 ###############################################################################
 #  SET DIRECTORIES                                                            #
 ###############################################################################
@@ -2329,31 +2319,60 @@ ggsave(cxNasalTree, file = "cladesClinicalSignsReducedNasal.png",
 #  Determine if clades are phylogenetically clustered                         #
 ###############################################################################
 
-
-# See if the significant clades are clustered.
+# Create a reference index for each clade
 sigCladesIdxG = seq(from = 1, to = length(c(treeG$tip.label, treeG$node.label)), by = 1)
 names(sigCladesIdxG) = c(treeG$tip.label, treeG$node.label)
 sigCladesIdxN = seq(from = 1, to = length(c(treeN$tip.label, treeN$node.label)), by = 1)
 names(sigCladesIdxN) = c(treeN$tip.label, treeN$node.label)
 
+# Clades significantly associated 
+sigCladesNegativeG = sigCladesIdxG[sigGut %>% filter(covariate %in% c("Status")) %>% filter(Estimate < 0) %>% pull(clade)]
+sigCladesPositiveG = sigCladesIdxG[sigGut %>% filter(covariate %in% c("Status")) %>% filter(Estimate > 0) %>% pull(clade)]
 
-sigCladesPositiveG = sigCladesIdxG[sigGut %>% filter(covariate %in% c("Nose", "Eyes")) %>% filter(Estimate > 0) %>% pull(clade)]
-sigCladesNegativeG = sigCladesIdxG[sigGut %>% filter(covariate %in% c("Nose", "Eyes")) %>%filter(Estimate < 0) %>% pull(clade)]
-
-sigCladesPositiveN = sigCladesIdxN[sigNasal %>% filter(covariate %in% c("Nose", "Eyes")) %>% filter(Estimate > 0) %>% pull(clade)]
-sigCladesNegativeN = sigCladesIdxN[sigNasal %>% filter(covariate %in% c("Nose", "Eyes")) %>% filter(Estimate < 0) %>% pull(clade)]
+sigCladesPositiveN = sigCladesIdxN[sigNasal %>% filter(covariate %in% c("Status")) %>% filter(Estimate > 0) %>% pull(clade)]
+sigCladesNegativeN = sigCladesIdxN[sigNasal %>% filter(covariate %in% c("Status")) %>% filter(Estimate < 0) %>% pull(clade)]
 
 combCladesPositiveG = combn(x = sigCladesPositiveG, m = 2)
 combCladesNegativeG = combn(x = sigCladesNegativeG, m = 2)
+combCladesRandomG = combn(x  = sigCladesIdxG, m = 2)
 
 combCladesPositiveN = combn(x = sigCladesPositiveN, m = 2)
 combCladesNegativeN = combn(x = sigCladesNegativeN, m = 2)
+combCladesRandomN = combn(x = sigCladesIdxN, m = 2)
 
-distG = dist.nodes(treeG)
-distN = dist.nodes(treeN)
+distG = ape::dist.nodes(treeG)
+distN = ape::dist.nodes(treeN)
 
 distPositiveG = getDistanceCombos(combos = combCladesPositiveG, distMatrix = distG)
 distNegativeG = getDistanceCombos(combos = combCladesNegativeG, distMatrix = distG)
+distRandomG = getDistanceCombos(combos = combCladesRandomG, distMatrix = distG)
+
+mean_positive_gut = mean(distPositiveG)
+mean_negative_gut = mean(distNegativeG)
+
+# Calculate mean distance of 100 bootstraps of distance between pairwise combo of random nodes
+random_mean_dists = vector()
+for(i in 1:100){
+  print(i)
+  dist_cur = distRandom(dist = distG, n = length(distPositiveG))
+  random_mean_dists = c(random_mean_dists, mean(dist_cur))
+}
+zscore_gut_positive = (mean_positive_gut - mean(random_mean_dists)) / sd(random_mean_dists)
+zscore_gut_positive
+pnorm(q = zscore_gut_positive, mean = 0, sd = 1, lower.tail = TRUE)
+
+random_mean_dists = vector()
+for(i in 1:100){
+  print(i)
+  dist_cur = distRandom(dist = distG, n = length(distNegativeG))
+  random_mean_dists = c(random_mean_dists, mean(dist_cur))
+}
+zscore_gut_negative = (mean_negative_gut - mean(random_mean_dists)) / sd(random_mean_dists)
+zscore_gut_negative
+pnorm(q = zscore_gut_negative, mean = 0, sd = 1, lower.tail = TRUE)
+
+
+
 distRandG = distRandom(dist = distG, n = length(distPositiveG))
 
 distPositiveN = getDistanceCombos(combos = combCladesPositiveN, distMatrix = distN)

@@ -1242,31 +1242,35 @@ getRefTreeCladeLevel = function(tree){
   return(d)
 }
 
-#' # Returns distances from a combination vector
-#' getDistanceCombos = function(combos, distMatrix){
-#'   
-#'   distance = vector()
-#'   for(i in 1:ncol(combos)){
-#'     curDist = distMatrix[combos[1,i], combos[2,i]]
-#'     distance = c(distance, curDist)
-#'   }
-#'   return(distance)
-#'   
-#' }
-#' 
-#' # Get random distance
-#' distRandom = function(dist, n){
-#'   
-#'   distance = vector()
-#'   for(i in 1:n){
-#'     cur = sample(x = 1:dim(dist)[1], 2, replace = FALSE)
-#'     distance = c(distance, dist[cur[1], cur[2]])
-#'   }
-#'   
-#'   return(distance)
-#'   
-#' }
-#' 
+# Returns distances from a combination vector
+getDistanceCombos = function(combos, distMatrix){
+
+  distance = vector()
+  
+  for(i in 1:ncol(combos)){
+    if(i%%1000 == 0){
+      print(i)
+    }
+    curDist = distMatrix[combos[1,i], combos[2,i]]
+    distance = c(distance, curDist)
+  }
+  return(distance)
+
+}
+
+# Get random distance
+distRandom = function(dist, n){
+
+  distance = vector()
+  for(i in 1:n){
+    cur = sample(x = 1:dim(dist)[1], 2, replace = FALSE)
+    distance = c(distance, dist[cur[1], cur[2]])
+  }
+
+  return(distance)
+
+}
+
 # Makes Negative Binomial model
 # Tests GLM NB with base variables + microbial feature
 # Returns a dataframe with covariate tested, estimate, microbial feature, 
