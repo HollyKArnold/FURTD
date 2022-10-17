@@ -836,7 +836,8 @@ plot(pp)
 
 setwd(directory.figures)
 ggsave(pp, filename = "Diversity_Summary.pdf", height = 20, width = 20)
- 
+ggsave(pp, filename = "Diversity_Summary.png", height = 20, width = 20)
+
 
 ###############################################################################
 #  Inflammatory Markers                                                       #

@@ -34,7 +34,14 @@ gut microbial communities may contribute to the development of chronic
 clinical course, but more research is needed to confirm our
 observations.
 
-![hi](figures/Diversity_Summary.pdf)
+<div class="figure" style="text-align: center">
+
+<img src="figures/Diversity_Summary.png" alt="your caption" width="0.3\linewidth" />
+<p class="caption">
+your caption
+</p>
+
+</div>
 
 ## R Markdown
 
