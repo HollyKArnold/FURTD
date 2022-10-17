@@ -77,7 +77,6 @@ meta$Status = factor(meta$Status)
 meta$GutID = sub(pattern = "$", replacement = "f", x = meta$Animal_ID)
 meta$NasalID = sub(pattern = "$", replacement = "o", x = meta$Animal_ID)
 
-
 # ASV tables
 asvG = utils::read.table("asvGutRarify.txt", header = T)
 colnames(asvG) = sub(pattern = "X", replacement = "", x = colnames(asvG))
@@ -252,8 +251,8 @@ beta_diversity_gut =
   gridExtra::grid.arrange(grobs = list(rdaG, screeG),
                           layout_matrix = cbind(c(1, 1, 1, 2, 2)))
 beta_diversity_gut
-setwd(directory.figures)
-ggsave(file = "gut_beta_diversity.pdf", beta_diversity_gut)
+#setwd(directory.figures)
+#ggsave(file = "gut_beta_diversity.pdf", beta_diversity_gut)
 
 # PERMANOVA
 clr_dist_matrix_gut = phyloseq::distance(asvG_ps_clr, method = "unifrac")
@@ -270,10 +269,10 @@ dispr_G = vegan::betadisper(clr_dist_matrix_gut,
                             phyloseq::sample_data(asvG_ps_clr)$Status)
 
 # PCOA beta dispersion plot
-setwd(directory.figures)
-pdf(file = "Beta_Dispersion_PCOA_Gut.pdf")
-plot(dispr_G, main = "Gut Microbiome Beta Dispersion", sub = "")
-dev.off()
+#setwd(directory.figures)
+#pdf(file = "Beta_Dispersion_PCOA_Gut.pdf")
+#plot(dispr_G, main = "Gut Microbiome Beta Dispersion", sub = "")
+#dev.off()
 
 # Box plot beta dispersion
 beta_dispersion_gut_boxplot = 
@@ -288,8 +287,8 @@ beta_dispersion_gut_boxplot =
   ggtitle("Beta Dispersion Gut Microbiome")
 beta_dispersion_gut_boxplot
 
-setwd(directory.figures)
-ggsave(file = "beta_dispersion_boxplot_Gut.pdf", beta_dispersion_gut_boxplot)
+#setwd(directory.figures)
+#ggsave(file = "beta_dispersion_boxplot_Gut.pdf", beta_dispersion_gut_boxplot)
 
 
 # Beta dispersion permutation
@@ -347,8 +346,8 @@ rdaN = phyloseq::plot_ordination(asvN_ps_clr,
 beta_diversity_nasal = 
   gridExtra::grid.arrange(grobs = list(rdaN, screeN), 
                           layout_matrix = cbind(c(1, 1, 1, 2, 2)))
-setwd(directory.figures)
-ggsave(file = "nasal_beta_diversity.pdf", beta_diversity_nasal)
+#setwd(directory.figures)
+#ggsave(file = "nasal_beta_diversity.pdf", beta_diversity_nasal)
 
 # PERMANOVA
 clr_dist_matrix_nasal = phyloseq::distance(asvN_ps_clr, method = "unifrac")
@@ -363,12 +362,13 @@ clr_adonis
 # Beta dispersion
 dispr_N = vegan::betadisper(clr_dist_matrix_nasal, 
                             phyloseq::sample_data(asvN_ps_clr)$Status)
+dispr_N
 
 # PCOA beta dispersion plot
-setwd(directory.figures)
-pdf(file = "Beta_Dispersion_PCOA_Nasal.pdf")
-plot(dispr_N, main = "Nasal Microbiome Beta Dispersion", sub = "")
-dev.off()
+#setwd(directory.figures)
+#pdf(file = "Beta_Dispersion_PCOA_Nasal.pdf")
+#plot(dispr_N, main = "Nasal Microbiome Beta Dispersion", sub = "")
+#dev.off()
 
 # Box plot beta dispersion
 beta_dispersion_nasal_boxplot = 
@@ -381,10 +381,11 @@ beta_dispersion_nasal_boxplot =
   ylab("Distance to Centroid") +
   theme(legend.position = "none") +
   ggtitle("Beta Dispersion Nasal Microbiome")
+beta_dispersion_nasal_boxplot
 
-setwd(directory.figures)
-ggsave(file = "beta_dispersion_boxplot_Nasal.pdf", 
-       beta_dispersion_nasal_boxplot)
+#setwd(directory.figures)
+#ggsave(file = "beta_dispersion_boxplot_Nasal.pdf", 
+#       beta_dispersion_nasal_boxplot)
 
 
 # Beta dispersion permutation
@@ -417,8 +418,8 @@ alpha_diveristy_gut_plot =
   ggtitle("Alpha Diversity Gut Microbiome") +
   scale_color_manual(values = c(pal[1], pal[3])) 
 alpha_diveristy_gut_plot
-setwd(directory.figures)
-ggsave(filename = "alpha_diversity_gut.pdf", plot = alpha_diveristy_gut_plot)
+#setwd(directory.figures)
+#ggsave(filename = "alpha_diversity_gut.pdf", plot = alpha_diveristy_gut_plot)
 
 # Summarize
 alpha_diversity_gut %>%
@@ -464,9 +465,9 @@ alpha_diveristy_nasal_plot =
   ggtitle("Alpha Diversity Nasal Microbiome") +
   scale_color_manual(values = c(pal[1], pal[3])) 
 alpha_diveristy_nasal_plot
-setwd(directory.figures)
-ggsave(filename = "alpha_diversity_nasal.pdf", 
-       plot = alpha_diveristy_nasal_plot)
+#setwd(directory.figures)
+#ggsave(filename = "alpha_diversity_nasal.pdf", 
+#       plot = alpha_diveristy_nasal_plot)
 
 # Summarize
 alpha_diversity_nasal %>%
@@ -491,7 +492,9 @@ wilcox.test(PD ~ Status,
 ###############################################################################
 
 #Agglomerate to phylum-level and rename
-ps_phylum_gut <- phyloseq::tax_glom(asvG_ps, "Phylum")
+ps_phylum_gut = 
+  phyloseq::transform_sample_counts(asvG_ps, function(x) x / sum(x))
+ps_phylum_gut <- phyloseq::tax_glom(ps_phylum_gut, "Phylum")
 phyloseq::taxa_names(ps_phylum_gut) <- 
   phyloseq::tax_table(ps_phylum_gut)[, "Phylum"]
 
@@ -523,11 +526,11 @@ top_phyla_gut_plot =
               size = 3, 
               alpha = 0.8, 
               width = .2) +
-  labs(x = "", y = "Abundance\n") +
+  labs(x = "", y = "Relative Abundance\n") +
   facet_wrap(~ Phylum, scales = "free", nrow = 1) 
 top_phyla_gut_plot
-setwd(directory.figures)
-ggsave(file = "phylum_abundances_gut.pdf", top_phyla_gut_plot)
+#setwd(directory.figures)
+#ggsave(file = "phylum_abundances_gut.pdf", top_phyla_gut_plot)
 
 # Test for significance between abundance between top 6 phyla
 differential_abundance_gut = data.frame(matrix(nrow = 6, ncol = 4))
@@ -554,7 +557,7 @@ for(i in 1:length(top_taxa_gut)){
   
 }
 differential_abundance_gut$q = p.adjust(p = differential_abundance_gut$p, 
-                                        method = "fdr")
+                                        method = "bonferroni")
 differential_abundance_gut
 
 
@@ -564,7 +567,9 @@ differential_abundance_gut
 ###############################################################################
 
 #Agglomerate to phylum-level and rename
-ps_phylum_nasal <- phyloseq::tax_glom(asvN_ps, "Phylum")
+ps_phylum_nasal = 
+  phyloseq::transform_sample_counts(asvN_ps, function(x) x / sum(x))
+ps_phylum_nasal <- phyloseq::tax_glom(ps_phylum_nasal, "Phylum")
 phyloseq::taxa_names(ps_phylum_nasal) <- 
   phyloseq::tax_table(ps_phylum_nasal)[, "Phylum"]
 
@@ -576,6 +581,7 @@ taxa_counts_nasal = apply(phyloseq::otu_table(ps_phylum_nasal),
                                            sum), 
                                      decreasing = TRUE)]
 top_taxa_nasal = names(taxa_counts_nasal[1:6])
+top_taxa_nasal
 ps_phylum_nasal_top = phyloseq::subset_taxa(ps_phylum_nasal, 
                                             Phylum %in% top_taxa_nasal)
 ps_phylum_nasal_top
@@ -596,12 +602,12 @@ top_phyla_nasal_plot =
               size = 3, 
               alpha = 0.8, 
               width = .2) +
-  labs(x = "", y = "Abundance\n") +
+  labs(x = "", y = "Relative Abundance\n") +
   facet_wrap(~ Phylum, scales = "free", nrow = 1) +
   theme(legend.position = "none")
 top_phyla_nasal_plot
-setwd(directory.figures)
-ggsave(file = "phylum_abundances_nasal.pdf", top_phyla_nasal_plot)
+#setwd(directory.figures)
+#ggsave(file = "phylum_abundances_nasal.pdf", top_phyla_nasal_plot)
 
 # Test for significance between abundance between top 6 phyla
 differential_abundance_nasal = data.frame(matrix(nrow = 6, ncol = 4))
@@ -630,7 +636,7 @@ for(i in 1:length(top_taxa_nasal)){
   
 }
 differential_abundance_nasal$q = p.adjust(p = differential_abundance_nasal$p, 
-                                          method = "fdr")
+                                          method = "bonferroni")
 differential_abundance_nasal
 
 ###############################################################################
@@ -670,6 +676,7 @@ rdaG_diversity = rdaG +
         axis.title.x = element_text(color = pal[2]),
         title = element_text(size = 18), 
         legend.position = "bottom") 
+rdaG_diversity
 screeG_diversity = 
   screeG + 
   ggtitle("PC % of Variance") +
@@ -680,7 +687,8 @@ screeG_diversity =
         title = element_text(size = 18)) +
   scale_fill_manual(values = c(rep("grey", times = 13), pal[2])) +
   geom_text(aes(label = Variance), hjust = 1, size = 7)
-  
+screeG_diversity  
+
 beta_dispersion_gut_boxplot_diversity =
   beta_dispersion_gut_boxplot +
   ggtitle("") +
@@ -699,12 +707,11 @@ alpha_diveristy_gut_plot_diversity =
   theme(axis.title = element_blank(),
         axis.ticks = element_blank(),
         axis.text.x = element_blank(),
-        axis.text.y = element_blank(),
         axis.title.y = element_text(size = 18),
         title = element_text(size = 18), 
         strip.text = element_text(size = 20))
-
 alpha_diveristy_gut_plot_diversity
+
 top_phyla_gut_plot_diversity = 
   top_phyla_gut_plot +
   theme(axis.ticks = element_blank(),
@@ -758,7 +765,6 @@ alpha_diveristy_nasal_plot_diversity =
   theme(axis.title = element_blank(),
         axis.ticks = element_blank(),
         axis.text.x = element_blank(),
-        axis.text.y = element_blank(),
         axis.title.y = element_text(size = 18),
         title = element_text(size = 18), 
         strip.text = element_text(size = 20))
@@ -826,6 +832,7 @@ pp = gridExtra::arrangeGrob(rdaG_diversity,
                             top_taxa_grob, 
                             top_taxa_grob, 
                             layout_matrix = lay)
+plot(pp)
 
 setwd(directory.figures)
 ggsave(pp, filename = "Diversity_Summary.pdf", height = 20, width = 20)
