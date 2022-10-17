@@ -1248,9 +1248,7 @@ getDistanceCombos = function(combos, distMatrix){
   distance = vector()
   
   for(i in 1:ncol(combos)){
-    if(i%%1000 == 0){
-      print(i)
-    }
+   
     curDist = distMatrix[combos[1,i], combos[2,i]]
     distance = c(distance, curDist)
   }

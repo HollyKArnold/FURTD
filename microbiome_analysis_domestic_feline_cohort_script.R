@@ -2316,389 +2316,520 @@ ggsave(cxNasalTree, file = "cladesClinicalSignsReducedNasal.png",
        width = 23, units = "cm")
 
 ###############################################################################
-#  Determine if clades are phylogenetically clustered                         #
+#  Calculate mean pairwise distances between sig clades                       #
 ###############################################################################
 
-# Create a reference index for each clade
-sigCladesIdxG = seq(from = 1, to = length(c(treeG$tip.label, treeG$node.label)), by = 1)
+# Subset out nodes that are significantly associated with clinical signs 
+sigCladesIdxG = seq(from = 1, 
+                    to = length(c(treeG$tip.label, treeG$node.label)),
+                    by = 1)
 names(sigCladesIdxG) = c(treeG$tip.label, treeG$node.label)
-sigCladesIdxN = seq(from = 1, to = length(c(treeN$tip.label, treeN$node.label)), by = 1)
+sigCladesIdxN = seq(from = 1, 
+                    to = length(c(treeN$tip.label, treeN$node.label)), 
+                    by = 1)
 names(sigCladesIdxN) = c(treeN$tip.label, treeN$node.label)
 
-# Clades significantly associated 
-sigCladesNegativeG = sigCladesIdxG[sigGut %>% filter(covariate %in% c("Status")) %>% filter(Estimate < 0) %>% pull(clade)]
-sigCladesPositiveG = sigCladesIdxG[sigGut %>% filter(covariate %in% c("Status")) %>% filter(Estimate > 0) %>% pull(clade)]
+sigCladesNegativeG = sigCladesIdxG[sigGut %>% 
+                                     filter(covariate %in% c("Status")) %>% 
+                                     filter(Estimate < 0) %>% 
+                                     pull(clade)]
+sigCladesPositiveG = sigCladesIdxG[sigGut %>% 
+                                     filter(covariate %in% c("Status")) %>% 
+                                     filter(Estimate > 0) %>% pull(clade)]
 
-sigCladesPositiveN = sigCladesIdxN[sigNasal %>% filter(covariate %in% c("Status")) %>% filter(Estimate > 0) %>% pull(clade)]
-sigCladesNegativeN = sigCladesIdxN[sigNasal %>% filter(covariate %in% c("Status")) %>% filter(Estimate < 0) %>% pull(clade)]
+sigCladesPositiveN = sigCladesIdxN[sigNasal %>% 
+                                     filter(covariate %in% c("Status")) %>% 
+                                     filter(Estimate > 0) %>% pull(clade)]
+sigCladesNegativeN = sigCladesIdxN[sigNasal %>% 
+                                     filter(covariate %in% c("Status")) %>% 
+                                     filter(Estimate < 0) %>% pull(clade)]
 
+# All pairwise distances between significant nodes 
 combCladesPositiveG = combn(x = sigCladesPositiveG, m = 2)
 combCladesNegativeG = combn(x = sigCladesNegativeG, m = 2)
-combCladesRandomG = combn(x  = sigCladesIdxG, m = 2)
-
 combCladesPositiveN = combn(x = sigCladesPositiveN, m = 2)
 combCladesNegativeN = combn(x = sigCladesNegativeN, m = 2)
-combCladesRandomN = combn(x = sigCladesIdxN, m = 2)
 
+# Distance between all nodes / tips on trees
 distG = ape::dist.nodes(treeG)
 distN = ape::dist.nodes(treeN)
 
-distPositiveG = getDistanceCombos(combos = combCladesPositiveG, distMatrix = distG)
-distNegativeG = getDistanceCombos(combos = combCladesNegativeG, distMatrix = distG)
-distRandomG = getDistanceCombos(combos = combCladesRandomG, distMatrix = distG)
+# Distances between all significant nodes
+distPositiveG = getDistanceCombos(combos = combCladesPositiveG, 
+                                  distMatrix = distG)
+distNegativeG = getDistanceCombos(combos = combCladesNegativeG, 
+                                  distMatrix = distG)
+distPositiveN = getDistanceCombos(combos = combCladesPositiveN, 
+                                  distMatrix = distN)
+distNegativeN = getDistanceCombos(combos = combCladesNegativeN, 
+                                  distMatrix = distN)
 
+# Calculate z score of mean distance between positively correlated nodes and random bootstrap
 mean_positive_gut = mean(distPositiveG)
+mean_positive_gut
+sd(distPositiveG)
 mean_negative_gut = mean(distNegativeG)
+mean_negative_gut
+sd(distNegativeG)
+mean_positive_nasal = mean(distPositiveN)
+mean_positive_nasal
+sd(distPositiveN)
+mean_negative_nasal = mean(distNegativeN)
+mean_negative_nasal
+sd(distNegativeN)
 
-# Calculate mean distance of 100 bootstraps of distance between pairwise combo of random nodes
+###############################################################################
+#  Determine z-score mean pairwise distance vs. null dist                     #
+###############################################################################
+
+# Gut microbiome - nodes POSITIVELY correlated with clinical signs. 
+N = 1000
 random_mean_dists = vector()
-for(i in 1:100){
+for(i in 1:N){
   print(i)
   dist_cur = distRandom(dist = distG, n = length(distPositiveG))
-  random_mean_dists = c(random_mean_dists, mean(dist_cur))
+  random_mean_dists = c(random_mean_dists, mean(dist_cur)) 
 }
-zscore_gut_positive = (mean_positive_gut - mean(random_mean_dists)) / sd(random_mean_dists)
+zscore_gut_positive = 
+  (mean_positive_gut - mean(random_mean_dists)) / sd(random_mean_dists)
 zscore_gut_positive
 pnorm(q = zscore_gut_positive, mean = 0, sd = 1, lower.tail = TRUE)
 
+random_mean_dists = data.frame("Pairwise_Distance" = random_mean_dists)
+hist_gut_positive =  ggplot(random_mean_dists, aes(x = Pairwise_Distance)) + 
+  geom_histogram(aes(y = ..density..))  +
+  geom_density() +
+  xlab("Average Pairwise Distance") +
+  ylab("Density") +
+  ggtitle("Gut Microbiome +") +
+  xlim(c(1.1, 1.4)) +
+  geom_vline(aes(xintercept = mean(Pairwise_Distance)), linetype = "dotted") +
+  geom_vline(aes(xintercept = mean_positive_gut), 
+             col = pal[3], 
+             linetype = "solid", 
+             size = 1, 
+             alpha = 1) 
+hist_gut_positive
+
+
+# Gut microbiome - nodes NEGATIVELY correlated with clinical signs. 
+N = 1000
 random_mean_dists = vector()
-for(i in 1:100){
+for(i in 1:N){
   print(i)
   dist_cur = distRandom(dist = distG, n = length(distNegativeG))
-  random_mean_dists = c(random_mean_dists, mean(dist_cur))
+  random_mean_dists = c(random_mean_dists, mean(dist_cur)) 
 }
-zscore_gut_negative = (mean_negative_gut - mean(random_mean_dists)) / sd(random_mean_dists)
+zscore_gut_negative = 
+  (mean_negative_gut - mean(random_mean_dists)) / sd(random_mean_dists)
 zscore_gut_negative
 pnorm(q = zscore_gut_negative, mean = 0, sd = 1, lower.tail = TRUE)
 
+random_mean_dists = data.frame("Pairwise_Distance" = random_mean_dists)
+hist_gut_negative =  ggplot(random_mean_dists, aes(x = Pairwise_Distance)) + 
+  geom_histogram(aes(y = ..density..))  +
+  geom_density() +
+  xlab("Average Pairwise Distance") +
+  ggtitle("Gut Microbiome -") +
+  ylab("Density") +
+  geom_vline(aes(xintercept = mean(Pairwise_Distance)), linetype = "dotted") +
+  geom_vline(aes(xintercept = mean_negative_gut), 
+             col = pal[1], 
+             linetype = "solid", 
+             size = 1, 
+             alpha = 1) +
+  xlim(c(1.1, 1.4)) 
+hist_gut_negative
 
+# Nasal microbiome - nodes POSITIVELY correlated with clinical signs. 
+random_mean_dists = vector()
+for(i in 1:N){
+  print(i)
+  dist_cur = distRandom(dist = distN, n = length(distPositiveN))
+  random_mean_dists = c(random_mean_dists, mean(dist_cur)) 
+}
+zscore_nasal_positive = 
+  (mean_positive_nasal - mean(random_mean_dists)) / sd(random_mean_dists)
+zscore_nasal_positive
+pnorm(q = zscore_nasal_positive, mean = 0, sd = 1, lower.tail = FALSE)
 
-distRandG = distRandom(dist = distG, n = length(distPositiveG))
+random_mean_dists = data.frame("Pairwise_Distance" = random_mean_dists)
+hist_nasal_positive = ggplot(random_mean_dists, aes(x = Pairwise_Distance)) + 
+  geom_histogram(aes(y = ..density..))  +
+  geom_density() +
+  xlab("Average Pairwise Distance") +
+  ggtitle("Nasal Microbiome +") +
+  ylab("Density") +
+  geom_vline(aes(xintercept = mean(Pairwise_Distance)), linetype = "dotted") +
+  geom_vline(aes(xintercept = mean_positive_nasal), 
+             col = pal[3], 
+             linetype = "solid", 
+             size = 1, 
+             alpha = 1) +
+  xlim(c(1.1, 1.4)) 
+hist_nasal_positive
 
-distPositiveN = getDistanceCombos(combos = combCladesPositiveN, distMatrix = distN)
-distNegativeN = getDistanceCombos(combos = combCladesNegativeN, distMatrix = distN)
-distRandN = distRandom(dist = distN, n = length(distPositiveN))
+# Nasal microbiome - nodes NEGATIVELY correlated with clinical signs. 
+random_mean_dists = vector()
+for(i in 1:N){
+  print(i)
+  dist_cur = distRandom(dist = distN, n = length(distNegativeN))
+  random_mean_dists = c(random_mean_dists, mean(dist_cur)) 
+}
+zscore_nasal_negative = 
+  (mean_negative_nasal - mean(random_mean_dists)) / sd(random_mean_dists)
+zscore_nasal_negative
+pnorm(q = zscore_nasal_negative, mean = 0, sd = 1, lower.tail = FALSE)
 
-ks.test(x = distPositiveG, y = distRandG, alternative = "two.sided")
-ks.test(x = distNegativeG, y = distRandG, alternative = "two.sided")
-ks.test(x = distNegativeG, y = distPositiveG, alternative = "two.sided")
+random_mean_dists = data.frame("Pairwise_Distance" = random_mean_dists)
+hist_nasal_negative = ggplot(random_mean_dists, aes(x = Pairwise_Distance)) + 
+  geom_histogram(aes(y = ..density..))  +
+  geom_density() +
+  xlab("Average Pairwise Distance") +
+  ggtitle("Nasal Microbiome -") +
+  ylab("Density") +
+  geom_vline(aes(xintercept = mean(Pairwise_Distance)), linetype = "dotted") +
+  geom_vline(aes(xintercept = mean_negative_nasal), 
+             col = pal[1], 
+             linetype = "solid", 
+             size = 1, 
+             alpha = 1) +
+  xlim(c(1.1, 1.4)) 
+hist_nasal_negative
 
-ks.test(x = distPositiveN, y = distRandN, alternative = "two.sided")
-ks.test(x = distNegativeN, y = distRandN, alternative = "two.sided")
-ks.test(x = distNegativeN, y = distPositiveN, alternative = "two.sided")
-
-wilcox.test(distRandG, distNegativeG, method = "two.sided")
-wilcox.test(distRandG, distPositiveG, method = "two.sided")
-wilcox.test(x = distNegativeG, y = distPositiveG, method = "two.sided")
-kruskal.test(formula = dist~group, 
-             data = data.frame("dist" = c(distRandG, distNegativeG, distPositiveG), 
-                               "group" = c(rep("rand", times = length(distRandG)), 
-                                           rep("negative", times = length(distNegativeG)), 
-                                           rep("positive", times = length(distPositiveG)))))
-
-wilcox.test(distRandN, distNegativeN, method = "two.sided")
-wilcox.test(distRandN, distPositiveN, method = "two.sided")
-wilcox.test(x = distNegativeN, y = distPositiveN, method = "two.sided")
-kruskal.test(formula = dist~group, 
-             data = data.frame("dist" = c(distRandN, distNegativeN, distPositiveN), 
-                               "group" = c(rep("rand", times = length(distRandN)), 
-                                           rep("negative", times = length(distNegativeN)), 
-                                           rep("positive", times = length(distPositiveN)))))
-
-
-# Stats on average pairwise phylogenetic distances.
-# Stats on average pairwise phylogenetic distances.
-mean(distRandG)
-sd(distRandG)
-mean(distPositiveG)
-sd(distPositiveG)
-mean(distNegativeG)
-sd(distNegativeG)
-
-mean(distRandN)
-sd(distRandN)
-mean(distPositiveN)
-sd(distPositiveN)
-mean(distNegativeN)
-sd(distNegativeN)
-
-as_tibble(sigGut) %>% filter(covariate == "Status")
-as_tibble(sigGut) %>% filter(covariate == "Status") %>%left_join(taxGAll, by = c("clade" = "Taxon")) %>% filter(Estimate <0) %>% arrange(Family) %>% print(n = 123) 
-as_tibble(sigGut) %>% filter(covariate == "Status") %>% left_join(taxGAll, by = c("clade" = "Taxon")) %>% filter(Estimate <0) %>% arrange(Family) %>% group_by(Family) %>% tally() %>% print(n = 123) 
-
-as_tibble(sigGut) %>% filter(covariate == "Status") %>%left_join(taxGAll, by = c("clade" = "Taxon")) %>% filter(Estimate >0) %>% arrange(Family) %>% print(n = 123) 
-as_tibble(sigGut) %>% filter(covariate == "Status") %>% left_join(taxGAll, by = c("clade" = "Taxon")) %>% filter(Estimate >0) %>% arrange(Family) %>% group_by(Family) %>% tally() %>% print(n = 123) 
-taxGAll %>% filter(Taxon %in% rootsG) %>% arrange(Class) %>% print( n = 37) 
-
-
-as_tibble(sigNasal) %>% filter(covariate == "Status")
-as_tibble(sigNasal) %>% filter(covariate == "Status") %>%left_join(taxNAll, by = c("clade" = "Taxon")) %>% filter(Estimate <0) %>% arrange(Kingdom, Phylum, Class, Order, Family)%>% print(n = 123) 
-as_tibble(sigNasal) %>% filter(covariate == "Status") %>% left_join(taxNAll, by = c("clade" = "Taxon")) %>% filter(Estimate <0) %>% arrange(Family) %>% group_by(Kingdom, Phylum, Class, Order, Family) %>% tally() %>% arrange(desc(n)) %>% print(n = 123) 
-
-as_tibble(sigNasal) %>% filter(covariate == "Status") %>%left_join(taxNAll, by = c("clade" = "Taxon")) %>% filter(Estimate >0) %>% arrange(Kingdom, Phylum, Class, Order, Family)%>% print(n = 123) 
-as_tibble(sigNasal) %>% filter(covariate == "Status") %>% left_join(taxNAll, by = c("clade" = "Taxon")) %>% filter(Estimate >0) %>% arrange(Family) %>% group_by(Kingdom, Phylum, Class, Order, Family) %>% tally() %>% arrange(desc(n)) %>% print(n = 123) 
-taxNAll %>% filter(Taxon %in% rootsN) %>% arrange(Family) %>% print( n = 37) 
-
-
-gamma = extract.clade(treeG, which(treeG$node.label == "node444") + length(treeG$tip.label)) 
-taxGAll %>% filter(Taxon %in% gamma$tip.label) %>% print(n = 103)
-
-morax = extract.clade(treeN, which(treeN$node.label == "node884") + length(treeN$tip.label)) 
-taxNAll %>% filter(Taxon %in% morax$tip.label)
-apply(otu_table(psNASV)[morax$tip.label,rownames(metaN)[which(metaN$status == "Control")]], 1, mean)
-apply(otu_table(psNASV)[morax$tip.label,rownames(metaN)[which(metaN$status == "FURTD")]], 1, mean)
-
-gammaNose = extract.clade(treeN, which(treeN$node.label == "node864") + length(treeN$tip.label)) 
-taxNAll %>% filter(Taxon %in% gammaNose$tip.label)
-
-fusoNose = extract.clade(treeN, which(treeN$node.label == "node396") + length(treeN$tip.label)) 
-taxNAll %>% filter(Taxon %in% fusoNose$tip.label)
-
-
-pal = RColorBrewer::brewer.pal(n = 4, name = "Dark2")
-dG = rbind(data.frame(cbind("Dist" = distPositiveG, 
-                            "Node" = rep("+", times = length(distPositiveG)))), 
-           data.frame(cbind("Dist" = distNegativeG, 
-                            "Node" = rep("-", times = length(distNegativeG)))), 
-           data.frame(cbind("Dist" = distRandG, "Node" = rep("Random", times = length(distRandG)))))
-dG$Dist = as.numeric(dG$Dist)
-
+# Plot combined figure
+hist_means = cowplot::plot_grid(hist_gut_positive, 
+                                hist_gut_negative, 
+                                hist_nasal_positive, 
+                                hist_nasal_negative, 
+                                labels = c("A", "B", "C", "D"))
 setwd(directory.figures)
-pdf(file = "densityPlotPhylogeneticClustersGut.pdf")
-densityGutPerm = ggplot(data = dG, aes(x = Dist, group = Node, fill = Node)) +
-  scale_fill_manual(values=c("blue", "red", "grey")) +
-  geom_density(adjust = 1.5, alpha = 0.5) +
-  labs(x = "Phylogenetic Distance", y = "Phylogenetic Distance") +
-  geom_boxplot(width=0.1, outlier.size = .05) + 
-  ggtitle(label = "Pairwise Phylogenetic Distance")
-densityGutPerm
-dev.off()
+ggsave(filename = "average_pairwise_distance.pdf", hist_means)
 
-library(ggpubr)
+
+###############################################################################
+#  Pairwise distance null vs. significant clades                              #
+###############################################################################
+
+
+# DIST GUT microbiome - nodes POSITIVELY correlated with clinical signs. 
+N = 1000
+test_statistics_rand_positive = vector()
+test_statistics_random_df = data.frame(matrix (nrow = length(distPositiveG), 
+                                               ncol = N))
+
+for(i in 1:N){
+  
+  # Generate a random set of pairwise distances
+  rand_cur = distRandom(dist = distG, n = length(distPositiveG))
+  test_statistics_random_df[,i] = rand_cur
+  
+  # Get test statistic between positive nodes and the current random stat
+  ks_test_cur = ks.test(rand_cur, distPositiveG, exact = FALSE)
+  ks_test_cur = as.vector(ks_test_cur$statistic)
+  test_statistics_rand_positive = c(test_statistics_rand_positive, ks_test_cur)
+  
+}
+
+# Randomly sample random distributions for computational tractability
+test_statistics_random = vector()
+test_statistics_random_combos = combn(x = N, m = 2)
+test_statistics_random_combos_idx = 
+  sample.int(n = ncol(test_statistics_random_combos), 
+             size = length(test_statistics_rand_positive), 
+             replace = FALSE)
+test_statistics_random_combos = 
+  test_statistics_random_combos[,test_statistics_random_combos_idx]
+for(i in 1:ncol(test_statistics_random_combos)){
+  ks_test_cur = ks.test(
+    as.vector(test_statistics_random_df[,test_statistics_random_combos[1, i]]), 
+    as.vector(test_statistics_random_df[,test_statistics_random_combos[2, i]]))
+  ks_test_cur = as.vector(ks_test_cur$statistic)
+  test_statistics_random = c(test_statistics_random, ks_test_cur)
+}
+
+ks.test(test_statistics_random, test_statistics_rand_positive)
+ks.result = ks.test(test_statistics_random, test_statistics_rand_positive)
+ks.result
+
+# Plot
+d_positive_random_df = 
+  rbind(data.frame("D" = test_statistics_random, 
+                   "Class" = rep("Random", 
+                                 times = length(test_statistics_random))),
+        data.frame("D" = test_statistics_rand_positive, 
+                   "Class" = rep("Positive", 
+                                 times = length(test_statistics_rand_positive))))
+ks_test_D_statistics_histogram_gut_positive = 
+  ggplot(d_positive_random_df, aes(x = `D`, fill = Class, color = Class)) +
+  geom_histogram(position = "identity", bins = 50) +
+  scale_fill_manual(
+    values = c(colorspace::darken(col = pal[3], amount = 0.4), "grey")) +
+  scale_color_manual(
+    values = c(colorspace::darken(col = pal[3], amount = 0.6), 
+               colorspace::darken("grey", amount = 0.2))) +
+  xlab("D Statistic") +
+  ylab("Frequency") 
+ks_test_D_statistics_histogram_gut_positive
 setwd(directory.figures)
-pdf(file = "violinPlotPhylogeneticClustersGut.pdf")
-violinGutPerm = ggplot(dG, aes(x=Node, y=Dist, fill = Node)) + 
-  geom_violin(trim=FALSE) +
-  geom_boxplot(aes(fill = Node), width=0.1, fill = "white", outlier.alpha = .1, outlier.size = .5) + 
-  scale_fill_manual(values=c("blue", "red", "grey")) +
-  theme(legend.position = "none", axis.text = element_text(size = 14), axis.title.y = element_text(size = 14)) +
-  labs(x = element_blank(), y = "Phylogenetic Distance") +
-  stat_compare_means(method = "wilcox.test", comparisons = list(c("+", "-"), c("+", "Random"), c("-", "Random"))) +
-  stat_compare_means(method = "kruskal.test", label.y = 4)
-violinGutPerm
-dev.off()
+ggplot(filename = "ks_test_D_statistics_histogram_gut_positive.pdf", 
+       ks_test_D_statistics_histogram_gut_positive)
 
 
+# DIST GUT microbiome - nodes NEGATIVELY correlated with clinical signs. 
+N = 1000
+test_statistics_rand_negative = vector()
+test_statistics_random_df = data.frame(matrix(nrow = length(distNegativeG), 
+                                              ncol = N))
 
-dN = rbind(data.frame(cbind("Dist" = distPositiveN, 
-                            "Node" = rep("+", times = length(distPositiveN)))), 
-           data.frame(cbind("Dist" = distNegativeN, 
-                            "Node" = rep("-", times = length(distNegativeN)))), 
-           data.frame(cbind("Dist" = distRandN, 
-                            "Node" = rep("Random", times = length(distRandN)))))
-dN$Dist = as.numeric(dN$Dist)
+for(i in 1:N){
+  
+  # Generate a random set of pairwise distances
+  rand_cur = distRandom(dist = distG, n = length(distNegativeG))
+  test_statistics_random_df[,i] = rand_cur
+  
+  # Get test statistic between positive nodes and the current random stat
+  ks_test_cur = ks.test(rand_cur, distNegativeG, exact = FALSE)
+  ks_test_cur = as.vector(ks_test_cur$statistic)
+  test_statistics_rand_negative = c(test_statistics_rand_negative, ks_test_cur)
+  
+}
 
+test_statistics_random = vector()
+test_statistics_random_combos = combn(x = N, m = 2)
+test_statistics_random_combos_idx = 
+  sample.int(n = ncol(test_statistics_random_combos), 
+             size = length(test_statistics_rand_negative), replace = FALSE)
+test_statistics_random_combos = 
+  test_statistics_random_combos[,test_statistics_random_combos_idx]
+for(i in 1:ncol(test_statistics_random_combos)){
+  ks_test_cur = 
+    ks.test(as.vector(
+      test_statistics_random_df[,test_statistics_random_combos[1, i]]),
+      as.vector(
+        test_statistics_random_df[,test_statistics_random_combos[2, i]]))
+  ks_test_cur = as.vector(ks_test_cur$statistic)
+  test_statistics_random = c(test_statistics_random, ks_test_cur)
+}
+
+ks.test(test_statistics_random, test_statistics_rand_negative)
+ks.result = ks.test(test_statistics_random, test_statistics_rand_negative)
+ks.result
+
+# Plot
+d_negative_random_df = 
+  rbind(data.frame("D" = test_statistics_random, 
+                   "Class" = rep("Random", 
+                                 times = length(test_statistics_random))),
+        data.frame("D" = test_statistics_rand_negative, 
+                   "Class" = rep ("Negative", 
+                                  times = length(test_statistics_rand_negative))))
+ks_test_D_statistics_histogram_gut_negative = 
+  ggplot(d_negative_random_df, aes(x = `D`, fill = Class, color = Class)) +
+  geom_histogram(position = "identity", bins = 50) +
+  scale_fill_manual(values = 
+                      c(colorspace::darken(col = pal[1], amount = 0.4), "grey")) +
+  scale_color_manual(values = 
+                       c(colorspace::darken(col = pal[1], amount = 0.6), 
+                         colorspace::darken("grey", amount = 0.2))) +
+  xlab("D Statistic") +
+  ylab("Frequency") 
+ks_test_D_statistics_histogram_gut_negative
 setwd(directory.figures)
-pdf(file = "densityPlotPhylogeneticClustersNasal.pdf")
-densityNasalPerm = ggplot(data = dN, aes(x = Dist, group = Node, fill = Node)) +
-  scale_fill_manual(values=c("blue", "red", "grey")) +
-  geom_density(adjust = 1.5, alpha = 0.5) +
-  labs(x = "Phylogenetic Distance", y = "Phylogenetic Distance") +
-  geom_boxplot(width=0.1, outlier.size = .05) + 
-  ggtitle(label = "Pairwise Phylogenetic Distance")
-densityNasalPerm
-dev.off()
+ggplot(filename = "ks_test_D_statistics_histogram_gut_negative.pdf", 
+       ks_test_D_statistics_histogram_gut_negative)
 
-library(ggpubr)
+
+
+# DIST NASAL microbiome - nodes POSITIVELY correlated with clinical signs. 
+N = 1000
+test_statistics_rand_positive = vector()
+test_statistics_random_df = data.frame(matrix(nrow = length(distPositiveN), 
+                                              ncol = N))
+
+for(i in 1:N){
+  
+  # Generate a random set of pairwise distances
+  rand_cur = distRandom(dist = distN, n = length(distPositiveN))
+  test_statistics_random_df[,i] = rand_cur
+  
+  # Get test statistic between positive nodes and the current random stat
+  ks_test_cur = ks.test(rand_cur, distPositiveN, exact = FALSE)
+  ks_test_cur = as.vector(ks_test_cur$statistic)
+  test_statistics_rand_positive = c(test_statistics_rand_positive, ks_test_cur)
+  
+}
+
+test_statistics_random = vector()
+test_statistics_random_combos = combn(x = N, m = 2)
+test_statistics_random_combos_idx = 
+  sample.int(n = ncol(test_statistics_random_combos), 
+             size = length(test_statistics_rand_positive), 
+             replace = FALSE)
+test_statistics_random_combos = 
+  test_statistics_random_combos[,test_statistics_random_combos_idx]
+for(i in 1:ncol(test_statistics_random_combos)){
+  ks_test_cur = 
+    ks.test(as.vector(
+      test_statistics_random_df[,test_statistics_random_combos[1, i]]), 
+      as.vector(
+        test_statistics_random_df[,test_statistics_random_combos[2, i]]))
+  ks_test_cur = as.vector(ks_test_cur$statistic)
+  test_statistics_random = c(test_statistics_random, ks_test_cur)
+}
+
+ks.result = ks.test(test_statistics_random, test_statistics_rand_positive)
+
+# Plot
+d_positive_random_df = 
+  rbind(data.frame("D" = test_statistics_random, 
+                   "Class" = rep("Random", 
+                                 times = length(test_statistics_random))),
+        data.frame("D" = test_statistics_rand_positive, 
+                   "Class" = rep ("Positive", 
+                                  times = length(test_statistics_rand_positive))))
+ks_test_D_statistics_histogram_nasal_positive = 
+  ggplot(d_positive_random_df, aes(x = `D`, fill = Class, color = Class)) +
+  geom_histogram(position = "identity", bins = 50) +
+  scale_fill_manual(values = 
+                      c(colorspace::lighten(col = pal[3], amount = 0.2), "grey")) +
+  scale_color_manual(values = 
+                       c(colorspace::lighten(col = pal[3], amount = 0.4), 
+                         colorspace::darken(col = "grey", amount = 0.2))) +
+  xlab("D Statistic") +
+  ylab("Frequency") 
+ks_test_D_statistics_histogram_nasal_positive
 setwd(directory.figures)
-pdf(file = "violinPlotPhylogeneticClustersNasal.pdf")
-violinNasalPerm = ggplot(dN, aes(x=Node, y=Dist, fill = Node)) + 
-  geom_violin(trim=FALSE) +
-  geom_boxplot(aes(fill = Node), width=0.1, fill = "white", outlier.alpha = .1, outlier.size = .5) + 
-  scale_fill_manual(values=c("blue", "red", "grey")) +
-  theme(legend.position = "none", axis.text = element_text(size = 14), axis.title.y = element_text(size = 14)) +
-  labs(x = element_blank(), y = "Phylogenetic Distance") +
-  stat_compare_means(method = "wilcox.test", comparisons = list(c("+", "-"), c("+", "Random"), c("-", "Random"))) +
-  stat_compare_means(method = "kruskal.test", label.y = 4)
-violinNasalPerm
-dev.off()
+ggplot(filename = "ks_test_D_statistics_histogram_nasal_positive.pdf", 
+       ks_test_D_statistics_histogram_nasal_positive)
 
 
-## TO DO
+# Calculate if distributions are significantly different - nasal - negative
+N = 1000
+test_statistics_rand_negative = vector()
+test_statistics_random_df = data.frame(matrix(nrow = length(distNegativeN), 
+                                              ncol = N))
+
+for(i in 1:N){
+  
+  # Generate a random set of pairwise distances
+  rand_cur = distRandom(dist = distN, n = length(distNegativeN))
+  test_statistics_random_df[,i] = rand_cur
+  
+  # Get test statistic between positive nodes and the current random stat
+  ks_test_cur = ks.test(rand_cur, distNegativeN, exact = FALSE)
+  ks_test_cur = as.vector(ks_test_cur$statistic)
+  test_statistics_rand_negative = c(test_statistics_rand_negative, ks_test_cur)
+  
+}
+
+test_statistics_random = vector()
+test_statistics_random_combos = combn(x = N, m = 2)
+test_statistics_random_combos_idx = 
+  sample.int(n = ncol(test_statistics_random_combos), 
+             size = length(test_statistics_rand_negative), replace = FALSE)
+test_statistics_random_combos = 
+  test_statistics_random_combos[,test_statistics_random_combos_idx]
+for(i in 1:ncol(test_statistics_random_combos)){
+  ks_test_cur = 
+    ks.test(as.vector(
+      test_statistics_random_df[,test_statistics_random_combos[1, i]]), 
+      as.vector(
+        test_statistics_random_df[,test_statistics_random_combos[2, i]]))
+  ks_test_cur = as.vector(ks_test_cur$statistic)
+  test_statistics_random = c(test_statistics_random, ks_test_cur)
+}
 
 
+ks.result = ks.test(test_statistics_random, test_statistics_rand_negative)
 
+# Plot
+d_negative_random_df = 
+  rbind(data.frame("D" = test_statistics_random, 
+                   "Class" = rep("Random", times = length(test_statistics_random))),
+        data.frame("D" = test_statistics_rand_negative, 
+                   "Class" = rep ("Negative", 
+                                  times = length(test_statistics_rand_negative))))
+ks_test_D_statistics_histogram_nasal_negative = 
+  ggplot(d_negative_random_df, aes(x = `D`, fill = Class, color = Class)) +
+  geom_histogram(position = "identity", bins = 50) +
+  scale_fill_manual(values = 
+                      c(colorspace::lighten(col = pal[1], amount = 0.2), "grey")) +
+  scale_color_manual(values = 
+                       c(colorspace::lighten(col = pal[1], amount = 0.4), 
+                         colorspace::darken(col = "grey", amount = 0.2))) +
+  xlab("D Statistic") +
+  ylab("Frequency")
 
-# Figure 4: Violin plot gut
-# Figure whatever: voloin plot nasal
-
-# Write out session info
-
-
-
-##############################################################################################################
-# 5. DETERMINE CLADES LINIKED TO CLINICAL SIGNS
-##############################################################################################################
-## GUT MICROBIOME
-
-
-
-
-###
-# Random Forest
-library(randomForest)
-library(Boruta)
-library(caret)
-
-psNASV = phyloseq(otu_table(psNASV), tax_table(psNASV), sample_data(metaN))
-psNCTU = phyloseq(otu_table(psNCTU), tax_table(psNCTU), sample_data(metaN))
-psGASV = phyloseq(otu_table(psGASV), tax_table(psGASV), sample_data(metaG))
-psGCTU = phyloseq(otu_table(psGCTU), tax_table(psGCTU), sample_data(metaG))
-
-data.asv.n = getModelingTable(psNASV)
-data.asv.n = data.asv.n[,c(taxa_names(psNASV), "Status")]
-data.asv.n$Status = factor(data.asv.n$Status)
-data.ctu.n = getModelingTable(psNCTU)
-data.ctu.n$Status = factor(data.ctu.n$Status)
-data.ctu.n= data.ctu.n[,c(taxa_names(psNCTU), "Status")]
-
-data.asv.g = getModelingTable(psGASV)
-data.asv.g = data.asv.g[,c(taxa_names(psGASV), "Status")]
-data.asv.g$Status = factor(data.asv.g$Status)
-data.ctu.g = getModelingTable(psGCTU)
-data.ctu.g = data.ctu.g[,c(taxa_names(psGCTU), "Status")]
-data.ctu.g$Status = factor(data.ctu.g$Status)
-
-asv.n.selected = Boruta(Status ~., data = data.asv.n, ntree = 100)
-asv.n.selected = names(asv.n.selected$finalDecision)[which(asv.n.selected$finalDecision %in% c("Tentative", "Confirmed"))]
-ctu.n.selected = Boruta(Status~., data = data.ctu.n, ntree = 100)
-ctu.n.selected = names(ctu.n.selected$finalDecision)[which(ctu.n.selected$finalDecision %in% c("Tentative", "Confirmed"))]
-asv.g.selected = Boruta(Status~., data = data.asv.g, ntree = 100)
-asv.g.selected = names(asv.g.selected$finalDecision)[which(asv.g.selected$finalDecision %in% c("Tentative", "Confirmed"))]
-ctu.g.selected = Boruta(Status~., data = data.ctu.g, ntree = 100)
-ctu.g.selected = names(ctu.g.selected$finalDecision)[which(ctu.g.selected$finalDecision %in% c("Tentative", "Confirmed"))]
-
-# Get combined data table
-microbiomeDataAlone = as_tibble(metaAll[,c("GutID", "NasalID", "FelineCalcivirusPCR")]) %>%
-  filter(GutID %in% metaG$ID) %>%
-  filter(NasalID %in% metaN$ID) %>%
-  dplyr::filter(!is.na(FelineCalcivirusPCR)) %>%
-  select(-FelineCalcivirusPCR) %>%
-  left_join(getModelingTable(psNASV) %>% select(ID, all_of(asv.n.selected)), by = c("NasalID" = "ID")) %>%
-  left_join(getModelingTable(psNCTU) %>% select(ID, all_of(ctu.n.selected)), by = c("NasalID" = "ID")) %>%
-  left_join(getModelingTable(psGASV) %>% select(ID, all_of(asv.g.selected)), by = c("GutID" = "ID")) %>%
-  left_join(getModelingTable(psGCTU) %>% select(ID, all_of(ctu.g.selected)), by = c("GutID" = "ID")) %>%
-  left_join(metaN %>% select(ID, Status), by = c("NasalID" = "ID"))
-microbiomeDataAlone$Status = factor(microbiomeDataAlone$Status, levels = c("1", "0"))
-microbiomeDataAlone
-
-pcrNames = c( "PCR")
-microbiomePCRData = microbiomeDataAlone %>% 
-  left_join(metaAll %>% select(GutID, all_of(pcrNames))) 
-
-microbiomeDataAlone = microbiomeDataAlone %>% select(-GutID, -NasalID)
-microbiomePCRData = microbiomePCRData %>% select(-GutID, -NasalID)
-microbiomeDataAlone
-microbiomePCRData
-
-mb.rf = randomForest(Status~., data = microbiomeDataAlone, ntree = 1000, importance = T)
-mb.pcr.rf = randomForest(Status~., data = microbiomePCRData, ntree = 1000, importance = T)
-confusionMatrix(data = mb.rf$predicted, reference = mb.rf$y)
-confusionMatrix(data = mb.pcr.rf$predicted, reference = mb.pcr.rf$y)
-
-pcr.gut = metaG[,c("Status", "FCV", "Bordetella", "Chlamydophila", "FHV", "Mycoplasma", "PCR")]
-pcr.gut = pcr.gut[complete.cases(pcr.gut),]
-pcr.gut = pcr %>% mutate(
-  pcrResult = case_when(
-    PCR == "P"~ 1,
-    PCR == "N"~ 0
-  )
-)
-pcr.gut$Status = factor(pcr.gut$Status, levels = c("1", "0"))
-pcr.gut$pcrResult = factor(pcr.gut$pcrResult, levels = c("1", "0"))
-confusionMatrix(reference = pcr.gut$Status, pcr.gut$pcrResult)
-
-taxGAll %>% filter(Taxon %in% c(asv.g.selected, ctu.g.selected))
-taxNAll %>% filter(Taxon %in% c(asv.n.selected, ctu.n.selected))
-
-impScores = as_tibble(mb.pcr.rf$importance, rownames = "ID") %>%
-  left_join(taxGAll %>% filter(Taxon %in% c(asv.g.selected, ctu.g.selected)), by = c("ID" = "Taxon")) %>%
-  left_join(taxNAll %>% filter(Taxon %in% c(asv.n.selected, ctu.n.selected)), by = c("ID" = "Taxon")) %>%
-  mutate(
-    Kingdom = case_when(
-      is.na(Kingdom.y) ~ Kingdom.x,
-      is.na(Kingdom.x) ~ Kingdom.y
-    ),
-    Phylum = case_when(
-      is.na(Phylum.y) ~ Phylum.x,
-      is.na(Phylum.x) ~ Phylum.y
-    ),
-    Class = case_when(
-      is.na(Class.x) ~ Class.y,
-      is.na(Class.y) ~Class.x
-    ),
-    Order = case_when(
-      is.na(Order.x)~ Order.y,
-      is.na(Order.y) ~ Order.x
-    ),
-    Family = case_when(
-      is.na(Family.x) ~Family.y,
-      is.na(Family.y) ~ Family.x
-    ),
-    Genus = case_when(
-      is.na(Genus.x) ~ Genus.y,
-      is.na(Genus.y) ~ Genus.x
-    ),
-    Species = case_when(
-      is.na(Species.x) ~ Species.y,
-      is.na(Species.y) ~Species.x
-    )
-    
-  ) %>% select(-Kingdom.x, -Kingdom.y, -Phylum.x, -Phylum.y, -Class.x, -Class.y, -Order.x, -Order.y, -Family.x, -Family.y, -Genus.x, -Genus.y, -Species.x, -Species.y) %>%
-  arrange (desc(MeanDecreaseAccuracy)) %>%
-  mutate(
-    label = case_when(
-      is.na(Phylum) ~Kingdom,
-      is.na(Class) ~Phylum,
-      is.na(Order) ~ Class,
-      is.na(Family) ~ Order,
-      is.na(Genus) ~ Family,
-      is.na(Species) ~ Genus,
-      !is.na(Species) & !is.na(Genus) ~ Genus
-    )
-  )
-impScores = as.data.frame(impScores)
-rownames(impScores) = impScores$ID
-impScores$System = NA  
-impScores$Feature = NA
-impScores[c(asv.n.selected, ctu.n.selected), "System"] = "Nasal"
-impScores[c(asv.n.selected, asv.g.selected), "Feature"] = "ASV"
-impScores[c(ctu.n.selected, ctu.g.selected), "Feature"] = "CTU"
-impScores[c(asv.g.selected, ctu.g.selected), "System"] = "Gut"
-impScores[which(impScores$ID == "PCR"),"label"] = "PCR"
-impScores[which(impScores$label == "Family_XIII"),"label"] =  c("Family_XIII A", "Family_XIII B")
-impScores[which(impScores$label == "Bacteria"),"label"] =  c("Bacteria A", "Bacteria B", "Bacteria C")
-impScores[which(impScores$label == "Bacteroides"),"label"] = c("Bacteroides A", "Bacteroides B")
-
-impScores[which(impScores$label == "Porphyromonas"),"label"] =  c("Porphyromonas A", "Porphyromonas B")
-impScores[which(impScores$ID == "PCR"),"System"] = "PCR"
-impScores
-
-impScores = as_tibble(impScores) %>% arrange(desc(MeanDecreaseGini))
-impScores$label = factor(impScores$label, levels = impScores$label)
-
+ks_test_D_statistics_histogram_nasal_negative
 setwd(directory.figures)
-pdf(file = "ImporatanceScores.pdf")
-ggplot(data = impScores, aes(x = reorder(label, -MeanDecreaseGini), y = MeanDecreaseGini)) + 
-  geom_bar(stat = "identity", aes(fill = System)) +
-  scale_fill_manual(values = RColorBrewer::brewer.pal(n = 3, name = "Dark2")[c(3, 1,2)]) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 1, size = 12)) +
-  xlab("Taxonomic Label") + 
-  ylab("Importance Score\n(Mean Decrease Accuracy)") +
-  geom_text(aes(label=Feature), position=position_dodge(width=0.9), vjust=-0.25)
-dev.off()
+ggplot(filename = "ks_test_D_statistics_histogram_nasal_negative.pdf", 
+       ks_test_D_statistics_histogram_nasal_negative)
+
+ks_test_D_statistics_histogram_gut_positive = 
+  ks_test_D_statistics_histogram_gut_positive + 
+  theme(legend.position = "none")
+ks_test_D_statistics_histogram_gut_negative = 
+  ks_test_D_statistics_histogram_gut_negative + 
+  theme(legend.position = "none")
+ks_test_D_statistics_histogram_nasal_positive = 
+  ks_test_D_statistics_histogram_nasal_positive + 
+  theme(legend.position = "none")
+ks_test_D_statistics_histogram_nasal_negative = 
+  ks_test_D_statistics_histogram_nasal_negative + 
+  theme(legend.position = "none")
+
+d_stat_legend = data.frame("Status" = c("Gut +", 
+                                        "Gut -", 
+                                        "Nasal +", 
+                                        "Nasal -", 
+                                        "Random"),
+                           "Values" = c(1, 2, 3, 4, 5))
+d_stat_legend$Status = 
+  factor(d_stat_legend$Status, 
+         levels = c("Gut +", "Gut -", "Nasal +", "Nasal -", "Random"))
+d_stat_legend = ggplot(d_stat_legend, 
+                       aes(x = Values, fill = Status, color = Status)) +
+  geom_histogram(position = "identity") +
+  scale_fill_manual(values = 
+                      c(colorspace::darken(col = pal[3], amount = 0.4),
+                        colorspace::darken(col = pal[1], amount = 0.4), 
+                        colorspace::lighten(col = pal[3], amount = 0.2),
+                        colorspace::lighten(col = pal[1], amount = 0.2), 
+                        "grey")) + 
+  scale_color_manual(values = 
+                       c(colorspace::darken(col = pal[3], amount = 0.6),
+                         colorspace::darken(col = pal[1], amount = 0.6),
+                         colorspace::lighten(col = pal[3], amount = 0.4),
+                         colorspace::lighten(col = pal[1], amount = 0.4),
+                         colorspace::darken(col = "grey", amount = 0.2))) +
+  theme(legend.text = element_text(size = 18),
+        legend.title = element_text(size = 18))
+d_stat_legend = ggpubr::get_legend(d_stat_legend)
+ggpubr::as_ggplot(d_stat_legend)
 
 
+p_gut = cowplot::plot_grid(ks_test_D_statistics_histogram_gut_positive, 
+                           ks_test_D_statistics_histogram_gut_negative, 
+                           labels = c ("A", "B"))
+p_nasal = cowplot::plot_grid(ks_test_D_statistics_histogram_nasal_positive, 
+                             ks_test_D_statistics_histogram_nasal_negative, 
+                             labels = c ("C", "D"))
+p_legend = ggpubr::as_ggplot(d_stat_legend)
+
+d_stat_plot = 
+  cowplot::plot_grid(p_gut, p_legend, p_nasal, rel_widths = c(4, 1, 4))                   
+d_stat_plot
 setwd(directory.figures)
-save.image(file = "MondayAug16ThesisChapterEnv.RData", compress = TRUE)
+ggsave(filename = "d_stat_plot.pdf", d_stat_plot)
+
+###############################################################################
+#  Save Session Info                                                          #
+###############################################################################
+
+setwd(directory.out)
+writeLines(capture.output(sessionInfo()), "sessionInfo.txt")
+
+
+
 
