@@ -927,6 +927,10 @@ ggsave(filename = "inflammatory_markers.pdf",
        inflammatory_markers, 
        height = 5, 
        width = 8)
+ggsave(filename = "inflammatory_markers.png", 
+       inflammatory_markers, 
+       height = 5, 
+       width = 8)
 
 ###############################################################################
 #  Clades associating with clinical signs                                     #
