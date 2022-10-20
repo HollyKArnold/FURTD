@@ -1071,7 +1071,14 @@ sig = as_tibble(sig)
 sig
 
 sig %>% filter(microbiome == "Gut") %>% nrow() #136
+ntaxa(asvG_ps) + ntaxa(ctuG_ps) 
+(sig %>% filter(microbiome == "Gut") %>% nrow()) / (ntaxa(asvG_ps) + ntaxa(ctuG_ps) )
+
+
 sig %>% filter(microbiome == "Nasal")%>% nrow() #89
+ntaxa(asvN_ps) + ntaxa(ctuN_ps) 
+(sig %>% filter(microbiome == "Nasal") %>% nrow()) / (ntaxa(asvN_ps) + ntaxa(ctuN_ps) )
+
 
 ###############################################################################
 #  Visualize significant microbial features gut                               #
@@ -1090,7 +1097,12 @@ rootsG
 taxGAll = tidyr::as_tibble(rbind(
   phyloseqCompanion::taxa.data.table(ps = asvG_ps), 
   phyloseqCompanion::taxa.data.table(ps = (ctuG_ps))))
-taxGAll %>% filter(Taxon %in% rootsG) %>% print(n = 35)
+taxGAll %>% 
+  filter(Taxon %in% rootsG) %>% 
+  arrange(Kingdom, Phylum, Class, Order, Family, Genus, Species) %>%
+  print(n = 39) 
+
+  
 as_tibble(sigGut) %>% 
   filter(covariate == "Status") %>% 
   left_join(taxGAll, by = c("clade" = "Taxon")) %>% 
@@ -1112,7 +1124,27 @@ dG = dG %>%
       Status >= 0 ~ "+"
     ))
 
-dG
+# Common taxonomic labels associated with significant gut microbiome features
+dG %>% 
+  filter(Status == "-") %>% 
+  arrange(Kingdom, Phylum, Class, Order, Family, Genus, Species) %>%
+  count(Kingdom, Phylum, Class, Order, Family) %>%
+  arrange(desc(n))
+dG %>% 
+  filter(Status == "+") %>% 
+  arrange(Kingdom, Phylum, Class, Order, Family, Genus, Species) %>%
+  count(Kingdom, Phylum, Class, Order, Family) %>%
+  arrange(desc(n))
+
+# Count number of features 
+dG %>% 
+  filter(Status %in% c("+", "-")) %>% 
+  count()
+dG %>% 
+  filter(Status %in% c("+", "-")) %>% 
+  filter(grepl('node', nodeName)) %>%
+  count()
+
 dG %>% filter(nodeName %in% rootsG) 
 
 idxsG = c(treeG$tip.label, treeG$node.label)
@@ -1131,11 +1163,11 @@ cxGutTreeLabel = ggtree::ggtree(treeG, layout = "circular",
   guides(color = guide_legend(override.aes = list(size = 5))) 
 cxGutTreeLabel
 
-setwd(directory.figures)
-ggsave(filename = "labeled_tree_gut.pdf",
-       cxGutTreeLabel, 
-       height = 20, 
-       width = 20)
+#setwd(directory.figures)
+#ggsave(filename = "labeled_tree_gut.pdf",
+#       cxGutTreeLabel, 
+#       height = 20, 
+#       width = 20)
 
 
 # Color palette for labels
@@ -1336,7 +1368,7 @@ cxGutTree
 status_legend = ggpubr::get_legend(cxGutTree)
 ggpubr::as_ggplot(status_legend)
 setwd(directory.figures)
-ggsave(filename = "labeled_Gut_Tree.pdf", cxGutTree, height = 40, width = 40)
+#ggsave(filename = "labeled_Gut_Tree.pdf", cxGutTree, height = 40, width = 40)
 ggsave(filename = "legend_status_gut.png", ggpubr::as_ggplot(status_legend))
 
 # Get phylum legend
@@ -1573,10 +1605,10 @@ cxGutTree = ggtree(treeGSub, layout = "fan", size = 0.2, open.angle = 5) +
 cxGutTree
 
 # Output a labeled version for checking tips / labels match graph
-setwd(directory.figures)
-pdf(file = "tree_reduced_gut_tip_node_labels.pdf")
-cxGutTree + geom_tiplab(size = 0.5) + geom_nodelab(size = 0.5)
-dev.off()
+#setwd(directory.figures)
+#pdf(file = "tree_reduced_gut_tip_node_labels.pdf")
+#cxGutTree + geom_tiplab(size = 0.5) + geom_nodelab(size = 0.5)
+#dev.off()
 
 colnames(dGSub)[which(colnames(dGSub) == "Status" )] = "Association"
 cxGutTree = cxGutTree %<+% dGSub + 
@@ -1676,19 +1708,19 @@ ggsave(cxGutTree, file = "cladesClinicalSignsReducedGut.pdf",
        height = 25, width = 23, units = "cm")
 ggsave(cxGutTree, file = "cladesClinicalSignsReducedGut.png", 
        height = 25, width = 23, units = "cm")
-lay = rbind(c(1, 1),
-            c(1, 1),
-            c(2, 2),
-            c(2, 2))
+#lay = rbind(c(1, 1),
+#            c(1, 1),
+#            c(2, 2),
+#            c(2, 2))
 
-pp = gridExtra::arrangeGrob(cxGutTreeLegend$grobs[[2]], 
-                            cxGutTreeLegend$grobs[[3]],  
-                            layout_matrix = lay)
-plot(pp)
-ggsave(pp, 
-       file = "cladesClinicalSignsReducedGutKey.pdf", 
-       height = 9, 
-       width = 5)
+#pp = gridExtra::arrangeGrob(cxGutTreeLegend$grobs[[2]], 
+#                            cxGutTreeLegend$grobs[[3]],  
+#                            layout_matrix = lay)
+#plot(pp)
+#ggsave(pp, 
+#       file = "cladesClinicalSignsReducedGutKey.pdf", 
+#       height = 9, 
+#       width = 5)
 
 
 ###############################################################################
@@ -1730,6 +1762,30 @@ dN = dN %>%
 dN
 dN %>% filter(nodeName %in% rootsN) 
 idxsN = c(treeN$tip.label, treeN$node.label)
+
+dN %>% 
+  filter(Status == "-") %>% 
+  arrange(Kingdom, Phylum, Class, Order, Family, Genus, Species) %>%
+  count(Kingdom, Phylum, Class, Order, Family) %>%
+  arrange(desc(n))
+dN %>% 
+  filter(Status == "+") %>% 
+  arrange(Kingdom, Phylum, Class, Order, Family, Genus, Species) %>%
+  count(Kingdom, Phylum, Class, Order, Family) %>%
+  arrange(desc(n))
+# Count number of features 
+dN %>% 
+  filter(Status %in% c("+", "-")) %>% 
+  count()
+dN%>% 
+  filter(Status %in% c("+", "-")) %>% 
+  filter(grepl('node', nodeName)) %>%
+  count()
+dN%>% 
+  filter(Status %in% c("+", "-")) %>% 
+  filter(grepl('seq', nodeName)) %>%
+  count()
+
 
 
 # Color palette for labels
@@ -1964,11 +2020,11 @@ cxNasalTree = cxNasalTree + theme(legend.position = "none")
 ggpubr::as_ggplot(status_legend)
 
 setwd(directory.figures)
-ggsave(filename = "labeled_Nasal_Tree.pdf", 
-       cxNasalTree, 
-       height = 40, 
-       width = 40)
-ggsave(filename = "legend_status_nasal.png", ggpubr::as_ggplot(status_legend))
+#ggsave(filename = "labeled_Nasal_Tree.pdf", 
+#       cxNasalTree, 
+#       height = 40, 
+#       width = 40)
+#ggsave(filename = "legend_status_nasal.png", ggpubr::as_ggplot(status_legend))
 
 
 # Get phylum legend
@@ -2118,11 +2174,11 @@ cxNasalTree = cxNasalTree +
                   color = '#66A61E', fontsize = 10, barsize = 5, offset = 0.8)
 cxNasalTree
 
-setwd(directory.figures)
-ggsave(filename = "full_nasal_tree_labeless.png", 
-       cxNasalTree, 
-       height = 40, 
-       width = 40)
+#setwd(directory.figures)
+#ggsave(filename = "full_nasal_tree_labeless.png", 
+#       cxNasalTree, 
+#       height = 40, 
+#       width = 40)
 
 ###############################################################################
 #  Visualize significant microbial features nasal reduced                     #
@@ -2216,10 +2272,10 @@ cxNasalTree
 
 
 # Output a labeled version for checking tips / labels match graph
-setwd(directory.figures)
-pdf(file = "tree_reduced_nasal_tip_node_labels.pdf")
-cxNasalTree + geom_tiplab(size = 0.5) + geom_nodelab(size = 0.5)
-dev.off()
+#setwd(directory.figures)
+#pdf(file = "tree_reduced_nasal_tip_node_labels.pdf")
+#cxNasalTree + geom_tiplab(size = 0.5) + geom_nodelab(size = 0.5)
+#dev.off()
 
 # Decorate tree with the significant associations 
 colnames(dNSub)[which(colnames(dNSub) == "Status" )] = "Association"
@@ -2516,7 +2572,7 @@ hist_means = cowplot::plot_grid(hist_gut_positive,
                                 hist_nasal_negative, 
                                 labels = c("A", "B", "C", "D"))
 setwd(directory.figures)
-ggsave(filename = "average_pairwise_distance.pdf", hist_means)
+ggsave(filename = "average_pairwise_distance.pdf", hist_means, width = 5.2, height = 7, units = "in")
 
 
 ###############################################################################
@@ -2691,6 +2747,7 @@ for(i in 1:ncol(test_statistics_random_combos)){
 }
 
 ks.result = ks.test(test_statistics_random, test_statistics_rand_positive)
+ks.result
 
 # Plot
 d_positive_random_df = 
@@ -2754,7 +2811,7 @@ for(i in 1:ncol(test_statistics_random_combos)){
 
 
 ks.result = ks.test(test_statistics_random, test_statistics_rand_negative)
-
+ks.result 
 # Plot
 d_negative_random_df = 
   rbind(data.frame("D" = test_statistics_random, 
@@ -2815,8 +2872,8 @@ d_stat_legend = ggplot(d_stat_legend,
                          colorspace::lighten(col = pal[3], amount = 0.4),
                          colorspace::lighten(col = pal[1], amount = 0.4),
                          colorspace::darken(col = "grey", amount = 0.2))) +
-  theme(legend.text = element_text(size = 18),
-        legend.title = element_text(size = 18))
+  theme(legend.text = element_text(size = 12),
+        legend.title = element_text(size = 12))
 d_stat_legend = ggpubr::get_legend(d_stat_legend)
 ggpubr::as_ggplot(d_stat_legend)
 
@@ -2833,7 +2890,7 @@ d_stat_plot =
   cowplot::plot_grid(p_gut, p_legend, p_nasal, rel_widths = c(4, 1, 4))                   
 d_stat_plot
 setwd(directory.figures)
-ggsave(filename = "d_stat_plot.pdf", d_stat_plot)
+ggsave(filename = "d_stat_plot.pdf", d_stat_plot, width = 5.2, height = 3.5, units = "in")
 
 ###############################################################################
 #  Save Session Info                                                          #
