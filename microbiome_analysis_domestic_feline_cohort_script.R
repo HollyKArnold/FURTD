@@ -1605,10 +1605,37 @@ cxGutTree = ggtree(treeGSub, layout = "fan", size = 0.2, open.angle = 5) +
 cxGutTree
 
 # Output a labeled version for checking tips / labels match graph
-#setwd(directory.figures)
-#pdf(file = "tree_reduced_gut_tip_node_labels.pdf")
-#cxGutTree + geom_tiplab(size = 0.5) + geom_nodelab(size = 0.5)
-#dev.off()
+setwd(directory.figures)
+pdf(file = "tree_reduced_gut_tip_node_labels.pdf")
+cxGutTree + geom_tiplab(size = 0.5) + geom_nodelab(size = 0.5)
+dev.off()
+
+##
+por = ape::extract.clade(phy = treeG, node = which(treeG$node.label == "node294") + length(treeG$tip.label))
+por$tip.label
+por_ps = prune_taxa(taxa = por$tip.label, x = asvG_ps)
+por_ps
+phyloseq::psmelt(por_ps) %>%
+  ggplot(data = ., aes(x = Status, y = Abundance)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(aes(color = Animal_ID, shape = Status), height = 0, width = .2) +
+  labs(x = "", y = "Abundance\n") +
+  facet_wrap(~ OTU, scales = "free")
+tax_table(por_ps)
+
+lacb = ape::extract.clade(phy = treeG, node = which(treeG$node.label == "node934") + length(treeG$tip.label))
+lacb$tip.label
+lacb_ps = prune_taxa(taxa = lacb$tip.label, x = asvG_ps)
+lacb_ps
+phyloseq::psmelt(lacb_ps) %>%
+  ggplot(data = ., aes(x = Status, y = Abundance)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(aes(color = Animal_ID, shape = Status), height = 0, width = .2) +
+  labs(x = "", y = "Abundance\n") +
+  facet_wrap(~ OTU, scales = "free")
+tax_table(lacb_ps)
+
+##
 
 colnames(dGSub)[which(colnames(dGSub) == "Status" )] = "Association"
 cxGutTree = cxGutTree %<+% dGSub + 
