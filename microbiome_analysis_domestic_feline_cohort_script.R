@@ -1369,7 +1369,7 @@ status_legend = ggpubr::get_legend(cxGutTree)
 ggpubr::as_ggplot(status_legend)
 setwd(directory.figures)
 #ggsave(filename = "labeled_Gut_Tree.pdf", cxGutTree, height = 40, width = 40)
-ggsave(filename = "legend_status_gut.png", ggpubr::as_ggplot(status_legend))
+#ggsave(filename = "legend_status_gut.png", ggpubr::as_ggplot(status_legend))
 
 # Get phylum legend
 dG %>% filter(nodeName %in% rootsG) 
@@ -1606,9 +1606,9 @@ cxGutTree
 
 # Output a labeled version for checking tips / labels match graph
 setwd(directory.figures)
-pdf(file = "tree_reduced_gut_tip_node_labels.pdf")
-cxGutTree + geom_tiplab(size = 0.5) + geom_nodelab(size = 0.5)
-dev.off()
+#pdf(file = "tree_reduced_gut_tip_node_labels.pdf")
+#cxGutTree + geom_tiplab(size = 0.5) + geom_nodelab(size = 0.5)
+#dev.off()
 
 ##
 por = ape::extract.clade(phy = treeG, node = which(treeG$node.label == "node294") + length(treeG$tip.label))
@@ -2643,9 +2643,10 @@ for(i in 1:ncol(test_statistics_random_combos)){
   test_statistics_random = c(test_statistics_random, ks_test_cur)
 }
 
-ks.test(test_statistics_random, test_statistics_rand_positive)
-ks.result = ks.test(test_statistics_random, test_statistics_rand_positive)
-ks.result
+wilcox.test(x = test_statistics_random, 
+            y = test_statistics_rand_positive, 
+            alternative = "two.sided")
+
 
 # Plot
 d_positive_random_df = 
@@ -2707,9 +2708,11 @@ for(i in 1:ncol(test_statistics_random_combos)){
   test_statistics_random = c(test_statistics_random, ks_test_cur)
 }
 
-ks.test(test_statistics_random, test_statistics_rand_negative)
-ks.result = ks.test(test_statistics_random, test_statistics_rand_negative)
-ks.result
+
+wilcox.test(x = test_statistics_random, 
+            y = test_statistics_rand_negative, 
+            alternative = "two.sided")
+
 
 # Plot
 d_negative_random_df = 
@@ -2773,8 +2776,10 @@ for(i in 1:ncol(test_statistics_random_combos)){
   test_statistics_random = c(test_statistics_random, ks_test_cur)
 }
 
-ks.result = ks.test(test_statistics_random, test_statistics_rand_positive)
-ks.result
+wilcox.test(x = test_statistics_random, 
+            y = test_statistics_rand_positive, 
+            alternative = "two.sided")
+
 
 # Plot
 d_positive_random_df = 
@@ -2837,8 +2842,9 @@ for(i in 1:ncol(test_statistics_random_combos)){
 }
 
 
-ks.result = ks.test(test_statistics_random, test_statistics_rand_negative)
-ks.result 
+wilcox.test(test_statistics_random, test_statistics_rand_negative)
+
+ 
 # Plot
 d_negative_random_df = 
   rbind(data.frame("D" = test_statistics_random, 
