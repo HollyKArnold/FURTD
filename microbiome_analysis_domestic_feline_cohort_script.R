@@ -2932,6 +2932,6 @@ ggsave(filename = "d_stat_plot.pdf", d_stat_plot, width = 5.2, height = 3.5, uni
 setwd(directory.out)
 writeLines(capture.output(sessionInfo()), "sessionInfo.txt")
 
-print("The end.")
+print("The end....")
 
 
