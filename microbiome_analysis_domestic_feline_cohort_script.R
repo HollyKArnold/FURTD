@@ -2485,6 +2485,9 @@ for(i in 1:N){
   dist_cur = distRandom(dist = distG, n = length(distPositiveG))
   random_mean_dists = c(random_mean_dists, mean(dist_cur)) 
 }
+setwd(directory.out)
+saveRDS(object = random_mean_dists, file = "random_mean_dists_positive_gut.rds")
+
 zscore_gut_positive = 
   (mean_positive_gut - mean(random_mean_dists)) / sd(random_mean_dists)
 zscore_gut_positive
@@ -2504,8 +2507,6 @@ hist_gut_positive =  ggplot(random_mean_dists, aes(x = Pairwise_Distance)) +
              linetype = "solid", 
              size = 1, 
              alpha = 1) 
-hist_gut_positive
-
 
 # Gut microbiome - nodes NEGATIVELY correlated with clinical signs. 
 N = 1000
@@ -2515,6 +2516,9 @@ for(i in 1:N){
   dist_cur = distRandom(dist = distG, n = length(distNegativeG))
   random_mean_dists = c(random_mean_dists, mean(dist_cur)) 
 }
+setwd(directory.out)
+saveRDS(object = random_mean_dists, file = "random_mean_dists_negative_gut.rds")
+
 zscore_gut_negative = 
   (mean_negative_gut - mean(random_mean_dists)) / sd(random_mean_dists)
 zscore_gut_negative
@@ -2543,6 +2547,9 @@ for(i in 1:N){
   dist_cur = distRandom(dist = distN, n = length(distPositiveN))
   random_mean_dists = c(random_mean_dists, mean(dist_cur)) 
 }
+setwd(directory.out)
+saveRDS(object = random_mean_dists, file = "random_mean_dists_positive_nasal.rds")
+
 zscore_nasal_positive = 
   (mean_positive_nasal - mean(random_mean_dists)) / sd(random_mean_dists)
 zscore_nasal_positive
@@ -2571,6 +2578,9 @@ for(i in 1:N){
   dist_cur = distRandom(dist = distN, n = length(distNegativeN))
   random_mean_dists = c(random_mean_dists, mean(dist_cur)) 
 }
+setwd(directory.out)
+saveRDS(object = random_mean_dists, file = "random_mean_dists_negative_nasal.rds")
+
 zscore_nasal_negative = 
   (mean_negative_nasal - mean(random_mean_dists)) / sd(random_mean_dists)
 zscore_nasal_negative
