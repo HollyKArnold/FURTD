@@ -2656,7 +2656,14 @@ for(i in 1:ncol(test_statistics_random_combos)){
 wilcox.test(x = test_statistics_random, 
             y = test_statistics_rand_positive, 
             alternative = "two.sided")
+setwd(directory.out)
+saveRDS(object = test_statistics_random,
+        file = "ks_test_random_random_gut_positive.rds")
+saveRDS(object = test_statistics_rand_positive,
+        file = "ks_test_random_selected_gut_positive.rds")
 
+mean_rand_gut_positive = mean(test_statistics_random)
+mean_selected_gut_positive = mean(test_statistics_rand_positive)
 
 # Plot
 d_positive_random_df = 
@@ -2675,11 +2682,15 @@ ks_test_D_statistics_histogram_gut_positive =
     values = c(colorspace::darken(col = pal[3], amount = 0.6), 
                colorspace::darken("grey", amount = 0.2))) +
   xlab("D Statistic") +
-  ylab("Frequency") 
+  ylab("Frequency") +
+  geom_vline(aes(xintercept = mean_rand_gut_positive), linetype = "dotted") +
+  geom_vline(aes(xintercept = mean_selected_gut_positive), linetype = "dotted") 
+  
 ks_test_D_statistics_histogram_gut_positive
-setwd(directory.figures)
-ggplot(filename = "ks_test_D_statistics_histogram_gut_positive.pdf", 
-       ks_test_D_statistics_histogram_gut_positive)
+
+#setwd(directory.figures)
+#ggplot(filename = "ks_test_D_statistics_histogram_gut_positive.pdf", 
+#       ks_test_D_statistics_histogram_gut_positive)
 
 
 # DIST GUT microbiome - nodes NEGATIVELY correlated with clinical signs. 
@@ -2718,10 +2729,17 @@ for(i in 1:ncol(test_statistics_random_combos)){
   test_statistics_random = c(test_statistics_random, ks_test_cur)
 }
 
+setwd(directory.out)
+saveRDS(object = test_statistics_random,
+        file = "ks_test_random_random_gut_negative.rds")
+saveRDS(object = test_statistics_rand_negative,
+        file = "ks_test_random_selected_gut_negative.rds")
 
 wilcox.test(x = test_statistics_random, 
             y = test_statistics_rand_negative, 
             alternative = "two.sided")
+mean_rand_gut_negative = mean(test_statistics_random)
+mean_selected_gut_negative = mean(test_statistics_rand_negative)
 
 
 # Plot
@@ -2741,11 +2759,14 @@ ks_test_D_statistics_histogram_gut_negative =
                        c(colorspace::darken(col = pal[1], amount = 0.6), 
                          colorspace::darken("grey", amount = 0.2))) +
   xlab("D Statistic") +
-  ylab("Frequency") 
+  ylab("Frequency") +
+  geom_vline(aes(xintercept = mean_rand_gut_negative), linetype = "dotted") +
+  geom_vline(aes(xintercept = mean_selected_gut_negative), linetype = "dotted") 
+
 ks_test_D_statistics_histogram_gut_negative
-setwd(directory.figures)
-ggplot(filename = "ks_test_D_statistics_histogram_gut_negative.pdf", 
-       ks_test_D_statistics_histogram_gut_negative)
+#setwd(directory.figures)
+#ggplot(filename = "ks_test_D_statistics_histogram_gut_negative.pdf", 
+#       ks_test_D_statistics_histogram_gut_negative)
 
 
 
@@ -2786,9 +2807,17 @@ for(i in 1:ncol(test_statistics_random_combos)){
   test_statistics_random = c(test_statistics_random, ks_test_cur)
 }
 
+setwd(directory.out)
+saveRDS(object = test_statistics_random,
+        file = "ks_test_random_random_nasal_positive.rds")
+saveRDS(object = test_statistics_rand_positive,
+        file = "ks_test_random_selected_nasal_positive.rds")
+
 wilcox.test(x = test_statistics_random, 
             y = test_statistics_rand_positive, 
             alternative = "two.sided")
+mean_rand_nasal_positive = mean(test_statistics_random)
+mean_selected_nasal_positive = mean(test_statistics_rand_positive)
 
 
 # Plot
@@ -2808,11 +2837,15 @@ ks_test_D_statistics_histogram_nasal_positive =
                        c(colorspace::lighten(col = pal[3], amount = 0.4), 
                          colorspace::darken(col = "grey", amount = 0.2))) +
   xlab("D Statistic") +
-  ylab("Frequency") 
+  ylab("Frequency") +
+  geom_vline(aes(xintercept = mean_rand_nasal_positive), linetype = "dotted") +
+  geom_vline(aes(xintercept = mean_selected_nasal_positive), linetype = "dotted") 
+
 ks_test_D_statistics_histogram_nasal_positive
-setwd(directory.figures)
-ggplot(filename = "ks_test_D_statistics_histogram_nasal_positive.pdf", 
-       ks_test_D_statistics_histogram_nasal_positive)
+
+#setwd(directory.figures)
+#ggplot(filename = "ks_test_D_statistics_histogram_nasal_positive.pdf", 
+#       ks_test_D_statistics_histogram_nasal_positive)
 
 
 # Calculate if distributions are significantly different - nasal - negative
@@ -2851,8 +2884,15 @@ for(i in 1:ncol(test_statistics_random_combos)){
   test_statistics_random = c(test_statistics_random, ks_test_cur)
 }
 
+setwd(directory.out)
+saveRDS(object = test_statistics_random,
+        file = "ks_test_random_random_nasal_negative.rds")
+saveRDS(object = test_statistics_rand_negative,
+        file = "ks_test_random_selected_nasal_negative.rds")
 
 wilcox.test(test_statistics_random, test_statistics_rand_negative)
+mean_rand_nasal_negative = mean(test_statistics_random)
+mean_selected_nasal_negative = mean(test_statistics_rand_negative)
 
  
 # Plot
@@ -2871,12 +2911,15 @@ ks_test_D_statistics_histogram_nasal_negative =
                        c(colorspace::lighten(col = pal[1], amount = 0.4), 
                          colorspace::darken(col = "grey", amount = 0.2))) +
   xlab("D Statistic") +
-  ylab("Frequency")
+  ylab("Frequency") +
+  geom_vline(aes(xintercept = mean_rand_nasal_negative), linetype = "dotted") +
+  geom_vline(aes(xintercept = mean_selected_nasal_negative), linetype = "dotted") 
+
 
 ks_test_D_statistics_histogram_nasal_negative
 setwd(directory.figures)
-ggplot(filename = "ks_test_D_statistics_histogram_nasal_negative.pdf", 
-       ks_test_D_statistics_histogram_nasal_negative)
+#ggplot(filename = "ks_test_D_statistics_histogram_nasal_negative.pdf", 
+#       ks_test_D_statistics_histogram_nasal_negative)
 
 ks_test_D_statistics_histogram_gut_positive = 
   ks_test_D_statistics_histogram_gut_positive + 
